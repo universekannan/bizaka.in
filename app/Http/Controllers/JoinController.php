@@ -75,5 +75,15 @@ class JoinController extends Controller
         }
         return $ret_value;
     }
+ public function members()
+  {
+    $members = DB::table( 'users' )->where( 'status', '=', 'Active' )->orderBy( 'id', 'Asc' )->get();
+    return view( 'users/index', compact('members'));
+   }
 
+   public function geneology()
+  {
+    $members = DB::table( 'users' )->where( 'status', '=', 'Active' )->orderBy( 'id', 'Asc' )->get();
+    return view( 'users/geneology', compact('members'));
+   }
 }
