@@ -31,4 +31,7 @@ CREATE TABLE `user_type` (
 
 INSERT INTO `user_type` VALUES (1,'Admin',1),(2,'Member',1);
 
+alter table users add referral_id varchar(255) DEFAULT NULL;
+alter table users add parent_id int DEFAULT 0 after id;
+
 
