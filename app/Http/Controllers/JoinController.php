@@ -72,8 +72,20 @@ class JoinController extends Controller
   }
   
   public function members(){
-    $members = DB::table( 'users' )->where( 'status', '=', 'Active' )->orderBy( 'id', 'Asc' )->get();
-    return view( 'users/index', compact('members'));
+    $parent_id = Auth::user()->id;
+    $sql = "";
+    $childcount = 0;
+    $sql = "select count(*) as childcount from users where parent_id=$parent_id";
+    $result = DB::select(DB::raw($sql));
+    if(count($result) > 0){
+      $childcount = $result[0]->childcount;
+    }
+    if($parent_id == 1)
+      $sql = "select * from users where usertype_id = 2 order by parent_id,id";
+    else
+      $sql = "select * from users where parent_id = $parent_id order by id";
+    $members = DB::select(DB::raw($sql));
+    return view( 'users/index', compact('members','childcount'));
   }
 
   public function geneology(Request $request){
@@ -121,5 +133,50 @@ class JoinController extends Controller
     $primarymember = $data['primarymember'];
     $members = $data['members'];
     return view('users/geneology',compact('members','primarymember'));
+  }
+
+  public function addmember(Request $request){
+    $name = $request->name;
+    $phone = trim($request->phone);
+    $email = trim($request->email);
+    $sql = "select * from users where email = '$email'";
+    $emailres = DB::select(DB::raw($sql));
+    $sql = "select * from users where phone = '$phone'";
+    $phoneres = DB::select(DB::raw($sql));
+    if(count($emailres) > 0){
+      return redirect("/members")->with('error', 'Email address already used by another member');
+    }elseif(count($phoneres) > 0){
+      return redirect("/members")->with('error', 'Phone number already used by another member');
+    }else{
+      $parent_id = Auth::user()->id;
+      $referral_id = uniqid();
+      $password = rand(1001,9999);
+      $passwordhash = Hash::make($password);
+      $created_at = date("Y-m-d H:i:s");
+      $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
+      DB::insert(DB::raw($sql));
+      return redirect("/members")->with('success', 'Member added successfully');
+    }
+  }
+
+  public function updatemember(Request $request){
+    $id = $request->member_id;
+    $name = $request->name;
+    $phone = trim($request->phone);
+    $email = trim($request->email);
+    $sql = "select * from users where email = '$email' and id <> $id";
+    $emailres = DB::select(DB::raw($sql));
+    $sql = "select * from users where phone = '$phone' and id <> $id";
+    $phoneres = DB::select(DB::raw($sql));
+    if(count($emailres) > 0){
+      return redirect("/members")->with('error', 'Email address already used by another member');
+    }elseif(count($phoneres) > 0){
+      return redirect("/members")->with('error', 'Phone number already used by another member');
+    }else{
+      $updated_at = date("Y-m-d H:i:s");
+      $sql = "update users set name='$name',email='$email',phone='$phone',updated_at='$updated_at' where id = $id";
+      DB::insert(DB::raw($sql));
+      return redirect("/members")->with('success', 'Member updated successfully');
+    }
   }
 }

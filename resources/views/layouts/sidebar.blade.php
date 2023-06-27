@@ -16,17 +16,11 @@
             <a href="#" class="nav-link">
              <i class="far fa-user nav-icon"></i>
               <p>
-                Managing Member 
+                Manage Member 
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('addmember') }}" class="nav-link {{ (request()->is('addmember')) ? 'active' : '' }}">
-                  <i class="nav-icon far fa-plus-square"></i>
-                  <p>Add Member</p>
-                </a>
-              </li>
               <li class="nav-item">
                 <a href="{{ route('members') }}" class="nav-link {{ (request()->is('members') || (request()->segment(1) =='members')) ? 'active' : '' }}">
                   <i class="nav-icon fas fa-th"></i>
@@ -48,7 +42,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-arrow-up"></i>
               <p>
-                Managing Income
+                Manage Income
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
