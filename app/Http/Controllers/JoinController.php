@@ -56,21 +56,25 @@ class JoinController extends Controller
     }
 
     private function get_parent_id($parent_id){
-        $ret_value = 1;
+        $ret_value = 0;
         $sql = "select parent_id,count(*) as members from users where parent_id > 0 group by parent_id";
         $result = DB::select(DB::raw($sql));
+        //echo "<pre>";print_r($result);echo "</pre>";die;
         foreach($result as $res){
             if($res->members < 5){
                 $parent_id = $res->parent_id;
+                $ret_value = $parent_id;
                 break;
             }else{
                 $parent_id = $res->parent_id;
-                $sql3 = "select id from users where parent_id=$parent_id order by id limit 1";
+                $sql3 = "select id from users where parent_id=$parent_id order by id";
                 $result3 = DB::select(DB::raw($sql3));
                 if(count($result3) > 0){
-                    $ret_value = $result3[0]->id;
+                    foreach($result3 as $res3){
+                        $id = $res3->id;
+                        self::get_parent_id($id);
+                    }
                 }
-                continue;
             }
         }
         return $ret_value;
