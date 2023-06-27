@@ -31,9 +31,9 @@ class JoinController extends Controller
     $sql = "select * from users where phone = '$phone'";
     $phoneres = DB::select(DB::raw($sql));
     if(count($emailres) > 0){
-      return redirect("/join/$referral_id")->with('error', 'Please use a different email address');
+      return redirect("/join/$referral_id")->with('name',$name)->with('phone',$phone)->with('email',$email)->with('password',$password)->with('password_confirmation',$password_confirmation)->with('terms',$terms)->with('error', 'Email address already used by another member');
     }elseif(count($phoneres) > 0){
-      return redirect("/join/$referral_id")->with('error', 'Please use a different phone number');
+      return redirect("/join/$referral_id")->with('name',$name)->with('phone',$phone)->with('email',$email)->with('password',$password)->with('password_confirmation',$password_confirmation)->with('terms',$terms)->with('error', 'Phone number already used by another member');
     }elseif($password != $password_confirmation){
       return redirect("/join/$referral_id")->with('error', 'Passwords does not match');
     }else{
@@ -48,9 +48,9 @@ class JoinController extends Controller
       $created_at = date("Y-m-d H:i:s");
       $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
       DB::insert(DB::raw($sql));
-      /*$id = DB::getPdo()->lastInsertId();
+      $id = DB::getPdo()->lastInsertId();
       Auth::loginUsingId($id);
-      return redirect("/dashboard");*/
+      return redirect("/dashboard");
     }
   }
 

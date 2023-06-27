@@ -33,7 +33,7 @@
                     @csrf
                     <input value="{{ $referral_id }}" type="hidden" name="referral_id"  >
                     <div class="input-group mb-3">
-                        <input value="{{ $name }}" required type="text"
+                        <input value="{{ session('name') }}" required type="text"
                         name="name" maxlength="30" 
                         class="form-control"
                         placeholder="Full name">
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input value="{{ $phone }}"maxlength="10" required type="text"
+                        <input value="{{ session('phone') }}"maxlength="10" required type="text"
                         name="phone"
                         class="form-control number"
                         placeholder="Phone">
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input value="{{ $email }}" type="email"
+                        <input value="{{ session('email') }}" type="email"
                         name="email" maxlength="30" 
                         class="form-control"
                         placeholder="Email">
@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input  required type="password"
+                        <input  value="{{ session('password') }}" required type="text"
                         name="password"
                         class="form-control"maxlength="15"
                         placeholder="Password">
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input required type="password"
+                        <input value="{{ session('password_confirmation') }}" required type="text"
                         name="password_confirmation" maxlength="15" 
                         class="form-control"
                         placeholder="Retype password">
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input @if($terms == 1) checked @endif required type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                <input @if(session('terms')  == 1) checked @endif required type="checkbox" id="agreeTerms" name="terms" value="agree">
                                 <label for="agreeTerms">
                                     I agree to the <a href="#">terms</a>
                                 </label>
