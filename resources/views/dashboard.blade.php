@@ -117,7 +117,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-       
+
 
 
         <style>
@@ -230,24 +230,13 @@ right connector from last child*/
      <div class="col-sm-6"> 
        <ul>
         <li>
-         <a href="MY" title="MY"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="MY" /><br><br>MY</a>
+          <a><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" /><br><br>{{ Auth::user()->name }}</a>
          <ul>
+          @foreach($child as $c)
           <li>
-           <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>A</a>
-           
+           <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>{{ $c->name }}</a>
          </li>
-         <li>
-           <a href="B" title="B"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="B" /><br><br>B</a>
-         </li>
-         <li>
-           <a href="C" title="C"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="C" /><br><br>C</a>
-         </li>
-         <li>
-           <a href="D" title="D"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="D" /><br><br>D</a>
-         </li>
-         <li>
-           <a href="E" title="E"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="E" /><br><br>E</a>
-         </li>
+         @endforeach
        </ul>
      </li>
    </ul>
