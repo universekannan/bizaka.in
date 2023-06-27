@@ -56,7 +56,6 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-check"></i>
           </div>
-          
         </div>
       </div>
     </div>

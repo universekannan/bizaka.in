@@ -49,9 +49,9 @@ class JoinController extends Controller
       $created_at = date("Y-m-d H:i:s");
       $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
       DB::insert(DB::raw($sql));
-      /*$id = DB::getPdo()->lastInsertId();
-      Auth::loginUsingId($id);*/
-      //return redirect("/dashboard");
+      $id = DB::getPdo()->lastInsertId();
+      Auth::loginUsingId($id);
+      return redirect("/dashboard");
     }
   }
 
