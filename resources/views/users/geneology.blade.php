@@ -162,7 +162,7 @@ right connector from last child*/
 
       <ul>
 
-@foreach($members['u'.$m['id']] as $s)
+{{-- @foreach($members['u'.$m['id']] as $s)
         <li>
                 <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['photo'] !== NULL) {{ $s['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /></a>
           <ul>
@@ -176,7 +176,7 @@ right connector from last child*/
           </ul>
         </li>
 
-@endforeach
+@endforeach --}}
 
 
           </ul>
