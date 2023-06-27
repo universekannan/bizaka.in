@@ -32,7 +32,7 @@
               <h3 class="card-title">Geneology</h3>
             </div>
             <!-- /.card-header -->
-             <div class="card-body">
+             <div class="card-body" style="text-align: center">
               @if ($message = Session::get('success'))
                   <div class="alert alert-success">
                       <p>{{ $message }}</p>
@@ -143,7 +143,7 @@ right connector from last child*/
 }
 </style>
 
-<div class="tree">
+<div class="tree" style="text-align: center;">
   <ul>
     <li>
       
