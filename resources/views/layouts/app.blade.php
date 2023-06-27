@@ -59,6 +59,7 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown user-menu">
+        
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
           <img src="{{ URL::to('/') }}/AdminLTELogo.png"
           class="user-image img-circle elevation-2" alt="User Image">

@@ -3,7 +3,7 @@
 <div class="container-fluid">
  <div class="row mb-2">
   <div class="col-sm-6">
-   <h1 class="m-0"></h1>
+     <h3><a href="whatsapp://send?text=http://aaranetwork.in/erp/join/{{ Auth::user()->referral_id }}" data-action="share/whatsapp/share" target="_blank">Share Referral Link</a></h3>
  </div>
 </div> 
 </div>
@@ -19,7 +19,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-user-graduate"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -31,7 +31,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
 
@@ -44,7 +44,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -56,7 +56,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-check"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-wallet"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -82,7 +82,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
 
@@ -95,7 +95,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -107,7 +107,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-check"></i>
           </div>
-          <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
+          
         </div>
       </div>
     </div>
