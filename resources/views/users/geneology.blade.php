@@ -147,7 +147,7 @@ right connector from last child*/
   <ul>
     <li>
       
-      <a href="{{ url()->current() }}?r={{ $primarymember->id }}" title="{{ $primarymember->uniqueId }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($primarymember->profileImage !== NULL) {{ $primarymember->profileImage }} @else {{ asset('images/member.jpg') }} @endif" width="70" height="70" alt="{{ $primarymember->name }}" /><br>{{ $primarymember->name }}<br>{{ $primarymember->userplan }}</a>
+      <a href="{{ url()->current() }}?r={{ $primarymember->id }}" title="{{ $primarymember->referral_id }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($primarymember->photo !== NULL) {{ $primarymember->photo }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $primarymember->name }}" /><br>{{ $primarymember->name }}</a>
 
 
 <ul>
@@ -158,18 +158,18 @@ right connector from last child*/
 <!--       <a href="{{ url()->current() }}?r={{ $m['id'] }}">{{ $m['id'] }}</a>
  -->
 
-      <a href="{{ url()->current() }}?r={{ $m['id'] }}" title="{{ $m['uniqueId'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($m['profileImage'] !== NULL) {{ $m['profileImage'] }} @else {{ asset('images/member.jpg') }} @endif" width="70" height="70" alt="{{ $m['name'] }}" /><br>{{ $m['name'] }}<br>{{ $m['userplan'] }}</a>
+      <a href="{{ url()->current() }}?r={{ $m['id'] }}" title="{{ $m['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($m['photo'] !== NULL) {{ $m['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $m['name'] }}" /><br>{{ $m['name'] }}</a>
 
       <ul>
 
 @foreach($members['u'.$m['id']] as $s)
         <li>
-                <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['uniqueId'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['profileImage'] !== NULL) {{ $s['profileImage'] }} @else {{ asset('images/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /><br><br>{{ $s['userplan'] }}</a>
+                <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['photo'] !== NULL) {{ $s['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /></a>
           <ul>
 
             @foreach($members['u'.$s['id']] as $v)
             <li>
-                <a href="{{ url()->current() }}?r={{ $v['id'] }}" title="{{ $v['uniqueId'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($v['profileImage'] !== NULL) {{ $v['profileImage'] }} @else {{ asset('images/member.jpg') }} @endif" width="70" height="70" alt="{{ $v['name'] }}" /><br><br>{{ $v['userplan'] }}</a>
+                <a href="{{ url()->current() }}?r={{ $v['id'] }}" title="{{ $v['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($v['photo'] !== NULL) {{ $v['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $v['name'] }}" /></a>
             </li>
             @endforeach
 

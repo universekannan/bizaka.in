@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Hash;
 use Auth;
+use App\Models\User;
 
 class JoinController extends Controller
 {
@@ -31,9 +32,9 @@ class JoinController extends Controller
     $sql = "select * from users where phone = '$phone'";
     $phoneres = DB::select(DB::raw($sql));
     if(count($emailres) > 0){
-      return redirect("/join/$referral_id")->with('error', 'Please use a different email address');
+      return redirect("/join/$referral_id")->with('name',$name)->with('phone',$phone)->with('email',$email)->with('password',$password)->with('password_confirmation',$password_confirmation)->with('terms',$terms)->with('error', 'Email address already used by another member');
     }elseif(count($phoneres) > 0){
-      return redirect("/join/$referral_id")->with('error', 'Please use a different phone number');
+      return redirect("/join/$referral_id")->with('name',$name)->with('phone',$phone)->with('email',$email)->with('password',$password)->with('password_confirmation',$password_confirmation)->with('terms',$terms)->with('error', 'Phone number already used by another member');
     }elseif($password != $password_confirmation){
       return redirect("/join/$referral_id")->with('error', 'Passwords does not match');
     }else{
@@ -49,8 +50,8 @@ class JoinController extends Controller
       $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
       DB::insert(DB::raw($sql));
       /*$id = DB::getPdo()->lastInsertId();
-      Auth::loginUsingId($id);
-      return redirect("/dashboard");*/
+      Auth::loginUsingId($id);*/
+      //return redirect("/dashboard");
     }
   }
 
@@ -75,8 +76,50 @@ class JoinController extends Controller
     return view( 'users/index', compact('members'));
   }
 
-  public function geneology(){
-    $members = DB::table( 'users' )->where( 'status', '=', 'Active' )->orderBy( 'id', 'Asc' )->get();
-    return view( 'users/geneology', compact('members'));
+  public function geneology(Request $request){
+    $data = [];
+    if(Auth::user()->id == 1)
+    {
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->where('id', '!=', Auth::user()->id)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+                // if($user->id != Auth::user()->id)
+                // {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+                // }
+      }   
+    } else {        
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+                // if($user->id != Auth::user()->id)
+                // {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+                // }
+      }
+    }
+    $data['members'] = json_encode($members, true);
+    $data['members'] = json_decode($data['members'], true);
+    //log::info($data['members']);
+    $primarymember = $data['primarymember'];
+    $members = $data['members'];
+    return view('users/geneology',compact('members','primarymember'));
   }
 }

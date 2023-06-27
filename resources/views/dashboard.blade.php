@@ -22,7 +22,7 @@
           <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
         </div>
       </div> 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -35,7 +35,7 @@
         </div>
       </div> 
 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -47,7 +47,7 @@
           <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
         </div>
       </div> 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-	 <div class="row">
+    <div class="row">
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
@@ -73,7 +73,7 @@
           <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
         </div>
       </div> 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -86,7 +86,7 @@
         </div>
       </div> 
 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -98,7 +98,7 @@
           <a href="{{ route('members') }}" class="small-box-footer">Send Invitation<i class="fas fa-arrow-circle-righ"></i></a>
         </div>
       </div> 
-	  <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
@@ -111,16 +111,16 @@
         </div>
       </div>
     </div>
-	 <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Geneology</h3>
-            </div>
-            <!-- /.card-header -->
-             <div class="card-body">
-           
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Geneology</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
 
 
-<style>
+
+        <style>
 /*Now the CSS*/
 * {margin: 0; padding: 0;}
 
@@ -225,42 +225,31 @@ right connector from last child*/
 
 <div class="tree">
  <div class="tree">
- <div class="row">
-   <div class="col-sm-3"> </div>
-   <div class="col-sm-6"> 
-	<ul>
-		<li>
-			                <a href="MY" title="MY"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="MY" /><br><br>MY</a>
-			<ul>
-				<li>
-			                <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>A</a>
-					
-				</li>
-				<li>
-			                <a href="B" title="B"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="B" /><br><br>B</a>
-				</li>
-				<li>
-			                <a href="C" title="C"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="C" /><br><br>C</a>
-				</li>
-				<li>
-			                <a href="D" title="D"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="D" /><br><br>D</a>
-				</li>
-				<li>
-			                <a href="E" title="E"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="E" /><br><br>E</a>
-				</li>
-			</ul>
-		</li>
-	</ul>
+   <div class="row">
+     <div class="col-sm-3"> </div>
+     <div class="col-sm-6"> 
+       <ul>
+        <li>
+          <a><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" /><br><br>{{ Auth::user()->name }}</a>
+         <ul>
+          @foreach($child as $c)
+          <li>
+           <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>{{ $c->name }}</a>
+         </li>
+         @endforeach
+       </ul>
+     </li>
+   </ul>
+ </div>
 </div>
-</div>
-   <div class="col-sm-3"> </div>
+<div class="col-sm-3"> </div>
 
 </div>
 </div>
 
-            </div>
-            <!-- /.card-body -->
-          </div>
-  </div>
+</div>
+<!-- /.card-body -->
+</div>
+</div>
 </section>
 @endsection
