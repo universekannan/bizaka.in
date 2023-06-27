@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Hash;
 use Auth;
+use App\Models\User;
 
 class JoinController extends Controller
 {
@@ -75,8 +76,55 @@ class JoinController extends Controller
     return view( 'users/index', compact('members'));
   }
 
-  public function geneology(){
-    $members = DB::table( 'users' )->where( 'status', '=', 'Active' )->orderBy( 'id', 'Asc' )->get();
-    return view( 'users/geneology', compact('members'));
+  public function geneology(Request $request){
+    $data = [];
+    if(Auth::user()->id == 1)
+    {
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->where('id', '!=', Auth::user()->id)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+                // if($user->id != Auth::user()->id)
+                // {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+                // }
+      }   
+    } else {        
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+                // if($user->id != Auth::user()->id)
+                // {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+                // }
+      }
+    }
+
+
+    $data['members'] = json_encode($members, true);
+
+    $data['members'] = json_decode($data['members'], true);
+
+    //log::info($data['members']);
+    $primarymember = $data['primarymember'];
+    $members = $data['members'];
+
+    return view('users/geneology',compact('members','primarymember'));
   }
 }
