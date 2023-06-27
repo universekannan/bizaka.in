@@ -1,14 +1,1 @@
 http://localhost:8000/join/6499395e27c48
-
-<li>
-           <a href="B" title="B"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="B" /><br><br>B</a>
-         </li>
-         <li>
-           <a href="C" title="C"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="C" /><br><br>C</a>
-         </li>
-         <li>
-           <a href="D" title="D"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="D" /><br><br>D</a>
-         </li>
-         <li>
-           <a href="E" title="E"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="E" /><br><br>E</a>
-         </li>
