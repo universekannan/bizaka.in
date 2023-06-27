@@ -29,7 +29,7 @@
                 </div>
                 @endif
                 <p class="login-box-msg">Register a new membership</p>
-                <form method="post" action="{{ route('addmember') }}">
+                <form method="post" action="{{ route('joinus') }}">
                     @csrf
                     <input value="{{ $referral_id }}" type="hidden" name="referral_id"  >
                     <div class="input-group mb-3">

@@ -1,3 +1,1 @@
-http://localhost:8000/join/6499395e27c48a
-
-Please send me the pending issues in gsale.
+http://localhost:8000/join/6499395e27c48
