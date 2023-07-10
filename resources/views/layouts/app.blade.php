@@ -56,8 +56,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-
+	
     <ul class="navbar-nav ml-auto">
+	   <li class="nav-item">
+        <form action="whatsapp://send?text=http://aaranetwork.in/erp/join/{{ Auth::user()->referral_id }}"  class="nav-link" method="post">
+          <button type="submit" class="btn btn-block btn-default btn-sm"><i class="fas fa-share-alt"></i>  Share</button>
+        </form> 
+      </li>
       <li class="nav-item dropdown user-menu">
         
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
