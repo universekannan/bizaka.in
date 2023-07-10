@@ -13,39 +13,35 @@ class WalletController extends Controller
     }
 
     public function index( $from, $to)
- {
+    {
         $login = Auth::user()->id;
         $referral_id = Auth::user()->id;
-        if ( Auth::user()->user_type_id == 1 ) {
+        if ( Auth::user()->id == 1 ) {
             $wallet = DB::table( 'payment' )->orderBy( 'id', 'Asc' )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->get();
         } else {
             $wallet = DB::table( 'payment' )->where( 'to_id', $login )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->orderBy( 'id', 'Asc' )->get();
         }
+		
         $sql = '';
-        if ( Auth::user()->user_type_id == 1 ) {
-            $sql = "Select * from `users` where `user_type_id` = '1' order by `id` desc limit 1 ";
-        } else if ( Auth::user()->user_type_id == 2 ) {
-            $sql = "Select * from `users` where `user_type_id` = '2' order by `id` desc limit 1 ";
-        } else if ( Auth::user()->user_type_id == 3 ) {
-            $sql = "Select * from `users` where `user_type_id` = '3' order by `id` desc limit 1 ";
-        } else if ( ( Auth::user()->user_type_id == 4 ) || ( Auth::user()->user_type_id == 5 ) ) {
-            $sql = "select `a`.*,`b`.`full_name`,`phone`,`upi`,`payment_qr_oode` from `assigned_district` `a`,`users` `b` where `a`.`user_id`=`b`.`id` and `a`.`district_user_id`='$login'";
+        if ( Auth::user()->id == 1 ) {
+            $sql = "Select * from `users` where `id` = '1' order by `id` desc limit 1 ";
+
         } else {
-            $referral_id = Auth::user()->id;
-            $sql = "Select * from `users` where `id` = $referral_id order by `id` desc limit 1 ";
+            $parent_id = Auth::user()->id;
+            $sql = "Select * from `users` where `id` = $parent_id order by `id` desc limit 1 ";
 
         }
         $referencedata = DB::select( DB::raw( $sql ) );
 
-        if ( Auth::user()->user_type_id == 1 ) {
+
+        if ( Auth::user()->id == 1 ) {
             $sql = 'Select * from `users`';
-        } else if ( ( Auth::user()->user_type_id == 16 ) || ( Auth::user()->user_type_id == 17 ) ) {
-            $assigned_user_id = Auth::user()->id;
-            $sql = "select * from users where assigned_user_id= $assigned_user_id";
         } else {
-            $sql = "Select * from `users` where `referral_id` = $referral_id";
-        }
+            $parent_id = Auth::user()->id;
+            $sql = "select * from users where parent_id= $parent_id";
+        } 
         $userpayment = DB::select( DB::raw( $sql ) );
+		
         return view( 'wallet/index', compact( 'wallet', 'referencedata', 'userpayment', 'from', 'to' ) );
     }
 

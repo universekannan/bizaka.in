@@ -13,7 +13,7 @@
                                         <a href="" data-toggle="modal" data-target="#Transfer"
                                             class="btn btn-primary" title="Fund Transfer"><i class="fas fa-plus">
                                                 Transfer</i> </a>&nbsp;
-                                        @if (Auth::user()->user_type_id == 1)
+                                        @if (Auth::user()->id == 1)
                                             <a href="" data-toggle="modal" data-target="#add"
                                                 class="btn btn-primary float-sm-right" title="Add Payment "><i
                                                     class="fas fa-plus"> Add Payment</i> </a>
@@ -137,6 +137,9 @@
                 </div>
                 <div class="modal-body">
                     <center>
+@if ( Auth::user()->id == 1 )
+	
+@else
                         @foreach ($referencedata as $key => $referencedatas)
                             {{ $referencedatas->name }}</br>
                             {{ $referencedatas->phone }}</br>
@@ -144,6 +147,7 @@
                             <img style="width:200px"
                                 src="{{ URL::to('/') }}/upload/upi_qr/{{ $referencedatas->payment_qr_oode }}" />
                         @endforeach
+@endif
                     </center>
                 </div>
                 <div class="modal-footer justify-content-between">
