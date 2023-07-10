@@ -2,9 +2,9 @@
 @section('content')
 <div class="container-fluid">
  <div class="row mb-2">
-  <div class="col-sm-6">
-     <h3><a href="whatsapp://send?text=http://aaranetwork.in/erp/join/{{ Auth::user()->referral_id }}" data-action="share/whatsapp/share" target="_blank">Share Referral Link</a></h3>
- </div>
+<div class="col-sm-6">
+<h1 class="m-0">Dashboard</h1>
+</div>
 </div> 
 </div>
 <section class="content">
