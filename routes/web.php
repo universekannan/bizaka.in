@@ -16,7 +16,7 @@ Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology
 Route::get('/profile', [App\Http\Controllers\JoinController::class, 'profile'])->name('profile');
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
 
-Route::get('/activate', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
+Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
 
 Route::get('/wallet/{from}/{to}', [App\Http\Controllers\WalletController::class, 'index'])->name('wallet');
 Route::post('/addwallet', [App\Http\Controllers\WalletController::class, 'addwallet'])->name('addwallet');

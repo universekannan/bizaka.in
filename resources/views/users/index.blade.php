@@ -62,15 +62,13 @@
                                     <td>{{ $memberslist->phone }}</td>
                                     <td>{{ $memberslist->plain_password }}</td>
 									@if($memberslist->status == 1)
-
-									  @if ($memberslist->wallet > 300)
-									  <td><a class="btn btn-default" href="{{ route('activate') }}">Activate</a></td>
+									  @if ($memberslist->wallet >= 300)
+									  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ $memberslist->referral_id }}">Activate</a></td>
 									  @else
-										   <td>Inactive</td>
+										   <td class="text-danger">Inactive</td>
 									  @endif
-
 									@elseif($memberslist->status == 2)
-									  <td>Active</td>
+                                      <td class="text-danger">Active</td>
 									@endif
                                     <td>
                                         <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->email }}')"
