@@ -37,3 +37,60 @@ alter table users add photo varchar(20) DEFAULT NULL;
 
 
 
+
+
+
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `from_id` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `to_id` varchar(10) DEFAULT NULL,
+  `amount` varchar(45) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `pay_id` int(11) DEFAULT NULL,
+  `service_status` varchar(20) DEFAULT NULL,
+  `ad_info` varchar(100) DEFAULT NULL,
+  `ad_info2` varchar(100) DEFAULT NULL,
+  `time` varchar(100) DEFAULT NULL,
+  `paydate` varchar(50) DEFAULT NULL,
+  `log_id` int(11) DEFAULT NULL,
+  `k_status` int(11) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`id`, `from_id`, `to_id`, `amount`, `customer_id`, `service_id`, `pay_id`, `service_status`, `ad_info`, `ad_info2`, `time`, `paydate`, `log_id`, `k_status`) VALUES
+(1, '1', '2', '100000', NULL, NULL, NULL, 'IN Payment', NULL, NULL, NULL, NULL, 1, 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+
+ALTER TABLE `users` ADD `wallet` VARCHAR(50) NULL DEFAULT NULL AFTER `remember_token`;
+ALTER TABLE `users` ADD `upi` VARCHAR(50) NULL DEFAULT NULL AFTER `wallet`;
+ALTER TABLE `users` ADD `payment_qr_oode` VARCHAR(50) NULL DEFAULT NULL AFTER `upi`;

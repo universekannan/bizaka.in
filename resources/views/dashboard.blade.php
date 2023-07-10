@@ -227,6 +227,14 @@ right connector from last child*/
    <div class="row">
      <div class="col-sm-3"> </div>
      <div class="col-sm-6"> 
+					@if(Auth::user()->status == 1)
+
+					  @if (Auth::user()->wallet > 300)
+					  <td><a class="btn btn-default" href="{{ route('activate') }}">Activate</a></td>
+					  @else
+						   <td>Inactive</td>
+					  @endif
+					@elseif(Auth::user()->status == 2)
        <ul>
         <li>
           <a><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" /><br><br>{{ Auth::user()->name }}</a>
@@ -239,6 +247,7 @@ right connector from last child*/
        </ul>
      </li>
    </ul>
+   @endif
  </div>
 </div>
 <div class="col-sm-3"> </div>

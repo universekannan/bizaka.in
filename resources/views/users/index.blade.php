@@ -54,20 +54,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($members as $key => $m)
+                                @foreach ($members as $key => $memberslist)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $m->name }}</td>
-                                    <td>{{ $m->email }}</td>
-                                    <td>{{ $m->phone }}</td>
-                                    <td>{{ $m->plain_password }}</td>
-                                    @if($m->status == 1)
-                                    <td>Active</td>
-                                    @else
-                                    <td>Inactive</td>
-                                    @endif
+                                    <td>{{ $memberslist->name }}</td>
+                                    <td>{{ $memberslist->email }}</td>
+                                    <td>{{ $memberslist->phone }}</td>
+                                    <td>{{ $memberslist->plain_password }}</td>
+									@if($memberslist->status == 1)
+
+									  @if ($memberslist->wallet > 300)
+									  <td><a class="btn btn-default" href="{{ route('activate') }}">Activate</a></td>
+									  @else
+										   <td>Inactive</td>
+									  @endif
+
+									@elseif($memberslist->status == 2)
+									  <td>Active</td>
+									@endif
                                     <td>
-                                        <a onclick="edit_member('{{ $m->id }}','{{ $m->name }}','{{ $m->phone }}','{{ $m->email }}')"
+                                        <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->email }}')"
                                             href="#" class="btn btn-sm btn-primary"><i
                                             class="fa fa-edit"></i>Edit</a>
                                         </td>

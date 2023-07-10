@@ -55,7 +55,14 @@
               </li>
             </ul>
           </li>
-		  
+			<li id="wallet" class="nav-item has-treeview ">
+					  <a href="{{ url('wallet') }}/{{ date('Y-m-d' ,strtotime('-1 days')) }}/{{ date('Y-m-d') }}" class="nav-link {{ (request()->is('wallet')) ? 'active' : '' }}">
+				  <i class="nav-icon fas fa-wallet"></i>
+				  <p>
+					 Wallet
+				  </p>
+				</a>
+			</li>
 		  
 		  
 		   <li class="nav-item has-treeview {{ ((request()->segment(1) =='profile') || request()->is('changepassword')) ? 'menu-open' : '' }}">
