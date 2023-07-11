@@ -91,6 +91,6 @@ ALTER TABLE `payment`
 COMMIT;
 
 
-ALTER TABLE `users` ADD `wallet` VARCHAR(50) NULL DEFAULT NULL AFTER `remember_token`;
+ALTER TABLE `users` ADD `wallet` VARCHAR(50) 0 DEFAULT NULL AFTER `remember_token`;
 ALTER TABLE `users` ADD `upi` VARCHAR(50) NULL DEFAULT NULL AFTER `wallet`;
 ALTER TABLE `users` ADD `payment_qr_oode` VARCHAR(50) NULL DEFAULT NULL AFTER `upi`;
