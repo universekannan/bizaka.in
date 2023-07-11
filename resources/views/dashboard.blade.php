@@ -230,9 +230,9 @@ right connector from last child*/
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 300)
-					  <td><a class="btn btn-default" href="{{ route('activate') }}">Activate</a></td>
+					  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
 					  @else
-						   <td>Inactive</td>
+						   <td class="text-danger">Inactive</td>
 					  @endif
 					@elseif(Auth::user()->status == 2)
        <ul>

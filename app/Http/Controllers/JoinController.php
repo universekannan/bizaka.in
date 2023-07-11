@@ -171,4 +171,47 @@ class JoinController extends Controller
       return redirect("/members")->with('success', 'Member updated successfully');
     }
   }
+
+  public function activate($referral_id){
+    $log_id = Auth::user()->id;
+    $paydate = date('Y-m-d');
+    $time = date("H:i:s");
+    $amount = 300;
+    $member_id = 0;
+    $child_id = 0;
+    $parent_id = 0;
+    $wallet = 0;
+    $sql = "select * from users where referral_id = '$referral_id'";
+    $result = DB::select(DB::raw($sql));
+    if(count($result) > 0){
+      $member_id = $result[0]->id;
+      $child_id = $result[0]->id;
+      $parent_id = $result[0]->parent_id;
+    }
+    $ad_info = "Activation";
+    $service_status = "Out Payment";
+    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$parent_id','$child_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
+    DB::insert(DB::raw($sql));
+    $sql = "update users set wallet = wallet - $amount where id = $child_id";
+    DB::update(DB::raw($sql));
+    do{
+      $sql = "select * from users where id = $child_id";
+      $result = DB::select(DB::raw($sql));
+      if(count($result) > 0){
+        $child_id = $result[0]->id;
+        $parent_id = $result[0]->parent_id;
+      }
+      if($parent_id != 1) $amount = $amount/2;
+      $ad_info = "Commission";
+      $service_status = "In Payment";
+      $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
+      DB::insert(DB::raw($sql));
+      $sql = "update users set wallet = wallet + $amount where id = $parent_id";
+      DB::update(DB::raw($sql));
+      $child_id = $parent_id;
+    }while($parent_id != 1);
+    $sql = "update users set status = 2 where id = $member_id";
+    DB::update(DB::raw($sql));
+    return redirect("/members")->with('success', 'Member updated successfully');
+  }
 }

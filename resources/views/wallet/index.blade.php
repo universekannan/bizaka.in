@@ -233,8 +233,7 @@
                         <div class="form-group row">
                             <label for="amount" class="col-sm-12 col-form-label"><span
                                     style="color:red"></span>Amount</label>
-                            <input required="required" maxlength="7" type="text" class="form-control number"
-                                name="fundamount" id="amount">
+                            <input required="required" maxlength="7" type="text" class="form-control number" name="fundamount" id="amount">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
