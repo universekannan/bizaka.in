@@ -48,7 +48,7 @@ class WalletController extends Controller
     public function superadminaddwallet( Request $request )
  {      
         $from = date('Y-m-d' ,strtotime('-1 days'));
-        $to =  date('Y-m-d');
+        $to = date('Y-m-d');
         $amount = $request->fundamount;
         $login_id = Auth::user()->id;
         $date = date( 'Y-m-d' );
@@ -60,9 +60,7 @@ class WalletController extends Controller
         $sql = "update users set wallet = wallet + $amount where id = 1";
         DB::update( DB::raw( $sql ) );
         return redirect( "wallet/$from/$to" );
-
     }
-
     public function addwallet( Request $request )
  {      
         $from = date('Y-m-d' ,strtotime('-1 days'));
