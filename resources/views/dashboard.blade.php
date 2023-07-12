@@ -19,19 +19,19 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-user-graduate"></i>
           </div>
-          
+       <a href="{{url('wallet/index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
-            <p>In Amount</p>
+            <p>Today Income</p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
-          
+          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
 
@@ -39,27 +39,14 @@
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{ $members }}</h3>
-            <p>Sponsor Amount </p>
+            <p>Total Income </p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          
+          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Profit Amount</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-check"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
@@ -67,46 +54,9 @@
             <p>Wallet</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet"></i>
-          </div>
-          
-        </div>
-      </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today In Amount</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-down"></i>
-          </div>
-          
-        </div>
-      </div> 
-
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today Sponsor Amount </p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
-          </div>
-          
-        </div>
-      </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today Profit Amount</p>
-          </div>
-          <div class="icon">
             <i class="nav-icon nav-icon fas fa-check"></i>
           </div>
-          
+          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div>
     </div>
