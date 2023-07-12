@@ -98,21 +98,15 @@ ALTER TABLE `users` ADD `payment_qr_oode` VARCHAR(50) NULL DEFAULT NULL AFTER `u
 ALTER TABLE users AUTO_INCREMENT=2;
 
 
+drop TABLE `withdrawal` ;
 CREATE TABLE `withdrawal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `totalBalance` double(8,2) NOT NULL,
-  `waitingForApproval` double(8,2) NOT NULL,
-  `curBalance` float NOT NULL,
-  `withdraw` float NOT NULL,
-  `tds` double(8,2) NOT NULL,
-  `rebirth` varchar(10) NOT NULL,
-  `youWillGet` double(8,2) NOT NULL,
-  `newBalance` float NOT NULL,
-  `description` text NOT NULL,
-  `approvedStatus` int(11) NOT NULL DEFAULT '0' COMMENT '0=>waiting, 1=>approvd, 2=>rejected',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `req_date` date DEFAULT NULL,
+  `time` varchar(10) DEFAULT NULL,
+  `status` varchar(20) NDEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  `updated_by` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
