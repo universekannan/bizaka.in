@@ -59,7 +59,7 @@
 	
     <ul class="navbar-nav ml-auto">
 	   <li class="nav-item">
-        <form action="whatsapp://send?text=http://aaranetwork.in/erp/join/{{ Auth::user()->referral_id }}"  class="nav-link" method="post">
+        <form action="whatsapp://send?text=http://aaranetwork.in/join/{{ Auth::user()->referral_id }}"  class="nav-link" method="post">
           <button type="submit" class="btn btn-block btn-default btn-sm"><i class="fas fa-share-alt"></i>  Share</button>
         </form> 
       </li>

@@ -47,18 +47,6 @@
           <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Wallet</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-check"></i>
-          </div>
-          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
-        </div>
-      </div>
     </div>
     <div class="card">
       <div class="card-header">
@@ -179,7 +167,7 @@ right connector from last child*/
      <div class="col-sm-6"> 
 					@if(Auth::user()->status == 1)
 
-					  @if (Auth::user()->wallet > 300)
+					  @if (Auth::user()->wallet > 299)
 					  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
 					  @else
 						   <td class="text-danger">Inactive</td>
