@@ -24,6 +24,10 @@ Route::post('/addwallet', [App\Http\Controllers\WalletController::class, 'addwal
 Route::post('/superadminaddwallet', [App\Http\Controllers\WalletController::class, 'superadminaddwallet'])->name('superadminaddwallet');
 Route::get('/servicepaymentdelete/{id}', [App\Http\Controllers\WalletController::class, 'servicepaymentdelete'])->name('servicepaymentdelete');
 
+Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
+Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalincome'])->name('totalincome');
+
+
 
 
 

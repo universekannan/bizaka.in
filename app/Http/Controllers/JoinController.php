@@ -214,4 +214,10 @@ class JoinController extends Controller
     DB::update(DB::raw($sql));
     return redirect("/members")->with('success', 'Member updated successfully');
   }
+
+  public function todayincome(){
+  }
+
+  public function totalincome(){
+  }
 }

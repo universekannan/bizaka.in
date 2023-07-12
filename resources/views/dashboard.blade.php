@@ -19,7 +19,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-user-graduate"></i>
           </div>
-       <a href="{{url('wallet/index')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
+       <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -31,7 +31,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
-          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
+          <a href="{{url('todayincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
 
@@ -44,7 +44,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
+          <a href="{{url('totalincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
       <div class="col-lg-3 col-6">
@@ -56,7 +56,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
+          <a  class="small-box-footer">&nbsp;</a>
         </div>
       </div> 
     </div>
