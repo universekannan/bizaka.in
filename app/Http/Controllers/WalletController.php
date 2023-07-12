@@ -105,5 +105,11 @@ class WalletController extends Controller
           DB::delete( DB::raw( $sql ) );
         return redirect( "wallet/$from/$to" )->with( 'success', 'Payment Deleted Successfully' );
     }
+	
+	    public function newrequest()
+    {
+        $data['withdrawal'] = DB::table('withdrawal')->select('withdrawal.*', 'users.id')->leftjoin('users', 'users.id', '=', 'withdrawal.userId')->where('approvedStatus', 0)->get();
+        return view('wallet.newrequest')->with($data);
+    }
 
 }

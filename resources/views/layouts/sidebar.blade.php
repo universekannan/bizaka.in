@@ -55,15 +55,39 @@
               </li>
             </ul>
           </li>
-			<li id="wallet" class="nav-item has-treeview ">
-					  <a href="{{ url('wallet') }}/{{ date('Y-m-d' ,strtotime('-1 days')) }}/{{ date('Y-m-d') }}" class="nav-link {{ (request()->is('wallet')) ? 'active' : '' }}">
-				  <i class="nav-icon fas fa-wallet"></i>
-				  <p>
-					 Wallet
-				  </p>
-				</a>
-			</li>
-		  
+
+		    <li class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('payment') || request()->is('withdrawal') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-wallet #2317"></i>
+              <p>
+                Managing Wallet
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+			
+            <ul class="nav nav-treeview">
+			    <li class="nav-item">
+                <a class="nav-link {{ (request()->is('payment')) ? 'active' : '' }}" href="{{ url('wallet') }}/{{ date('Y-m-d' ,strtotime('-1 days')) }}/{{ date('Y-m-d') }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Wallet</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('newrequest') }}" class="nav-link {{ (request()->is('newrequest')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Withdrawal Request</p>
+                </a>
+              </li>            
+
+              <li class="nav-item">
+                <a class="nav-link {{ (request()->is('transfer')) ? 'active' : '' }}" href="{{ route('transfer') }}" >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Fund Transfer</p>
+                </a>
+              </li>
+         
+            </ul>
+          </li>
 		  
 		   <li class="nav-item has-treeview {{ ((request()->segment(1) =='profile') || request()->is('changepassword')) ? 'menu-open' : '' }}">
 				<a href="" class="nav-link">

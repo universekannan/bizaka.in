@@ -22,7 +22,11 @@ Route::get('/wallet/{from}/{to}', [App\Http\Controllers\WalletController::class,
 Route::post('/addwallet', [App\Http\Controllers\WalletController::class, 'addwallet'])->name('addwallet');
 Route::post('/superadminaddwallet', [App\Http\Controllers\WalletController::class, 'superadminaddwallet'])->name('superadminaddwallet');
 Route::get('/servicepaymentdelete/{id}', [App\Http\Controllers\WalletController::class, 'servicepaymentdelete'])->name('servicepaymentdelete');
+Route::get('/newrequest', [App\Http\Controllers\WalletController::class, 'newrequest'])->name('newrequest');
+Route::get('/transactions', [App\Http\Controllers\WalletController::class, 'transactions'])->name('transactions');
+Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
 
+Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
 
 
 
