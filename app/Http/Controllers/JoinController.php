@@ -214,4 +214,19 @@ class JoinController extends Controller
     DB::update(DB::raw($sql));
     return redirect("/members")->with('success', 'Member updated successfully');
   }
+
+  public function todayincome(){
+    $id = Auth::user()->id;
+    $today = date("Y-m-d");
+    $sql = "select * from payment where to_id=$id and service_status = 'In Payment' and paydate='$today'";
+    $income = DB::select(DB::raw($sql));
+    return view('todayincome',compact('income'));
+  }
+
+  public function totalincome(){
+    $id = Auth::user()->id;
+    $sql = "select * from payment where to_id=$id and service_status = 'In Payment' order by paydate desc";
+    $income = DB::select(DB::raw($sql));
+    return view('totalincome',compact('income'));
+  }
 }

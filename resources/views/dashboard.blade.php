@@ -13,102 +13,52 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
+            <h3>{{ $members }}&nbsp;</h3>
             <p>Members</p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-user-graduate"></i>
           </div>
-          
+       <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>In Amount</p>
+            <h3>{{ $todays_income }}&nbsp;</h3>
+            <p>Today Income</p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
-          
+          <a href="{{url('todayincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
 
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Sponsor Amount </p>
+            <h3>{{ $total_income }}&nbsp;</h3>
+            <p>Total Income </p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          
+          <a href="{{url('totalincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Profit Amount</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-check"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ Auth::user()->wallet }}</h3>
-            <p>Wallet</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet"></i>
-          </div>
-          
-        </div>
-      </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today In Amount</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-down"></i>
-          </div>
-          
-        </div>
-      </div> 
-
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today Sponsor Amount </p>
+            <h3>{{ $wallet }}&nbsp;</h3>
+            <p>Wallet </p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-arrow-up"></i>
           </div>
-          
+          <a  class="small-box-footer">&nbsp;</a>
         </div>
       </div> 
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $members }}</h3>
-            <p>Today Profit Amount</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-check"></i>
-          </div>
-          
-        </div>
-      </div>
     </div>
     <div class="card">
       <div class="card-header">
@@ -116,8 +66,6 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-
-
 
         <style>
 /*Now the CSS*/

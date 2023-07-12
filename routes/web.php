@@ -15,8 +15,9 @@ Route::get('/members', [App\Http\Controllers\JoinController::class, 'members'])-
 Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology'])->name('geneology');
 Route::get('/profile', [App\Http\Controllers\JoinController::class, 'profile'])->name('profile');
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
-
 Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
+Route::get('/income', [App\Http\Controllers\JoinController::class, 'income'])->name('income');
+
 
 Route::get('/wallet/{from}/{to}', [App\Http\Controllers\WalletController::class, 'index'])->name('wallet');
 Route::post('/addwallet', [App\Http\Controllers\WalletController::class, 'addwallet'])->name('addwallet');
@@ -27,6 +28,6 @@ Route::get('/transactions', [App\Http\Controllers\WalletController::class, 'tran
 Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
 
 Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
-
-
+Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
+Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalincome'])->name('totalincome');
 
