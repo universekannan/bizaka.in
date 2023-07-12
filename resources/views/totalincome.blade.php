@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $in->paydate }}</td>
-                                    <td>{{ $in->time }}</td>
+                                    <td>{{ date("d-M-Y",strtotime($in->time)) }}</td>
                                     <td>{{ $in->amount }}</td>
                                     </tr>
                                     @endforeach
