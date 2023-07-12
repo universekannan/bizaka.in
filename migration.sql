@@ -101,12 +101,11 @@ ALTER TABLE users AUTO_INCREMENT=2;
 drop TABLE `withdrawal` ;
 CREATE TABLE `withdrawal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
-  `req_date` date DEFAULT NULL,
-  `time` varchar(10) DEFAULT NULL,
-  `status` varchar(20) NDEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
+  `req_time` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  pay_image varchar(20) DEFAULT NULL,
+  `paid_time`  varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

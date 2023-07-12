@@ -106,10 +106,20 @@ class WalletController extends Controller
         return redirect( "wallet/$from/$to" )->with( 'success', 'Payment Deleted Successfully' );
     }
 	
-	    public function newrequest()
-    {
-        $data['withdrawal'] = DB::table('withdrawal')->select('withdrawal.*', 'users.id')->leftjoin('users', 'users.id', '=', 'withdrawal.userId')->where('approvedStatus', 0)->get();
-        return view('wallet.newrequest')->with($data);
+    public function newrequest(){
+        $sql = "select a.*,b.name from withdrawal a,users b where a.user_id = b.id";
+        $withdrawal =  DB::select( DB::raw( $sql ));
+        return view('wallet.newrequest',compact('withdrawal'));
+    }
+
+    public function saverequest(Request $request){
+        $user_id = Auth::user()->id;
+        $amount = $request->amount;
+        $req_time = date("Y-m-d H:i:s");
+        $status = "Pending";
+        $sql = "insert into withdrawal (user_id,amount,req_time,status) values ($user_id,$amount,'$req_time','$status')";
+        DB::insert( DB::raw($sql));
+        return redirect( "/newrequest" );
     }
 
 }

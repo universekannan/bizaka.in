@@ -4,7 +4,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Withdrawal Requests</h1>
+            <h1>Withdrawal Request</h1>
           </div>
           <div class="col-sm-6">
             <ol class=" float-sm-right">
@@ -28,7 +28,7 @@
       <div class="container-fluid">
      <div class="card">
             <div class="card-header">
-              <h3 class="card-title">New Requests</h3>
+              <h3 class="card-title">Request</h3>
             </div>
             <!-- /.card-header -->
              <div class="card-body">
@@ -47,26 +47,19 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th style="width:15%">Customer No</th>
-                  <th style="width:35%">Description</th>
-                  <th style="width:15%">Withdrawal</th>
-                  <th style="width:15%">Balance</th>
-                  <th style="width:20%">Pay</th>
+                  <th style="width:15%">S No</th>
+                  <th style="width:35%">Amount</th>
+                  <th style="width:15%">Date</th>
+                  <th style="width:20%">Status</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($withdrawal as $withd)
+                @foreach ($withdrawal as $key => $withd)
                 <tr>
-                  <td>{{ $withd->uniqueId }}</td>
-                  <td>{{ $withd->description }}</td>
-                  <td>{{ $withd->youWillGet }}</td>
-                  <td>{{ $withd->newBalance }}</td>
-                  <td>
-              <a class="btn btn-primary btn-sm paynow" style="color:#ffffff;" data-withdrawalid="{{ $withd->id }}" data-uniqueid="{{ $withd->uniqueId }}" data-transactionAmount="{{ $withd->youWillGet }}" data-toggle="modal" data-target="#modal-popup">
-                Pay Now <i class="fas fa-arrow-circle-right"></i>
-              </a>
-                  </td>
-
+                  <td>{{ $key + 1 }}</td>
+                  <td>{{ $withd->amount }}</td>
+                  <td>{{ $withd->req_time}}</td>
+                  <td>{{ $withd->status }}</td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -86,98 +79,58 @@
   <!-- /.content-wrapper -->
  <div class="modal fade" id="Withdrawal">
         <div class="modal-dialog">
+            <form method="post" action="{{ url('saverequest') }}">
+            @csrf
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Withdrawal Amount Request </h4>
+                    <h4 class="modal-title">Withdrawal Request </h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                   
 				    <div class="form-group row">
                         <label for="" class="col-sm-12 col-form-label"><span
                                 style="color:red"></span>Wallet</label>
-                        <input value="{{ Auth::user()->wallet }}" type="text" class="form-control" name="wallet"
-                            id="transfer" readonly>
+                        <input value="{{ Auth::user()->wallet }}" type="text" class="form-control" name="wallet" id="wallet" readonly>
                     </div>
                     @if (Auth::user()->wallet > 0)
                         <div class='form-group row'>
                             <label for='transfer_payment' class='col-sm-12 col-form-label'><span
-                                    style='color:red'></span>Transfer Amount</label>
+                                    style='color:red'></span>Withdrawal Amount</label>
                             <input maxlength="7" required='requiered' type='text' class='form-control number'
-                                id="transfer_payment" name='transfer_payment' placeholder='Enter Transfer Amount'>
+                                id="amount" name='amount' placeholder='Enter Amount'>
                         </div>
                         <div class='form-group row'>
                             <label for='balance' class='col-sm-12 col-form-label'><span
                                     style='color:red'></span>Balance</label>
-                            <input readonly required='requiered' type='text' class='form-control' id="balance"
-                                name='balance'>
+                            <input readonly required='requiered' type='text' class='form-control' id="balance"  name='balance'>
                         </div>
-                    @else
                     @endif
                 </div>
                  <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     @if (Auth::user()->wallet > 0)
-                        <button type='submit' id='plansubmit' class='btn btn-primary'>Transfer Now</button>
-                    @else
-                        <button type='button' class='btn btn-primary' data-dismiss='modal'>Close</button>
+                        <input value="Submit" id="submitbutton" type='submit' class='btn btn-primary' />
                     @endif
                 </div>
             </div>
+            </form>
         </div>
     </div>
-	
-	
-	
-  <div class="modal fade" id="modal-popup">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Pay Now</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id="validatepin">
-          <form method="post" action="{{ route('transactions') }}">
-            @csrf
-
-                                        <div class="form-group">
-                                            <label for="uniqueId">Unique Id *</label>
-                                            <input type="text" class="form-control"  required="required" name="uniqueId" placeholder="Unique Id" id="uniqueId" readonly><br>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="transactionAmount">Transaction Amount *</label>
-                                            <input type="number" class="form-control"  required="required" name="transactionAmount" placeholder="Transaction Amount" id="transactionAmount" readonly><br>
-                                        </div>
-
-                                         <div class="form-group">
-                                            <label>Description</label>
-                                            <textarea class="form-control" name="notes" rows="3" placeholder="Enter ..."></textarea>
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="tpassword"> Transfer Password *</label>
-                                            <input type="text" class="form-control"  required="required" name="tpassword" placeholder="Transfer Password">
-                                        </div>
-                <input type="hidden" name="withdrawalId" id="withdrawalId">
-                <div class="card-footer">
-                    <button type="submit" id="transactionSubmit" name="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-            </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default pinC" data-dismiss="modal">X</button>
-              <button type="button" class="btn btn-default pinC" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
-      <!-- /.modal -->
 @endsection
-
+@push('page_scripts')
+<script>
+    $('#amount').on('input', function() {
+        var wallet = parseInt($('#wallet').val());
+        var amt = parseInt($('#amount').val());
+        var balance = wallet - amt;
+        $('#balance').val(balance);
+        if(balance >= 0){
+            $('#submitbutton').prop('disabled', false);
+        }else{
+            $('#submitbutton').prop('disabled', true);
+        }
+    });
+</script>
+@endpush

@@ -30,4 +30,5 @@ Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdr
 Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
 Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
 Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalincome'])->name('totalincome');
+Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'saverequest'])->name('saverequest');
 
