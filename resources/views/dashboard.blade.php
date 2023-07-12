@@ -47,6 +47,18 @@
           <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ $members }}</h3>
+            <p>Wallet </p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
+          </div>
+          <a href="{{url('admin/donates')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
+        </div>
+      </div> 
     </div>
     <div class="card">
       <div class="card-header">
@@ -54,8 +66,6 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-
-
 
         <style>
 /*Now the CSS*/
