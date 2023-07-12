@@ -13,7 +13,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
+            <h3>{{ $members }}&nbsp;</h3>
             <p>Members</p>
           </div>
           <div class="icon">
@@ -25,7 +25,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
+            <h3>{{ $todays_income }}&nbsp;</h3>
             <p>Today Income</p>
           </div>
           <div class="icon">
@@ -38,7 +38,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
+            <h3>{{ $total_income }}&nbsp;</h3>
             <p>Total Income </p>
           </div>
           <div class="icon">
@@ -50,7 +50,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}</h3>
+            <h3>{{ $wallet }}&nbsp;</h3>
             <p>Wallet </p>
           </div>
           <div class="icon">
