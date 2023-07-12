@@ -40,6 +40,7 @@
                                     <th>S No</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Name</th>
                                     <th>Amount</th>
                                 </tr>
                             </thead>
@@ -49,6 +50,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $in->paydate }}</td>
                                     <td>{{ date("d-M-Y",strtotime($in->time)) }}</td>
+                                    <td>{{ $in->name }}</td>
                                     <td>{{ $in->amount }}</td>
                                     </tr>
                                     @endforeach

@@ -39,6 +39,7 @@
                                 <tr>
                                     <th>S No</th>
                                     <th>Time</th>
+                                    <th>Name</th>
                                     <th>Amount</th>
                                 </tr>
                             </thead>
@@ -47,6 +48,7 @@
                                 <tr>
                                     <td>{{ $in + 1 }}</td>
                                     <td>{{ $in->time }}</td>
+                                    <td>{{ $in->name }}</td>
                                     <td>{{ $in->amount }}</td>
                                     </tr>
                                     @endforeach
