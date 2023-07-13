@@ -13,7 +13,7 @@ Route::post('/updatemember', [App\Http\Controllers\JoinController::class, 'updat
 Route::post('/joinus', [App\Http\Controllers\JoinController::class, 'joinus'])->name('joinus');
 Route::get('/members', [App\Http\Controllers\JoinController::class, 'members'])->name('members');
 Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology'])->name('geneology');
-Route::get('/profile', [App\Http\Controllers\JoinController::class, 'profile'])->name('profile');
+
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
 Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
 Route::get('/income', [App\Http\Controllers\JoinController::class, 'income'])->name('income');
@@ -31,4 +31,6 @@ Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer
 Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
 Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalincome'])->name('totalincome');
 Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'saverequest'])->name('saverequest');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 
