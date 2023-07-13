@@ -19,6 +19,7 @@ Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::clas
 Route::get('/income', [App\Http\Controllers\JoinController::class, 'income'])->name('income');
 
 
+
 Route::get('/wallet/{from}/{to}', [App\Http\Controllers\WalletController::class, 'index'])->name('wallet');
 Route::post('/addwallet', [App\Http\Controllers\WalletController::class, 'addwallet'])->name('addwallet');
 Route::post('/superadminaddwallet', [App\Http\Controllers\WalletController::class, 'superadminaddwallet'])->name('superadminaddwallet');
@@ -26,6 +27,7 @@ Route::get('/servicepaymentdelete/{id}', [App\Http\Controllers\WalletController:
 Route::get('/newrequest', [App\Http\Controllers\WalletController::class, 'newrequest'])->name('newrequest');
 Route::get('/transactions', [App\Http\Controllers\WalletController::class, 'transactions'])->name('transactions');
 Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
+Route::post('/confirmwithdrawal', [App\Http\Controllers\WalletController::class, 'confirmwithdrawal'])->name('confirmwithdrawal');
 
 Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
 Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');

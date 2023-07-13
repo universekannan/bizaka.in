@@ -38,7 +38,7 @@
 		  
 		  
 		  
-		   <li class="nav-item has-treeview {{ (request()->is('adminIncome') || request()->is('fasttrack') || request()->is('autoPool') || request()->is('sponsor')) ? 'menu-open' : '' }}">
+		   <li class="nav-item has-treeview {{ (request()->is('todayincome') || request()->is('totalincome')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-arrow-up"></i>
               <p>
@@ -48,9 +48,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link {{ (request()->is('sponsor')) ? 'active' : '' }}">
+                <a href="{{url('todayincome')}}" class="nav-link {{ (request()->is('todayincome')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sponsor Income</p>
+                  <p>Today Income</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('totalincome')}}" class="nav-link {{ (request()->is('totalincome')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Income</p>
                 </a>
               </li>
             </ul>

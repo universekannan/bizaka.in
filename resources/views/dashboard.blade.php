@@ -42,7 +42,7 @@
             <p>Total Income </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
+            <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
           <a href="{{url('totalincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
