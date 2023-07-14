@@ -174,7 +174,7 @@ right connector from last child*/
  <div class="tree">
    <div class="row">
      <div class="col-sm-3"> </div>
-     <div class="col-sm-6"> 
+     <div class="col-sm-6">  <center>
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
@@ -182,6 +182,7 @@ right connector from last child*/
 					  @else
 						   <td class="text-danger">Inactive</td>
 					  @endif
+					  </center>
 					@elseif(Auth::user()->status == 2)
        <ul>
         <li>
