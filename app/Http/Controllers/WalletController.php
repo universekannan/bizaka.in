@@ -107,7 +107,12 @@ class WalletController extends Controller
     }
 	
     public function newrequest(){
-        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id";
+        $userid = Auth::user()->id;
+        if($userid == 1){
+        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.status='Pending'";
+        }else{
+        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.user_id='$userid'";
+        }
         $withdrawal =  DB::select( DB::raw( $sql ));
         //echo"<pre>";print_r($withdrawal);echo "</pre>";die;
         return view('wallet.newrequest',compact('withdrawal'));
