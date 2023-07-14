@@ -12,9 +12,15 @@
                         @if (Auth::user()->id == 1)
     
                         @else
+                        @if ($status == 'Completed')
                             <a href="" data-toggle="modal" data-target="#Withdrawal "
                                 class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i
                                     class="fas fa-plus"> Withdrawal </i> </a>
+                         @else   
+                         <a href="#" 
+                         class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i
+                             class="fas fa-plus"> Withdrawal Pending </i> </a>
+                             @endif
                         @endif
                     </ol>
                 </div>

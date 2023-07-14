@@ -111,11 +111,15 @@ class WalletController extends Controller
         if($userid == 1){
         $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.status='Pending'";
         }else{
-        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.user_id='$userid'";
+        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.user_id='$userid' order by a.id desc";
         }
         $withdrawal =  DB::select( DB::raw( $sql ));
+        $status ="";
+        if(count($withdrawal) > 0){
+        $status = $withdrawal[0]->status;
+        }
         //echo"<pre>";print_r($withdrawal);echo "</pre>";die;
-        return view('wallet.newrequest',compact('withdrawal'));
+        return view('wallet.newrequest',compact('withdrawal','status'));
     }
 
     public function saverequest(Request $request){
@@ -125,6 +129,8 @@ class WalletController extends Controller
         $status = "Pending";
         $sql = "insert into withdrawal (user_id,amount,req_time,status) values ($user_id,$amount,'$req_time','$status')";
         DB::insert( DB::raw($sql));
+        $sql = "update users set wallet = wallet - $amount where id = $user_id";
+        DB::update( DB::raw( $sql ) );
         return redirect( "/newrequest" );
     }
 
