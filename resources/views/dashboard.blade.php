@@ -17,7 +17,7 @@
             <p>Members</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fa fa-user"></i>
+            <i class="nav-icon nav-icon fa fa-users"></i>
           </div>
        <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
