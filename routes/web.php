@@ -35,4 +35,5 @@ Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalin
 Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'saverequest'])->name('saverequest');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
+Route::post('/updateprofile', [App\Http\Controllers\ProfileController::class, 'updateprofile'])->name('updateprofile');
 

@@ -17,7 +17,7 @@
             <p>Members</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-user-graduate"></i>
+            <i class="nav-icon nav-icon fa fa-users"></i>
           </div>
        <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
@@ -54,9 +54,9 @@
             <p>Wallet </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
+            <i class="nav-icon nav-icon fas fa-wallet"></i>
           </div>
-          <a  class="small-box-footer">&nbsp;</a>
+          <a href="{{url('/wallet/{from}/{to}')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
     </div>
