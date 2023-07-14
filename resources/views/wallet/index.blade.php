@@ -285,4 +285,11 @@
             $("#wallet").addClass('menu-open');
         });
     </script>
+	<script type="text/javascript">
+$(document).ready(function() {
+$("#ManagingWallet").addClass('menu-open');
+$("#ManagingWallets").addClass('active');
+$("#Wallet").addClass('active');
+});
+</script>
 @endpush
