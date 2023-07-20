@@ -28,7 +28,7 @@ class DashboardController extends Controller
             $result = DB::select(DB::raw($sql));
             $members = $result[0]->members;
         }
-        $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today'";
+        $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
         $result = DB::select(DB::raw($sql));
         $todays_income = $result[0]->todays_income;
         $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment'";
