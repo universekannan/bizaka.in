@@ -229,4 +229,38 @@ class JoinController extends Controller
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }
+  
+public function changepassword()
+{
+  $userid = Auth::user()->id; 
+  return view('users/changepassword');
+}
+public function updatepassword(Request $request){
+  $userid = Auth::user()->id;
+  $old_password = trim($request->get("oldpassword"));
+  $currentPassword = auth()->user()->password;
+  if(Hash::check($old_password, $currentPassword)){
+    $new_password = trim($request->get("new_password"));
+    $confirm_password = trim($request->get("confirm_password"));
+    if($new_password != $confirm_password){
+      return redirect('changepassword')->with('error', 'Passwords does not match');
+    }elseif($new_password == '12345678'){
+      return redirect('changepassword')->with('error', 'You cannot use the passord 12345678');
+    }else{
+      $updatepass = DB::table('users')->where('id', '=', $userid)->update([
+        'password' => Hash::make($new_password),
+        'pas'      => $request->new_password,
+      ]);
+      return redirect('dashboard')->with('success', 'Passwords Change Succesfully');
+    }
+  }else{
+    return redirect("changepassword")->with('error', 'Sorry, your current password was not recognised');
+  }
+}
+
+        public function logout(){
+            Auth::guard()->logout();
+            return redirect()->intended('/');
+        }
+
 }

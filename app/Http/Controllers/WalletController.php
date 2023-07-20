@@ -107,8 +107,14 @@ class WalletController extends Controller
     }
 	
     public function newrequest(){
-        $sql = "select a.*,b.name from withdrawal a,users b where a.user_id = b.id";
+        $userid = Auth::user()->id;
+        if($userid == 1){
+        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.status='Pending'";
+        }else{
+        $sql = "select a.*,b.name,b.upi,payment_qr_oode from withdrawal a,users b where a.user_id = b.id and a.user_id='$userid'";
+        }
         $withdrawal =  DB::select( DB::raw( $sql ));
+        //echo"<pre>";print_r($withdrawal);echo "</pre>";die;
         return view('wallet.newrequest',compact('withdrawal'));
     }
 
@@ -119,6 +125,25 @@ class WalletController extends Controller
         $status = "Pending";
         $sql = "insert into withdrawal (user_id,amount,req_time,status) values ($user_id,$amount,'$req_time','$status')";
         DB::insert( DB::raw($sql));
+        return redirect( "/newrequest" );
+    }
+
+    public function confirmwithdrawal(Request $request){
+
+      $confirm = DB::table('withdrawal')->where('id', $request->approve_id)->update([
+        'status' => 'Completed',
+        'paid_time' => date("Y-m-d H:i:s"),
+      ]);
+      $payimage = "";
+      if ($request->pay_image != null) {
+        $payimage = $request->approve_id.'.'.$request->file('pay_image')->extension();
+        $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'photo' . DIRECTORY_SEPARATOR);
+        move_uploaded_file($_FILES['pay_image']['tmp_name'], $filepath . $payimage);
+    }
+    $image = DB::table('withdrawal')->where('id', $request->approve_id)->update([
+        'pay_image' => $payimage,
+      ]);
+
         return redirect( "/newrequest" );
     }
 

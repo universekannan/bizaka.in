@@ -12,7 +12,7 @@
 						<p>Dashboard</p>
 					</a>
 				</li>
-				 <li class="nav-item has-treeview {{ ((request()->segment(1) =='member') || request()->is('members') || request()->is('viewmembers') || request()->is('addmember')) ? 'menu-open' : '' }}">
+				 <li class="nav-item has-treeview {{ ((request()->segment(1) =='member') || request()->is('members') || request()->is('geneology')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
              <i class="far fa-user nav-icon"></i>
               <p>
@@ -22,14 +22,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('members') }}" class="nav-link {{ (request()->is('members') || (request()->segment(1) =='members')) ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-th"></i>
+                <a href="{{ route('members') }}" class="nav-link {{ (request()->is('members')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
                   <p>View Members</p>
                 </a>
               </li> 
 			  <li class="nav-item">
                 <a href="{{ route('geneology') }}" class="nav-link {{ (request()->is('geneology')) ? 'active' : '' }}">
-                  <i class="nav-icon fas fa-tree"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Geneology</p>
                 </a>
               </li>
@@ -38,7 +38,7 @@
 		  
 		  
 		  
-		   <li class="nav-item has-treeview {{ (request()->is('adminIncome') || request()->is('fasttrack') || request()->is('autoPool') || request()->is('sponsor')) ? 'menu-open' : '' }}">
+		   <li class="nav-item has-treeview {{ (request()->is('todayincome') || request()->is('totalincome')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-arrow-up"></i>
               <p>
@@ -48,16 +48,22 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link {{ (request()->is('sponsor')) ? 'active' : '' }}">
+                <a href="{{url('todayincome')}}" class="nav-link {{ (request()->is('todayincome')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Sponsor Income</p>
+                  <p>Today Income</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('totalincome')}}" class="nav-link {{ (request()->is('totalincome')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Total Income</p>
                 </a>
               </li>
             </ul>
           </li>
 
-		    <li class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('payment') || request()->is('withdrawal') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link">
+		    <li id="ManagingWallet" class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('wallet') || request()->is('withdrawal') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
+            <a id="ManagingWallets" href="#" class="nav-link">
               <i class="nav-icon fas fa-wallet #2317"></i>
               <p>
                 Managing Wallet
@@ -67,7 +73,7 @@
 			
             <ul class="nav nav-treeview">
 			    <li class="nav-item">
-                <a class="nav-link {{ (request()->is('payment')) ? 'active' : '' }}" href="{{ url('wallet') }}/{{ date('Y-m-d' ,strtotime('-1 days')) }}/{{ date('Y-m-d') }}">
+                <a id="Wallet" class="nav-link {{ (request()->is('wallet')) ? 'active' : '' }}" href="{{ url('wallet') }}/{{ date('Y-m-d' ,strtotime('-1 days')) }}/{{ date('Y-m-d') }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Wallet</p>
                 </a>
@@ -78,14 +84,6 @@
                   <p>Withdrawal Request</p>
                 </a>
               </li>            
-
-              <li class="nav-item">
-                <a class="nav-link {{ (request()->is('transfer')) ? 'active' : '' }}" href="{{ route('transfer') }}" >
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Fund Transfer</p>
-                </a>
-              </li>
-         
             </ul>
           </li>
 		  

@@ -83,7 +83,7 @@
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
+            <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
             <a href="#" class="btn btn-default btn-flat float-right"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Sign out
@@ -108,7 +108,7 @@
 </div>
 
 <footer class="main-footer">
-  <strong><a target="_blank" href="http://adlineschool.com">Aaara Network</a></strong> 2023 &copy; All rights reserved.
+  <strong><a target="_blank" href="">Aaara Network</a></strong> 2023 &copy; All rights reserved.
 </footer>
 </div>
 

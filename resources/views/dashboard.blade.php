@@ -17,7 +17,7 @@
             <p>Members</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-user-graduate"></i>
+            <i class="nav-icon nav-icon fa fa-users fa-spin fa-3x"></i>
           </div>
        <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
@@ -29,7 +29,7 @@
             <p>Today Income</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-down"></i>
+            <i class="nav-icon nav-icon fas fa-arrow-down fa-spin fa-3x"></i>
           </div>
           <a href="{{url('todayincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
@@ -42,7 +42,7 @@
             <p>Total Income </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
+            <i class="nav-icon nav-icon fas fa-money-check fa-spin fa-3x"></i>
           </div>
           <a href="{{url('totalincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
@@ -54,9 +54,9 @@
             <p>Wallet </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-up"></i>
+            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
           </div>
-          <a  class="small-box-footer">&nbsp;</a>
+          <a href="{{url('/wallet/{from}/{to}')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
     </div>
@@ -174,7 +174,7 @@ right connector from last child*/
  <div class="tree">
    <div class="row">
      <div class="col-sm-3"> </div>
-     <div class="col-sm-6"> 
+     <div class="col-sm-6">  <center>
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
@@ -182,6 +182,7 @@ right connector from last child*/
 					  @else
 						   <td class="text-danger">Inactive</td>
 					  @endif
+					  </center>
 					@elseif(Auth::user()->status == 2)
        <ul>
         <li>

@@ -59,10 +59,9 @@
                                     <thead>
                                         <tr>
                                             <th>S No</th>
+                                            <th>Date Time</th>
                                             <th>UserId</th>
                                             <th>Title</th>
-                                            <th>DateTime</th>
-                                            <th>Data</th>
                                             <th> Debit</th>
                                             <th> Credit</th>
                                             @if (Auth::user()->user_type_id == 1)
@@ -74,12 +73,12 @@
                                         @foreach ($wallet as $key => $walletlist)
                                             <tr>
                                                 <td>{{ $walletlist->id }}</td>
-                                                <td>{{ $walletlist->from_id }}</td>
-                                                <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} ,
-                                                    {{ $walletlist->ad_info2 }} , RS {{ $walletlist->amount }} , </td>
                                                 <td>{{ $walletlist->paydate }} , {{ $walletlist->time }}</td>
-                                                <td>C {{ $walletlist->customer_id }} , S service_id{{ $walletlist->time }}
-                                                </td>
+
+                                                <td>{{ $walletlist->from_id }}</td>
+                                                <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} , RS {{ $walletlist->amount }} ,C {{ $walletlist->customer_id }}  </td>
+                                              
+											  
                                                 @if ($walletlist->service_status == 'Out Payment')
                                                     <td>{{ $walletlist->amount }}</td>
                                                     <td></td>
@@ -285,4 +284,11 @@
             $("#wallet").addClass('menu-open');
         });
     </script>
+	<script type="text/javascript">
+$(document).ready(function() {
+$("#ManagingWallet").addClass('menu-open');
+$("#ManagingWallets").addClass('active');
+$("#Wallet").addClass('active');
+});
+</script>
 @endpush

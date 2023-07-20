@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.33, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.42, for Linux (x86_64)
 --
 -- Host: localhost    Database: aaranetwork
 -- ------------------------------------------------------
--- Server version	8.0.33-0ubuntu0.22.04.2
+-- Server version	5.7.42-0ubuntu0.18.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,18 +16,54 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `payment` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `from_id` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `to_id` varchar(10) DEFAULT NULL,
+  `amount` varchar(45) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `service_id` int(11) DEFAULT NULL,
+  `pay_id` int(11) DEFAULT NULL,
+  `service_status` varchar(20) DEFAULT NULL,
+  `ad_info` varchar(100) DEFAULT NULL,
+  `ad_info2` varchar(100) DEFAULT NULL,
+  `time` varchar(100) DEFAULT NULL,
+  `paydate` varchar(50) DEFAULT NULL,
+  `log_id` int(11) DEFAULT NULL,
+  `k_status` int(11) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `payment`
+--
+
+LOCK TABLES `payment` WRITE;
+/*!40000 ALTER TABLE `payment` DISABLE KEYS */;
+INSERT INTO `payment` VALUES (1,'1','1','1000000',NULL,NULL,NULL,'IN Payment','Fund Transfer',NULL,'16:52:37','2023-07-11',1,1),(2,'1','2','1500',NULL,NULL,2,'IN Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(3,'2','1','1500',NULL,NULL,2,'Out Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(4,'1','3','1500',NULL,NULL,4,'IN Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(5,'3','1','1500',NULL,NULL,4,'Out Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(6,'1','3','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:54:24','2023-07-11',3,1),(7,'3','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:54:24','2023-07-11',3,1),(8,'1','2','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:57:20','2023-07-11',2,1),(9,'2','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:57:20','2023-07-11',2,1),(10,'2','4','300',NULL,NULL,10,'IN Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(11,'4','2','300',NULL,NULL,10,'Out Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(12,'2','4','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'17:06:35','2023-07-11',2,1),(13,'4','2','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1),(14,'2','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1);
+/*!40000 ALTER TABLE `payment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user_type`
 --
 
 DROP TABLE IF EXISTS `user_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_type` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `usertype_name` varchar(20) DEFAULT NULL,
-  `status` int DEFAULT '1',
+  `status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,31 +82,34 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int DEFAULT '0',
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int(11) DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `plain_password` varchar(20) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `dob` date DEFAULT NULL,
-  `status` int DEFAULT '1',
+  `status` int(11) DEFAULT '1',
   `maritial_status` varchar(20) DEFAULT NULL,
   `aadhar_no` varchar(20) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `gender` varchar(20) DEFAULT NULL,
   `address` varchar(80) DEFAULT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
+  `wallet` varchar(50) DEFAULT '0',
+  `upi` varchar(50) DEFAULT NULL,
+  `payment_qr_oode` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `usertype_id` int DEFAULT '0',
-  `login_id` int DEFAULT NULL,
+  `usertype_id` int(11) DEFAULT '0',
+  `login_id` int(11) DEFAULT NULL,
   `referral_id` varchar(255) DEFAULT NULL,
   `photo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,8 +118,37 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'12345678','$2y$10$gMKkB0s2IF/iUDcIhThk9esA0QKrU/g3/yQqv4lOtqN/trTrhjOwq',NULL,1,NULL,NULL,'9047736314',NULL,NULL,NULL,'2023-06-25 18:30:20','2023-06-25 18:30:20',1,1,'6499395e27c48',NULL),(2,1,'Sanjay1','s1@gmail.com',NULL,'1','$2y$10$piEExTNuISDaq0z82CNAdeTUYgh9rcRxtRRSNf.3kfQC7T2YwVxFW',NULL,1,NULL,NULL,'9047736311',NULL,NULL,NULL,'2023-06-27 05:58:49',NULL,2,NULL,'649a7a98cf432',NULL),(3,1,'Sanjay2','s2@gmail.com',NULL,'1','$2y$10$hQbH.KXPM2tvMtNvfSgiF.Flp6y0SZUvd8j6atzTmRCWBhV8U./se',NULL,1,NULL,NULL,'9047736312',NULL,NULL,NULL,'2023-06-27 06:00:00',NULL,2,NULL,'649a7ae0c3d3e',NULL),(4,1,'Sanjay3','s3@gmail.com',NULL,'1','$2y$10$fYeVp9/deKI1V7YYggtxg.NYtELgAaKFcVaFNyCU2gN9XtDldVdVq',NULL,1,NULL,NULL,'9047736313',NULL,NULL,NULL,'2023-06-27 06:00:12',NULL,2,NULL,'649a7aec9f178',NULL),(5,1,'sukumar1','a1@gmail.com',NULL,'1','$2y$10$bsyM20Zub9ac9I9bNQvObe0bXtldHSdrof/nJfDdUhxJAiHRkspX.',NULL,1,NULL,NULL,'3333333330',NULL,NULL,NULL,'2023-06-27 06:02:47',NULL,2,NULL,'649a7b8750ce7',NULL),(6,1,'sukumar1','a2@gmail.com',NULL,'1','$2y$10$XxGEwV7BOy9yYm/9C5BfwO4mUc6A6/A.V/ohqwqkoFl4DMpmYcXqG',NULL,1,NULL,NULL,'3333333331',NULL,NULL,NULL,'2023-06-27 06:03:12',NULL,2,NULL,'649a7ba0471f3',NULL),(7,2,'sukumar1','a3@gmail.com',NULL,'1','$2y$10$YWsKoVsL8EffBMcoXngwsOLfFVGflbbJt0mtiRlcE39N2YY/4COka',NULL,1,NULL,NULL,'3333333332',NULL,NULL,NULL,'2023-06-27 06:03:30',NULL,2,NULL,'649a7bb1e624d',NULL),(8,2,'sukumar1','a4@gmail.com',NULL,'1','$2y$10$uk4mi9PHDgx1Y08OccG27eBFmX6PvJHpgjc.qUdtgcK09fr5cv25e',NULL,1,NULL,NULL,'3333333334',NULL,NULL,NULL,'2023-06-27 06:03:47',NULL,2,NULL,'649a7bc374c28',NULL),(9,2,'sukumar5','a5@gmail.com',NULL,'1','$2y$10$55u5JifuaV98Jx4Jdx2akeu2pT7QuEWUdzypGUMQoZnjjFCbWsXfC',NULL,1,NULL,NULL,'3333333335',NULL,NULL,NULL,'2023-06-27 06:04:06',NULL,2,NULL,'649a7bd60cc7d',NULL),(11,2,'Jino','jino@gmail.com',NULL,'1','$2y$10$AHA.8Wr8vXxT34LbfZzAze6JyyoXSPwjmKtKxjYH92dWg.fKIV9Wi',NULL,1,NULL,NULL,'7777777777',NULL,NULL,NULL,'2023-06-27 06:24:32',NULL,2,NULL,'649a80a03fa8a',NULL),(12,2,'Micheal','mich@ggg.com',NULL,'1','$2y$10$esWBqR8usMuxpwVZxxVZ5e5RmmDqH9dx0laAIjz1SZNY.Jed5b0Pq',NULL,1,NULL,NULL,'8888888888',NULL,NULL,NULL,'2023-06-27 06:25:30',NULL,2,NULL,'649a80da27fd7',NULL),(13,3,'Felin','fel@ggg.com',NULL,'1','$2y$10$ZoG4moMtX.JvzBe4Rl6FeeOkg1DuGwflQxC.xEI7ALpifFWPi.I.a',NULL,1,NULL,NULL,'66666666',NULL,NULL,NULL,'2023-06-27 06:26:02',NULL,2,NULL,'649a80fab896d',NULL),(14,3,'Kiran1','kk1@gmail.com',NULL,'1','$2y$10$tgW4KP/6Vc8zHvncqOo3BuG6iMbEJG7H3EhkS9YAIpzprsTXxSCA6',NULL,1,NULL,NULL,'9999911111',NULL,NULL,NULL,'2023-06-27 08:47:59',NULL,2,NULL,'649aa23f7053a',NULL),(15,3,'Kiran2','kk2@gmail.com',NULL,'1','$2y$10$2ofeGgIExkwTjV9gLhYfcuhnWZCPRaAuISMIWwUMFv84cf9WN1Mzm',NULL,1,NULL,NULL,'2222222222',NULL,NULL,NULL,'2023-06-27 08:49:33',NULL,2,NULL,'649aa29d55729',NULL),(16,3,'Kiran3','kk3@gmail.com',NULL,'1','$2y$10$cGxtZqJQDk7q/eCq/hIeQe/j4fYLsASrSoaI7eBP757VlFu5xsqC2',NULL,1,NULL,NULL,'222222223',NULL,NULL,NULL,'2023-06-27 08:49:58',NULL,2,NULL,'649aa2b69e854',NULL),(17,3,'Kiran4','kk4@gmail.com',NULL,'1','$2y$10$7nOXhEfchuzjJv3ebLG4uOyDYJ.0/2gnjYxHeKCHCG9YGzN0QSqxS',NULL,1,NULL,NULL,'222222224',NULL,NULL,NULL,'2023-06-27 08:50:10',NULL,2,NULL,'649aa2c2ab0b5',NULL),(18,4,'Kiran5','kk5@gmail.com',NULL,'1','$2y$10$a9Ywvm30kp8ornp0ch71DOhTe8T3oxTdHuJ/MlaFGSS6IXoDLUZO6',NULL,1,NULL,NULL,'222222225',NULL,NULL,NULL,'2023-06-27 08:50:38',NULL,2,NULL,'649aa2ddee11d',NULL),(19,4,'Kiran6','kk6@gmail.com',NULL,'1','$2y$10$vQ9vB..aquohBNtK8qiroeiIvJLqRsnHBdQ0HfEli2nTvSYXl9w3u',NULL,1,NULL,NULL,'222222226',NULL,NULL,NULL,'2023-06-27 08:50:49',NULL,2,NULL,'649aa2e9ccc5b',NULL),(20,4,'Kiran7','kk7@gmail.com',NULL,'1','$2y$10$Z.Co4Vt4SOLGa2psxzzZmu6N9zzD8yzwqaLohbO.RFwRvul2uogr2',NULL,1,NULL,NULL,'222222227',NULL,NULL,NULL,'2023-06-27 08:51:03',NULL,2,NULL,'649aa2f6eaef6',NULL),(21,4,'Kiran8','kk8@gmail.com',NULL,'1','$2y$10$F20WbuFv5WdciHb13IGB0.9UIFuheAfplKE3Mp2HrgOA.8Gdr0aky',NULL,1,NULL,NULL,'222222228',NULL,NULL,NULL,'2023-06-27 08:51:17',NULL,2,NULL,'649aa3053603b',NULL),(22,4,'Kiran9','kk9@gmail.com',NULL,'1','$2y$10$24IezwvE5dRroCCxuuvy0.3fHl.LkvtQzwztkMYe7YFJXbT.uJUhG',NULL,1,NULL,NULL,'222222229',NULL,NULL,NULL,'2023-06-27 08:51:29',NULL,2,NULL,'649aa31145d8d',NULL),(23,5,'Kiran10','kk10@gmail.com',NULL,'1','$2y$10$vAe061vYjqGi50lXloL5lehGQdCeSyJKWyPP90EkJz2YqTIHRJdMS',NULL,1,NULL,NULL,'2222222210',NULL,NULL,NULL,'2023-06-27 08:51:40',NULL,2,NULL,'649aa31c1eaa6',NULL),(24,5,'Kiran11','kk11@gmail.com',NULL,'1','$2y$10$qZ4mRKAtfcffr0sY5/HXYuhPJLy5BFsST6gfo6PEd9SSuttHYcPIK',NULL,1,NULL,NULL,'2222222211',NULL,NULL,NULL,'2023-06-27 08:51:50',NULL,2,NULL,'649aa32616a26',NULL),(25,5,'Kiran12','kk12@gmail.com',NULL,'1','$2y$10$Cqku9ysKKAnOGb0hZk2PsemCFRCYfSEtp7Rc/Owxnm67H4LI2Gkva',NULL,1,NULL,NULL,'2222222212',NULL,NULL,NULL,'2023-06-27 08:52:35',NULL,2,NULL,'649aa353063bb',NULL),(26,5,'Kiran13','kk13@gmail.co',NULL,'1','$2y$10$rIr5JgI5NHvtPvXUxxKjnuaYRUKtxvuGw4ftXx365fIhlhYfdjSWm',NULL,1,NULL,NULL,'2222222213',NULL,NULL,NULL,'2023-06-27 08:53:05',NULL,2,NULL,'649aa371b0f9d',NULL),(27,5,'Kiran14','kk14@gmail.co',NULL,'1','$2y$10$PNKVWkf9LnJn0TC973am.eKoIVM17GK4ot.e3qVefV3hv/7Un0bTa',NULL,1,NULL,NULL,'2222222214',NULL,NULL,NULL,'2023-06-27 08:53:16',NULL,2,NULL,'649aa37c16c0c',NULL),(28,6,'Kiran15','kk15@gmail.co',NULL,'1','$2y$10$qeOL0CGmondgtrA0.nWkNudX1oSBI0900mT98OZH0tXiyFCICVNm6',NULL,1,NULL,NULL,'2222222215',NULL,NULL,NULL,'2023-06-27 08:53:35',NULL,2,NULL,'649aa38f2e87b',NULL),(29,6,'Kiran16','kk16@gmail.co',NULL,'1','$2y$10$U4IKUqjYVjZcJj3TLr5Z/.0UGJIn/biPv1i0WIQfDhXExCgr8TXl2',NULL,1,NULL,NULL,'2222222216',NULL,NULL,NULL,'2023-06-27 08:53:45',NULL,2,NULL,'649aa399a552d',NULL),(30,6,'Kiran18','kk18@gmail.co',NULL,'1','$2y$10$BLhUF6qojqdJg6ExNy7CR.vm4RJXxmRwZlnIja7UYcqavpWNQ5qCa',NULL,1,NULL,NULL,'2222222218',NULL,NULL,NULL,'2023-06-27 08:56:21',NULL,2,NULL,'649aa4354f3a6',NULL),(31,6,'Kiran19','kk19@gmail.co',NULL,'1','$2y$10$r.w3Mj2iL337szMFWQ9Ff.ATcDM8vV8uvKgR/q6F/I.E0EAfyUyL.',NULL,1,NULL,NULL,'2222222219',NULL,NULL,NULL,'2023-06-27 08:56:56',NULL,2,NULL,'649aa45868fa0',NULL),(32,6,'Kiran21','kk21@gmail.co',NULL,'1','$2y$10$Em6FKxuwmfGtDj5ssm26MeVd397dxxN4bUpyID5BADPYweMgueufu',NULL,1,NULL,NULL,'2222222221',NULL,NULL,NULL,'2023-06-27 08:58:00',NULL,2,NULL,'649aa498da5e2',NULL);
+INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'12345678','$2y$10$gMKkB0s2IF/iUDcIhThk9esA0QKrU/g3/yQqv4lOtqN/trTrhjOwq',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'997750',NULL,NULL,'2023-06-25 18:30:20','2023-06-25 18:30:20',1,1,'6499395e27c48',NULL),(2,1,'SUHAIL SYED','ziyagroups06@gmail.com',NULL,'Suhail@06','$2y$10$QPTWZXtpUVWDdR8sqqKDD.sVvaljdZWF49koSL48xbSxUEGDxNxn.',NULL,2,NULL,NULL,'8270826067',NULL,NULL,NULL,'1050',NULL,NULL,'2023-07-11 16:47:41','2023-07-11 16:56:23',2,NULL,'64ad3a55916ab',NULL),(3,1,'Galaxy Kannan','universekannan@gmail.com',NULL,'12345678','$2y$10$8LaADHeafG0Ueh4Ggwde2.II.qK21FuTw7NUmF1nojLjRiJzXtjDe',NULL,2,NULL,NULL,'9443587282',NULL,NULL,NULL,'1200',NULL,NULL,'2023-07-11 16:47:50',NULL,2,NULL,'64ad3a5e6f505',NULL),(4,2,'nisha','nisha@gmail.com',NULL,'6053','$2y$10$6yc9uDQlsgOIBiMyIG8.leTdnH9F47W9e8P3tMOWAT2uMcVIZZYNe',NULL,2,NULL,NULL,'1234567890',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-11 17:03:59',NULL,2,NULL,'64ad3e2776092',NULL),(5,2,'hyder','hyder@gmail.com',NULL,'1701','$2y$10$V30ER5v9L5.QYX/taMtXXekIOI6wIpmulFkLPr4VwqY.Evm5WtLvW',NULL,1,NULL,NULL,'9876543210',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-11 17:04:44',NULL,2,NULL,'64ad3e5407ee7',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `withdrawal`
+--
+
+DROP TABLE IF EXISTS `withdrawal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `withdrawal` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `req_time` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  `pay_image` varchar(20) DEFAULT NULL,
+  `paid_time` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `withdrawal`
+--
+
+LOCK TABLES `withdrawal` WRITE;
+/*!40000 ALTER TABLE `withdrawal` DISABLE KEYS */;
+INSERT INTO `withdrawal` VALUES (1,1,100.00,'2023-07-12 20:56:08','Pending',NULL,NULL);
+/*!40000 ALTER TABLE `withdrawal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -92,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-27 14:34:07
+-- Dump completed on 2023-07-14  4:45:54
