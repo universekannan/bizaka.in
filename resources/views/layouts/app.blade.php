@@ -68,7 +68,7 @@
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
           <img src="{{ URL::to('/') }}/AdminLTELogo.png"
           class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">{{ Auth::user()->name }} -- {{ Auth::user()->id }}</span>
+          <span class="d-none d-md-inline">{{ Auth::user()->name }} </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
@@ -77,7 +77,7 @@
             class="img-circle elevation-2"
             alt="User Image">
             <p>
-              {{ Auth::user()->name }}
+              {{ Auth::user()->name }} -- {{ Auth::user()->id }}
           <!--    <small>Member since {{ Auth::user()->created_at }}</small>-->
             </p>
           </li>
