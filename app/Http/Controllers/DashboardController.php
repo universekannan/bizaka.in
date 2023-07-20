@@ -41,12 +41,11 @@ class DashboardController extends Controller
         $sql = "select * from users where parent_id=$id";
         $child = DB::select(DB::raw($sql));
 
-        $sql = "select wallet from request_payment where id=$id";
-        $result = DB::select(DB::raw($sql));
-        $wallet = $result[0]->wallet;
-        $sql = "select * from users where parent_id=$id";
-        $RequestPayment = DB::select(DB::raw($sql));
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child','RequestPayment'));
+            $sql = "select count(*) as requestpayment from request_payment where id=$id";
+            $result = DB::select(DB::raw($sql));
+            $requestpayment = $result[0]->requestpayment;
+			
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment'));
     }
     
 }

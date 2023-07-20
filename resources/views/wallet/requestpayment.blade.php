@@ -51,10 +51,13 @@
                                     <td>{{ $payreq->to_id }}</td>
                                     <td>{{ $payreq->amount }}</td>
                                     <td>{{ $payreq->req_time }}</td>
-                                    <td>{{ $payreq->status }} &nbsp;
+									@if(Auth::user()->id == $payreq->from_id || $payreq->status == "Approved" )
+                                    <td>{{ $payreq->status }}</td>
+								    @elseif(Auth::user()->id == $payreq->to_id)
+									<td><a class="btn btn-success" href="}">Activate</a></td>
 
-                                        </td>
-        
+									@endif
+									       
                                 </tr>
                             @endforeach
                         </tbody>

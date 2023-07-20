@@ -62,13 +62,13 @@
 	  <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $RequestPayment }}&nbsp;</h3>
+            <h3>{{ $requestpayment }}&nbsp;</h3>
             <p>Request Payment </p>
           </div>
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
           </div>
-          <a href="{{url('/wallet/{from}/{to}')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
+          <a href="{{url('/requestpayment') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
     </div>

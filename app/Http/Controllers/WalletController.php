@@ -134,7 +134,9 @@ class WalletController extends Controller
 
     public function requestpayment(){
         $userid = Auth::user()->id;
-        $paymentrequest = DB::table( 'request_payment' )->where( 'from_id', $userid )->orderBy( 'id', 'Asc' )->get();
+		$sql = "select * from request_payment where from_id=$userid or to_id = $userid";
+         
+        $paymentrequest =  DB::select( DB::raw( $sql ));
 
         return view('wallet.requestpayment',compact('paymentrequest'));
     }
@@ -150,6 +152,7 @@ class WalletController extends Controller
           'req_time' => date("Y-m-d H:i:s"),
         ]);
         $insertid = DB::getPdo()->lastInsertId();
+
         $req_image = "";
         if ($request->req_image != null) {
           $req_image = $insertid.'.'.$request->file('req_image')->extension();
