@@ -143,7 +143,7 @@ class WalletController extends Controller
       $payimage = "";
       if ($request->pay_image != null) {
         $payimage = $request->approve_id.'.'.$request->file('pay_image')->extension();
-        $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'photo' . DIRECTORY_SEPARATOR);
+        $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'paidimg' . DIRECTORY_SEPARATOR);
         move_uploaded_file($_FILES['pay_image']['tmp_name'], $filepath . $payimage);
     }
     $image = DB::table('withdrawal')->where('id', $request->approve_id)->update([

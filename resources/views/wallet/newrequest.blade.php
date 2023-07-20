@@ -248,12 +248,12 @@
             $("#appramt").val(amount);
             $("#apprupi").val(upi);
             $('#apprid').val(id);
-            $("#apprqrcode").attr("src", "../uploads/photo/" + qr_code);
+            $("#apprqrcode").attr("src", "../uploads/qrcodeimg/" + qr_code);
             $("#approve").modal("show");
         }
 
         function complete_withdraw(pay_image) {
-            $("#compqrcode").attr("src", "../uploads/photo/" + pay_image);
+            $("#compqrcode").attr("src", "../uploads/paidimg/" + pay_image);
             $("#complete").modal("show");
         }
     </script>
