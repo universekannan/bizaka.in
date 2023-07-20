@@ -63,7 +63,7 @@
                                     <td>{{ $memberslist->plain_password }}</td>
 									@if($memberslist->status == 1)
 									  @if ($memberslist->wallet >= 399)
-									  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ $memberslist->referral_id }}">Activate</a></td>
+									  <td><a class="btn btn-success" href="{{ url('ownactivation') }}/{{ $memberslist->referral_id }}">Activate</a></td>
 									  @else
 										   <td class="text-danger">Inactive</td>
 									  @endif

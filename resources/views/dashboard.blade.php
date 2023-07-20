@@ -178,13 +178,14 @@ right connector from last child*/
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
-					  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
+					  <td><a class="btn btn-success" href="{{ url('ownactivation') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
 					  @else
 						   <td class="text-danger">Inactive</td>
 					  @endif
 					  </center>
 					@elseif(Auth::user()->status == 2)
        <ul>
+	   
         <li>
           <a><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" /><br><br>{{ Auth::user()->name }}</a>
          <ul>

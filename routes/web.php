@@ -15,7 +15,9 @@ Route::get('/members', [App\Http\Controllers\JoinController::class, 'members'])-
 Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology'])->name('geneology');
 
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
-Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
+
+Route::get('/ownactivation/{referral_id}', [App\Http\Controllers\JoinController::class, 'ownactivation'])->name('ownactivation');
+
 Route::get('/income', [App\Http\Controllers\JoinController::class, 'income'])->name('income');
 
 

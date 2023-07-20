@@ -25,7 +25,7 @@ class WalletController extends Controller
             $sql = "Select * from `users` where `id` = '1' order by `id` desc limit 1 ";
 
         } else {
-            $parent_id = Auth::user()->id;
+            $parent_id = Auth::user()->parent_id;
             $sql = "Select * from `users` where `id` = $parent_id order by `id` desc limit 1 ";
 
         }
