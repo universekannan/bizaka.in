@@ -12,9 +12,15 @@
                         @if (Auth::user()->id == 1)
     
                         @else
+                        @if ($status == 'Completed')
                             <a href="" data-toggle="modal" data-target="#Withdrawal "
                                 class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i
                                     class="fas fa-plus"> Withdrawal </i> </a>
+                         @else   
+                         <a href="#" 
+                         class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i
+                             class="fas fa-plus"> Withdrawal Pending </i> </a>
+                             @endif
                         @endif
                     </ol>
                 </div>
@@ -242,12 +248,12 @@
             $("#appramt").val(amount);
             $("#apprupi").val(upi);
             $('#apprid').val(id);
-            $("#apprqrcode").attr("src", "../uploads/photo/" + qr_code);
+            $("#apprqrcode").attr("src", "../uploads/qrcodeimg/" + qr_code);
             $("#approve").modal("show");
         }
 
         function complete_withdraw(pay_image) {
-            $("#compqrcode").attr("src", "../uploads/photo/" + pay_image);
+            $("#compqrcode").attr("src", "../uploads/paidimg/" + pay_image);
             $("#complete").modal("show");
         }
     </script>
