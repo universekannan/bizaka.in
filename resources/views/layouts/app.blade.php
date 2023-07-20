@@ -68,7 +68,7 @@
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
           <img src="{{ URL::to('/') }}/AdminLTELogo.png"
           class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+          <span class="d-none d-md-inline">{{ Auth::user()->name }} -- {{ Auth::user()->id }}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
