@@ -235,7 +235,7 @@ class JoinController extends Controller
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }
-  
+
 public function changepassword()
 {
   $userid = Auth::user()->id; 
