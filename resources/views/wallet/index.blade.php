@@ -74,7 +74,7 @@
                                         @foreach ($wallet as $key => $walletlist)
                                             <tr>
                                                 <td>{{ $walletlist->id }}</td>
-                                                <td>{{ $walletlist->from_id }}{{ $walletlist->name }}</td>
+                                                <td>{{ $walletlist->from_id }} , {{ $walletlist->name }}</td>
                                                 <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} ,
                                                     {{ $walletlist->ad_info2 }} , RS {{ $walletlist->amount }} , </td>
                                                 <td>{{ $walletlist->paydate }} , {{ $walletlist->time }}</td>
