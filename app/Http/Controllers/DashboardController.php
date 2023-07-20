@@ -40,7 +40,13 @@ class DashboardController extends Controller
         $wallet = $result[0]->wallet;
         $sql = "select * from users where parent_id=$id";
         $child = DB::select(DB::raw($sql));
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child'));
+
+        $sql = "select wallet from request_payment where id=$id";
+        $result = DB::select(DB::raw($sql));
+        $wallet = $result[0]->wallet;
+        $sql = "select * from users where parent_id=$id";
+        $RequestPayment = DB::select(DB::raw($sql));
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','RequestPayment'));
     }
     
 }
