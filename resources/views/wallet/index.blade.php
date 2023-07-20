@@ -18,9 +18,14 @@
                                                 class="btn btn-primary float-sm-right" title="Add Payment "><i
                                                     class="fas fa-plus"> Add Payment</i> </a>
                                         @else
-                                            <a href="" data-toggle="modal" data-target="#Request"
-                                                class="btn btn-primary float-sm-right" title="Request Amound "><i
-                                                    class="fas fa-plus"> Request Amount</i> </a>
+                                        @if($status == 'Pending')
+                                        <a href="{{ route('requestpayment') }}"  class="btn btn-primary float-sm-right" title="Request Amound "><i class="fas fa-plus"> Request Amount</i> </a>
+                                        @else
+                                       
+                                        <a href="" data-toggle="modal" data-target="#Request"
+                                        class="btn btn-primary float-sm-right" title="Request Amound "><i
+                                            class="fas fa-plus"> Request Amount</i> </a>
+                                        @endif
                                         @endif
                                     </ol>
                                     <div class="form-group">

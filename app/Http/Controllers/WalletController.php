@@ -39,8 +39,16 @@ class WalletController extends Controller
             $sql = "select * from users where parent_id= $parent_id";
         } 
         $userpayment = DB::select( DB::raw( $sql ) );
+
+        $sql = "select status from request_payment where from_id=$login and status='Pending'";
+        $paymentrequest =  DB::select( DB::raw( $sql ));
+        $status ="";
+        if(count($paymentrequest) > 0){
+        $status = $paymentrequest[0]->status;
+        }
+
 		
-        return view( 'wallet/index', compact( 'wallet', 'referencedata', 'userpayment', 'from', 'to' ) );
+        return view( 'wallet/index', compact( 'wallet', 'referencedata', 'userpayment', 'from', 'to','status' ) );
     }
 
     public function superadminaddwallet( Request $request )
@@ -135,7 +143,7 @@ class WalletController extends Controller
     public function requestpayment(){
         $userid = Auth::user()->id;
 		$sql = "select * from request_payment where from_id=$userid or to_id = $userid";
-         
+         //echo $sql;die;
         $paymentrequest =  DB::select( DB::raw( $sql ));
 
         return view('wallet.requestpayment',compact('paymentrequest'));

@@ -54,7 +54,7 @@
 									@if(Auth::user()->id == $payreq->from_id || $payreq->status == "Approved" )
                                     <td>{{ $payreq->status }}</td>
 								    @elseif(Auth::user()->id == $payreq->to_id)
-									<td><a class="btn btn-success" href="}">Activate</a></td>
+									<td><a class="btn btn-success" onclick="appove_requestamount('{{ $payreq->id }}','{{ $payreq->from_id }}','{{ $payreq->amount }}','{{ $payreq->req_image }}')" href="#">Activate</a></td>
 
 									@endif
 									       
@@ -75,7 +75,43 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-   
+    <div class="modal fade" id="approve" tabindex="-1" aria-hidden="true">
+        <form action="{{ url('/approverequest_payment') }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollable">Confirm Withdrawal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="hidden" name="approve_id" id="apprid">
+                                <input type="hidden" name="from_id" id="apprfromid">
+
+                                <div class="form-group row">
+                                    <label for="class_name" class="col-sm-4 col-form-label">Amount</label>
+                                    <div class="col-sm-8">
+                                        <input readonly class="form-control no-border" name="amount" id="appramt" style="border: 0">
+                                    </div>
+                                </div>
+
+                                
+                               <center> <img style="width:200px;height:100%;padding-bottom:10px;" src="" id="apprreq_image" /></center>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <input class="btn btn-primary" type="submit" value="Submit" />
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
 @endsection
 @push('page_scripts')
     <script>
@@ -91,13 +127,11 @@
             }
         });
 
-        function appove_withdrawal(id, user_id, name, amount, upi, qr_code) {
-            $("#appruserid").val(user_id);
-            $("#apprname").val(name);
+        function appove_requestamount(id, from_id, amount, req_image) {
+            $("#apprfromid").val(from_id);
             $("#appramt").val(amount);
-            $("#apprupi").val(upi);
             $('#apprid').val(id);
-            $("#apprqrcode").attr("src", "../uploads/qrcodeimg/" + qr_code);
+            $("#apprreq_image").attr("src", "../upload/requestimg/" + req_image);
             $("#approve").modal("show");
         }
 
