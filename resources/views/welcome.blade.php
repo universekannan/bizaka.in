@@ -28,7 +28,7 @@
             <p class="login-box-msg">Sign in to start your session</p>
 
             <form method="post" action="{{ url('/login') }}">
-                @csrf
+                {{ csrf_field() }}
 
                 <div class="input-group mb-3">
                     <input type="email"
