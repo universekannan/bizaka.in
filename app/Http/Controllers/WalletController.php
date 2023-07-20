@@ -17,7 +17,8 @@ class WalletController extends Controller
         $login = Auth::user()->id;
         $referral_id = Auth::user()->id;
 
-            $wallet = DB::table( 'payment' )->where( 'to_id', $login )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->orderBy( 'id', 'Asc' )->get();
+            $wallet = DB::table( 'payment' )->select('payment.*','users.name')
+     ->Join('users', 'users.id', '=', 'payment.from_id')->where( 'to_id', $login )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->orderBy( 'id', 'Asc' )->get();
 		
         $sql = '';
         if ( Auth::user()->id == 1 ) {
