@@ -108,7 +108,7 @@
 </div>
 
 <footer class="main-footer">
-  <strong><a target="_blank" href="http://adlineschool.com">Aaara Network</a></strong> 2023 &copy; All rights reserved.
+  <strong><a target="_blank" href="">Aaara Network</a></strong> 2023 &copy; All rights reserved.
 </footer>
 </div>
 
