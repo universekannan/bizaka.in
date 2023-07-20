@@ -37,3 +37,6 @@ Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'save
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 Route::post('/updateprofile', [App\Http\Controllers\ProfileController::class, 'updateprofile'])->name('updateprofile');
 
+Route::get('/logout', [App\Http\Controllers\JoinController::class, 'logout'])->name('logout');
+
+

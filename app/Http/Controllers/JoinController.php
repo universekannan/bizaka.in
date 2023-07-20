@@ -257,4 +257,10 @@ public function updatepassword(Request $request){
     return redirect("changepassword")->with('error', 'Sorry, your current password was not recognised');
   }
 }
+
+        public function logout(){
+            Auth::guard()->logout();
+            return redirect()->intended('/');
+        }
+
 }
