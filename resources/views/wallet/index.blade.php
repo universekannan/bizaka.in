@@ -77,7 +77,7 @@
                                                 <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} ,
                                                     {{ $walletlist->ad_info2 }} , RS {{ $walletlist->amount }} , </td>
                                                 <td>{{ $walletlist->paydate }} , {{ $walletlist->time }}</td>
-                                               
+
                                                 @if ($walletlist->service_status == 'Out Payment')
                                                     <td>{{ $walletlist->amount }}</td>
                                                     <td></td>
@@ -97,8 +97,8 @@
                                                         @endif
                                                     </td>
                                                 @endif
-			
-                                          
+
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -126,6 +126,8 @@
         </div>
     </section>
     <div class="modal fade" id="Request">
+        <form action="{{ url('/paymentrequest') }}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -136,24 +138,39 @@
                 </div>
                 <div class="modal-body">
                     <center>
-@if ( Auth::user()->id == 1 )
-	
-@else
-                        @foreach ($referencedata as $key => $referencedatas)
-                            {{ $referencedatas->name }}</br>
-                            {{ $referencedatas->phone }}</br>
-                            {{ $referencedatas->upi }}</br>
-                            <img style="width:200px"
-                                src="{{ URL::to('/') }}/upload/upi_qr/{{ $referencedatas->payment_qr_oode }}" />
-                        @endforeach
-@endif
+                        @if (Auth::user()->id == 1)
+                        @else
+                            @foreach ($referencedata as $key => $referencedatas)
+                                {{ $referencedatas->name }}</br>
+                                {{ $referencedatas->phone }}</br>
+                                {{ $referencedatas->upi }}</br>
+                                <img style="width:200px"
+                                    src="{{ URL::to('/') }}/upload/upi_qr/{{ $referencedatas->payment_qr_oode }}" />
+                                <input type="hidden" class="form-control" name="to_id"
+                                    value="{{ $referencedatas->id }}">
+                            @endforeach
+                        @endif
                     </center>
+
+                    <div class="form-group">
+                        <label for="amount">Amount *</label>
+                        <input type="text" class="form-control" required="required" name="amount" placeholder="Amount"
+                            id="amount">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="req_image">Upload Screenshot</label>
+                        <input type="file" class="form-control" required="required" name="req_image">
+                    </div>
+
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Request Payment" />
                 </div>
             </div>
         </div>
+        </form>
     </div>
     <div class="modal fade" id="Transfer">
         <div class="modal-dialog">
@@ -232,7 +249,8 @@
                         <div class="form-group row">
                             <label for="amount" class="col-sm-12 col-form-label"><span
                                     style="color:red"></span>Amount</label>
-                            <input required="required" maxlength="7" type="text" class="form-control number" name="fundamount" id="amount">
+                            <input required="required" maxlength="7" type="text" class="form-control number"
+                                name="fundamount" id="amount">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -284,11 +302,11 @@
             $("#wallet").addClass('menu-open');
         });
     </script>
-	<script type="text/javascript">
-$(document).ready(function() {
-$("#ManagingWallet").addClass('menu-open');
-$("#ManagingWallets").addClass('active');
-$("#Wallet").addClass('active');
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#ManagingWallet").addClass('menu-open');
+            $("#ManagingWallets").addClass('active');
+            $("#Wallet").addClass('active');
+        });
+    </script>
 @endpush

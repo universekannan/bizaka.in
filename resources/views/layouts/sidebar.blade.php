@@ -62,7 +62,7 @@
             </ul>
           </li>
 
-		    <li id="ManagingWallet" class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('wallet') || request()->is('withdrawal') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
+		    <li id="ManagingWallet" class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('wallet') || request()->is('withdrawal') || request()->is('paymentrequest') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
             <a id="ManagingWallets" href="#" class="nav-link">
               <i class="nav-icon fas fa-wallet #2317"></i>
               <p>
@@ -82,6 +82,12 @@
                 <a href="{{ route('newrequest') }}" class="nav-link {{ (request()->is('newrequest')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Withdrawal Request</p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a href="{{ route('requestpayment') }}" class="nav-link {{ (request()->is('requestpayment')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Amount Request</p>
                 </a>
               </li>            
             </ul>

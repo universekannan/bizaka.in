@@ -132,6 +132,37 @@ class WalletController extends Controller
         return redirect( "/newrequest" );
     }
 
+    public function requestpayment(){
+        $userid = Auth::user()->id;
+        $paymentrequest = DB::table( 'request_payment' )->where( 'from_id', $userid )->orderBy( 'id', 'Asc' )->get();
+
+        return view('wallet.requestpayment',compact('paymentrequest'));
+    }
+
+    public function paymentrequest(Request $request){
+        $from_id = Auth::user()->id;
+        $confirm = DB::table('request_payment')->insert([
+          'from_id' => $from_id,
+          'to_id' => $request->to_id,
+          'amount' => $request->amount,
+          'status' => 'Pending',
+          'req_date' => date("Y-m-d"),
+          'req_time' => date("Y-m-d H:i:s"),
+        ]);
+        $insertid = DB::getPdo()->lastInsertId();
+        $req_image = "";
+        if ($request->req_image != null) {
+          $req_image = $insertid.'.'.$request->file('req_image')->extension();
+          $filepath = public_path('upload' . DIRECTORY_SEPARATOR . 'requestimg' . DIRECTORY_SEPARATOR);
+          move_uploaded_file($_FILES['req_image']['tmp_name'], $filepath . $req_image);
+      }
+      $image = DB::table('request_payment')->where('id', $insertid)->update([
+          'req_image' => $req_image,
+        ]);
+  
+          return redirect( "/requestpayment" );
+      }
+
     public function confirmwithdrawal(Request $request){
 
       $confirm = DB::table('withdrawal')->where('id', $request->approve_id)->update([
