@@ -12,7 +12,7 @@
                         @if (Auth::user()->id == 1)
     
                         @else
-                        @if ($status == 'Completed')
+                        @if ($status == 'Completed' || $status == "")
                             <a href="" data-toggle="modal" data-target="#Withdrawal "
                                 class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i class="fas fa-plus"> Withdrawal </i> </a>
                          @else   
@@ -180,6 +180,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <input type="hidden" name="approve_id" id="apprid">
+                                <input type="hidden" name="user_id" id="appruserid">
                                 <div class="form-group row">
                                     <label for="class_name" class="col-sm-4 col-form-label">Name</label>
                                     <div class="col-sm-8">
@@ -190,7 +191,7 @@
                                 <div class="form-group row">
                                     <label for="class_name" class="col-sm-4 col-form-label">Amount</label>
                                     <div class="col-sm-8">
-                                        <input readonly class="form-control no-border" id="appramt" style="border: 0">
+                                        <input readonly name="amount" class="form-control no-border" id="appramt" style="border: 0">
                                     </div>
                                 </div>
 

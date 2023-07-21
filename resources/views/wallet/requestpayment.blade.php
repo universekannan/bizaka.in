@@ -191,7 +191,7 @@
             $("#approve").modal("show");
         }
 
-        function reqamount(id, amount, fromid, paidimage) {
+        function reqamount(id, amount, fromid) {
             $("#requestid").val(id);
             $("#reqamounthidden").html(amount);
             $("#reqfromid").val(fromid);
