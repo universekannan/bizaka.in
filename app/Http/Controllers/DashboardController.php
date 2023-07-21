@@ -28,10 +28,11 @@ class DashboardController extends Controller
             $result = DB::select(DB::raw($sql));
             $members = $result[0]->members;
         }
-        $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today'";
+        $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
         $result = DB::select(DB::raw($sql));
         $todays_income = $result[0]->todays_income;
-        $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment'";
+		
+        $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
         $result = DB::select(DB::raw($sql));
         $total_income = $result[0]->total_income;
         $sql = "select wallet from users where id=$id";
@@ -39,7 +40,12 @@ class DashboardController extends Controller
         $wallet = $result[0]->wallet;
         $sql = "select * from users where parent_id=$id";
         $child = DB::select(DB::raw($sql));
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child'));
+
+            $sql = "select count(*) as requestpayment from request_payment where id=$id";
+            $result = DB::select(DB::raw($sql));
+            $requestpayment = $result[0]->requestpayment;
+			
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment'));
     }
     
 }

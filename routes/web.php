@@ -13,10 +13,13 @@ Route::post('/updatemember', [App\Http\Controllers\JoinController::class, 'updat
 Route::post('/joinus', [App\Http\Controllers\JoinController::class, 'joinus'])->name('joinus');
 Route::get('/members', [App\Http\Controllers\JoinController::class, 'members'])->name('members');
 Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology'])->name('geneology');
-Route::get('/profile', [App\Http\Controllers\JoinController::class, 'profile'])->name('profile');
+
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
-Route::get('/activate/{referral_id}', [App\Http\Controllers\JoinController::class, 'activate'])->name('activate');
+
+Route::get('/ownactivation/{referral_id}', [App\Http\Controllers\JoinController::class, 'ownactivation'])->name('ownactivation');
+
 Route::get('/income', [App\Http\Controllers\JoinController::class, 'income'])->name('income');
+
 
 
 Route::get('/wallet/{from}/{to}', [App\Http\Controllers\WalletController::class, 'index'])->name('wallet');
@@ -26,9 +29,18 @@ Route::get('/servicepaymentdelete/{id}', [App\Http\Controllers\WalletController:
 Route::get('/newrequest', [App\Http\Controllers\WalletController::class, 'newrequest'])->name('newrequest');
 Route::get('/transactions', [App\Http\Controllers\WalletController::class, 'transactions'])->name('transactions');
 Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
+Route::post('/confirmwithdrawal', [App\Http\Controllers\WalletController::class, 'confirmwithdrawal'])->name('confirmwithdrawal');
 
 Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
 Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
 Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalincome'])->name('totalincome');
 Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'saverequest'])->name('saverequest');
+Route::get('/requestpayment', [App\Http\Controllers\WalletController::class, 'requestpayment'])->name('requestpayment');
+Route::post('/paymentrequest', [App\Http\Controllers\WalletController::class, 'paymentrequest'])->name('paymentrequest');
+
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
+Route::post('/updateprofile', [App\Http\Controllers\ProfileController::class, 'updateprofile'])->name('updateprofile');
+
+Route::get('/logout', [App\Http\Controllers\JoinController::class, 'logout'])->name('logout');
+
 

@@ -109,3 +109,17 @@ CREATE TABLE `withdrawal` (
   `paid_time`  varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `request_payment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `from_id` int(11) NOT NULL,
+  `to_id` int(11) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `req_time` varchar(20) DEFAULT NULL,
+  `req_date` varchar(20) DEFAULT NULL,
+  `status` varchar(20) DEFAULT NULL,
+  req_image varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

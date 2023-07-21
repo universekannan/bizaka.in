@@ -39,21 +39,21 @@
                                         <input type="hidden" name="id" value="{{ $pro->id }}" />
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="full_name" class="col-sm-4 col-form-label"><span
+                                                <label for="name" class="col-sm-4 col-form-label"><span
                                                         style="color:red"></span>Full Name</label>
                                                 <div class="col-sm-8">
                                                     <input required="requiered" type="text" class="form-control"
-                                                        name="full_name" id="full_name" maxlength="50"
-                                                        placeholder="Full Name" value="{{ $pro->full_name }}">
+                                                        name="name" id="name" maxlength="50"
+                                                        placeholder="Full Name" value="{{ $pro->name }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="aadhaar_no" class="col-sm-4 col-form-label"><span
+                                                <label for="aadhar_no" class="col-sm-4 col-form-label"><span
                                                         style="color:red"></span>Aadhaar No</label>
                                                 <div class="col-sm-8">
-                                                    <input disabled required="requiered" type="text" class="form-control"
-                                                        name="aadhaar_no" id="aadhaar_no" maxlength="50"
-                                                        placeholder="Aadhaar No" value="{{ $pro->aadhaar_no }}">
+                                                    <input readonly required="requiered" type="text" class="form-control"
+                                                        name="aadhar_no" id="aadhar_no" maxlength="50"
+                                                        placeholder="Aadhaar No" value="{{ $pro->aadhar_no }}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -69,7 +69,7 @@
                                                 <label for="email" class="col-sm-4 col-form-label"><span
                                                         style="color:red"></span>Email ID</label>
                                                 <div class="col-sm-8">
-                                                    <input disabled required="requiered" type="email" class="form-control"
+                                                    <input readonly required="requiered" type="text" class="form-control"
                                                         name="email" id="email" maxlength="50" placeholder="Email ID"
                                                         value="{{ $pro->email }}">
                                                 </div>
@@ -78,46 +78,24 @@
                                                 <label for="gender" class="col-sm-4 col-form-label"><span
                                                         style="color:red"></span>Gender </label>
                                                 <div class="col-sm-8">
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" <?php  if($pro->gender == '1'){ ?> checked
-                                                                <?php }else{ ?> '' <?php } ?> name="gender"
-                                                                id="male" value="1">
-                                                            Male
-                                                        </label>
-                                                        <label>
-                                                            <input type="radio" <?php  if($pro->gender == '2'){ ?> checked
-                                                                <?php }else{ ?> '' <?php } ?> name="gender"
-                                                                id="female" value="2">
-                                                            Female
-                                                        </label>
-                                                    </div>
+                                                    <select class="form-control" name="gender">
+                                                        <option>Select</option>
+                                                        <option value="Male">Male</option>
+                                                        <option value="Female">Female</option>
+                                                    </select>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group row">
-                                                <label for="permanent_address_1" class="col-sm-4 col-form-label"><span
+                                                <label for="address" class="col-sm-4 col-form-label"><span
                                                         style="color:red"></span>Contact Address</label>
                                                 <div class="col-sm-8">
-                                                    <textarea rows="5" required="requiered" type="text" class="form-control" name="permanent_address_1"
-                                                        id="permanent_address_1" maxlength="1000" placeholder="Contact Address">{{ $pro->permanent_address_1 }}</textarea>
+                                                    <textarea rows="5" required="requiered" type="text" class="form-control" name="address"
+                                                        id="address" maxlength="1000" placeholder="Contact Address">{{ $pro->address }}</textarea>
                                                 </div>
                                             </div>
-                                            @if (Auth::user()->user_type_id == 2 ||
-                                                    Auth::user()->user_type_id == 3 ||
-                                                    Auth::user()->user_type_id == 4 ||
-                                                    Auth::user()->user_type_id == 5 ||
-                                                    Auth::user()->user_type_id == 6 ||
-                                                    Auth::user()->user_type_id == 7 ||
-                                                    Auth::user()->user_type_id == 8 ||
-                                                    Auth::user()->user_type_id == 9 ||
-                                                    Auth::user()->user_type_id == 10 ||
-                                                    Auth::user()->user_type_id == 11 ||
-                                                    Auth::user()->user_type_id == 16 ||
-                                                    Auth::user()->user_type_id == 17)
                                                 <div class="form-group row">
                                                     <label for="payment_qr_oode" class="col-sm-4 col-form-label">
                                                         <span style="color:red"></span>UPI QR</label>
@@ -135,48 +113,6 @@
                                                             placeholder="UPI ID" value="{{ $pro->upi }}">
                                                     </div>
                                                 </div>
-                                            @endif
-
-                                            <div class="form-group row">
-                                                <label for="photo" class="col-sm-4 col-form-label"><span
-                                                        style="color:red"></span>Profile Photo</label>
-                                                <div class="col-sm-8">
-                                                    <input type="file" name="photo" value="Upload Image">
-                                                </div>
-                                            </div>
-                                            @if (Auth::user()->user_type_id == 2 ||
-                                                    Auth::user()->user_type_id == 3 ||
-                                                    Auth::user()->user_type_id == 4 ||
-                                                    Auth::user()->user_type_id == 5 ||
-                                                    Auth::user()->user_type_id == 6 ||
-                                                    Auth::user()->user_type_id == 7 ||
-                                                    Auth::user()->user_type_id == 8 ||
-                                                    Auth::user()->user_type_id == 9 ||
-                                                    Auth::user()->user_type_id == 10 ||
-                                                    Auth::user()->user_type_id == 11 ||
-                                                    Auth::user()->user_type_id == 13 ||
-                                                    Auth::user()->user_type_id == 12)
-                                                <div class="form-group row">
-                                                    <label for="signature2" class="col-sm-4 col-form-label"><span
-                                                            style="color:red"></span>Signature Upload</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="file" name="signature2"
-                                                            value="Upload Image"><br /><br />
-                                                            <img style="width:200px" src="{{ URL::to('/') }}/upload/off/{{ $pro->signature2 }}" />
-                                                        <span id="signature2" style="color:red"></span>
-                                                    </div>
-                                                </div>
-                                            @elseif (Auth::user()->user_type_id == 6 ||
-                                                    Auth::user()->user_type_id == 7 ||
-                                                    Auth::user()->user_type_id == 8 ||
-                                                    Auth::user()->user_type_id == 9 ||
-                                                    Auth::user()->user_type_id == 10 ||
-                                                    Auth::user()->user_type_id == 11 ||
-                                                    Auth::user()->user_type_id == 16 ||
-                                                    Auth::user()->user_type_id == 17)
-                                                <input type="hidden" name="signature2"
-                                                    value="{{ $pro->signature2 }}" />
-                                            @endif
                                         </div>
                                         <!-- /.form-group -->
                                     </div>

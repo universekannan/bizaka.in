@@ -68,7 +68,7 @@
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
           <img src="{{ URL::to('/') }}/AdminLTELogo.png"
           class="user-image img-circle elevation-2" alt="User Image">
-          <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+          <span class="d-none d-md-inline">{{ Auth::user()->name }} </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
@@ -77,13 +77,13 @@
             class="img-circle elevation-2"
             alt="User Image">
             <p>
-              {{ Auth::user()->name }}
+              {{ Auth::user()->name }} -- {{ Auth::user()->id }}
           <!--    <small>Member since {{ Auth::user()->created_at }}</small>-->
             </p>
           </li>
           <!-- Menu Footer-->
           <li class="user-footer">
-            {{-- <a href="#" class="btn btn-default btn-flat">Profile</a> --}}
+            <a href="{{ route('profile') }}" class="btn btn-default btn-flat">Profile</a>
             <a href="#" class="btn btn-default btn-flat float-right"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             Sign out
@@ -108,7 +108,7 @@
 </div>
 
 <footer class="main-footer">
-  <strong><a target="_blank" href="http://adlineschool.com">Aaara Network</a></strong> 2023 &copy; All rights reserved.
+  <strong><a target="_blank" href="">Aaara Network</a></strong> 2023 &copy; All rights reserved.
 </footer>
 </div>
 

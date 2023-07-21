@@ -48,7 +48,9 @@
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+									@if(Auth::user()->id == 1)
                                     <th>Password</th>
+									@endif
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -60,10 +62,12 @@
                                     <td>{{ $memberslist->name }}</td>
                                     <td>{{ $memberslist->email }}</td>
                                     <td>{{ $memberslist->phone }}</td>
+	                                @if(Auth::user()->id == 1)
                                     <td>{{ $memberslist->plain_password }}</td>
+									@endif
 									@if($memberslist->status == 1)
 									  @if ($memberslist->wallet >= 399)
-									  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ $memberslist->referral_id }}">Activate</a></td>
+									  <td><a class="btn btn-success" href="{{ url('ownactivation') }}/{{ $memberslist->referral_id }}">Activate</a></td>
 									  @else
 										   <td class="text-danger">Inactive</td>
 									  @endif

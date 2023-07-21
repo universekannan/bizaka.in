@@ -8,6 +8,12 @@ use App\Models\User;
 
 class JoinController extends Controller
 {
+
+  public function __construct()
+  {
+         $this->middleware( 'auth' );
+     }
+ 
   public function join($referral_id){
     $name = "";
     $email = "";
@@ -172,7 +178,7 @@ class JoinController extends Controller
     }
   }
 
-  public function activate($referral_id){
+  public function ownactivation($referral_id){
     $log_id = Auth::user()->id;
     $paydate = date('Y-m-d');
     $time = date("H:i:s");
@@ -202,7 +208,7 @@ class JoinController extends Controller
         $parent_id = $result[0]->parent_id;
       }
       if($parent_id != 1) $amount = $amount/2;
-      $ad_info = "Commission";
+      $ad_info = "Activation";
       $service_status = "In Payment";
       $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
       DB::insert(DB::raw($sql));
@@ -229,4 +235,38 @@ class JoinController extends Controller
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }
+
+public function changepassword()
+{
+  $userid = Auth::user()->id; 
+  return view('users/changepassword');
+}
+public function updatepassword(Request $request){
+  $userid = Auth::user()->id;
+  $old_password = trim($request->get("oldpassword"));
+  $currentPassword = auth()->user()->password;
+  if(Hash::check($old_password, $currentPassword)){
+    $new_password = trim($request->get("new_password"));
+    $confirm_password = trim($request->get("confirm_password"));
+    if($new_password != $confirm_password){
+      return redirect('changepassword')->with('error', 'Passwords does not match');
+    }elseif($new_password == '12345678'){
+      return redirect('changepassword')->with('error', 'You cannot use the passord 12345678');
+    }else{
+      $updatepass = DB::table('users')->where('id', '=', $userid)->update([
+        'password' => Hash::make($new_password),
+        'pas'      => $request->new_password,
+      ]);
+      return redirect('dashboard')->with('success', 'Passwords Change Succesfully');
+    }
+  }else{
+    return redirect("changepassword")->with('error', 'Sorry, your current password was not recognised');
+  }
+}
+
+        public function logout(){
+            Auth::guard()->logout();
+            return redirect()->intended('/');
+        }
+
 }

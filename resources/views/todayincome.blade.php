@@ -44,9 +44,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($income as $key => $in)
+                                @foreach($income as $key => $in)
                                 <tr>
-                                    <td>{{ $in + 1 }}</td>
+                                    <td>{{ $key + 1 }}</td>
                                     <td>{{ $in->time }}</td>
                                     <td>{{ $in->name }}</td>
                                     <td>{{ $in->amount }}</td>
