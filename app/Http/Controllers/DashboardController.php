@@ -11,7 +11,7 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    public function dashboard(){
+    public function dashboard(Request $request){
         $id = Auth::user()->id;
         $today = date("Y-m-d");
         $usertype_id = Auth::user()->usertype_id;
@@ -45,7 +45,44 @@ class DashboardController extends Controller
             $result = DB::select(DB::raw($sql));
             $requestpayment = $result[0]->requestpayment;
 			
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment'));
+			$data = [];
+    if(Auth::user()->id == 1)
+    {
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->where('id', '!=', Auth::user()->id)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+      }   
+    } else {        
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+      }
+    }
+    $data['members'] = json_encode($members, true);
+    $data['members'] = json_decode($data['members'], true);
+    $primarymember = $data['primarymember'];
+    $members = $data['members'];
+	
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment','members','primarymember'));
     }
     
+
 }
