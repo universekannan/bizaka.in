@@ -75,7 +75,7 @@
                                     @if (Auth::user()->id == 1)
                                         <td><a onclick="appove_withdrawal('{{ $withd->id }}','{{ $withd->user_id }}','{{ $withd->name }}','{{ $withd->amount }}','{{ $withd->upi }}','{{ $withd->payment_qr_oode }}')"
                                                 href="#" class="btn btn-sm btn-primary"><i
-                                                    class="fa fa-edit"></i>Approve</a></td>
+                                                    class="fa fa-eye"></i>Approve</a></td>
                                     @endif
                                 </tr>
                             @endforeach

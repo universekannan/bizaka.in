@@ -141,6 +141,7 @@ class WalletController extends Controller
     }
 
     public function requestpayment(){
+		
         $userid = Auth::user()->id;
 		$sql = "select * from request_payment where from_id=$userid or to_id = $userid";
          //echo $sql;die;
