@@ -62,7 +62,7 @@
             </ul>
           </li>
 
-		    <li id="ManagingWallet" class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('wallet') || request()->is('withdrawal') || request()->is('paymentrequest') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
+		    <li id="ManagingWallet" class="nav-item has-treeview {{ (request()->is('payment/create') || request()->is('wallet') || request()->is('withdrawal') || request()->is('requestpayment') || request()->is('transfer') || request()->is('newrequest')) ? 'menu-open' : '' }}">
             <a id="ManagingWallets" href="#" class="nav-link">
               <i class="nav-icon fas fa-wallet #2317"></i>
               <p>
