@@ -123,4 +123,3 @@ CREATE TABLE `request_payment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-ALTER TABLE `request_payment` ADD `pay_id` INT(10) NULL DEFAULT NULL AFTER `to_id`;

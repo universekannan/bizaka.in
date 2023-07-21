@@ -36,7 +36,7 @@ class ProfileController extends Controller
         $qrcode ="";
         if($request->payment_qr_oode != null){
          $qrcode = $userid.'.'.$request->file('payment_qr_oode')->extension(); 
-         $filepath = public_path('upload'.DIRECTORY_SEPARATOR.'qrcodeimg'.DIRECTORY_SEPARATOR);
+         $filepath = public_path('uploads'.DIRECTORY_SEPARATOR.'qrcodeimg'.DIRECTORY_SEPARATOR);
          move_uploaded_file($_FILES['payment_qr_oode']['tmp_name'], $filepath.$qrcode);
          $sql = "update users set payment_qr_oode='$qrcode' where id = $userid";
            DB::update(DB::raw($sql));
