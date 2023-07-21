@@ -11,7 +11,7 @@ class DashboardController extends Controller
         $this->middleware('auth');
     }
 
-    public function dashboard(){
+    public function dashboard(Request $request){
         $id = Auth::user()->id;
         $today = date("Y-m-d");
         $usertype_id = Auth::user()->usertype_id;
@@ -31,7 +31,8 @@ class DashboardController extends Controller
         $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
         $result = DB::select(DB::raw($sql));
         $todays_income = $result[0]->todays_income;
-        $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment'";
+		
+        $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
         $result = DB::select(DB::raw($sql));
         $total_income = $result[0]->total_income;
         $sql = "select wallet from users where id=$id";
@@ -39,7 +40,49 @@ class DashboardController extends Controller
         $wallet = $result[0]->wallet;
         $sql = "select * from users where parent_id=$id";
         $child = DB::select(DB::raw($sql));
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child'));
+
+            $sql = "select count(*) as requestpayment from request_payment where id=$id";
+            $result = DB::select(DB::raw($sql));
+            $requestpayment = $result[0]->requestpayment;
+			
+			$data = [];
+    if(Auth::user()->id == 1)
+    {
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->where('id', '!=', Auth::user()->id)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+      }   
+    } else {        
+      $r = $request->input('r', Auth::user()->id);
+      $data['primarymember'] = User::find($r);
+      $members = [];
+      $users = User::where('parent_id', $r)->get();
+      $members['u'.$r] = $users;
+      foreach($users as $user) {
+        $u = User::where('parent_id', $user->id)->get();
+        $members['u'.$user->id] = $u;
+        foreach($u as $i) {
+          $v = User::where('parent_id', $i->id)->get();
+          $members['u'.$i->id] = $v;
+        }
+      }
+    }
+    $data['members'] = json_encode($members, true);
+    $data['members'] = json_decode($data['members'], true);
+    $primarymember = $data['primarymember'];
+    $members = $data['members'];
+	
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment','members','primarymember'));
     }
     
+
 }

@@ -59,6 +59,18 @@
           <a href="{{url('/wallet/{from}/{to}')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
+	  <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ $requestpayment }}&nbsp;</h3>
+            <p>Request Payment </p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
+          </div>
+          <a href="{{url('/requestpayment') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
+        </div>
+      </div> 
     </div>
     <div class="card">
       <div class="card-header">
@@ -178,24 +190,55 @@ right connector from last child*/
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
-					  <td><a class="btn btn-success" href="{{ url('activate') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
+					  <td><a class="btn btn-success" href="{{ url('ownactivation') }}/{{ Auth::user()->referral_id }}">Activate</a></td>
 					  @else
 						   <td class="text-danger">Inactive</td>
 					  @endif
 					  </center>
 					@elseif(Auth::user()->status == 2)
        <ul>
+    <li>
+      
+      <a href="{{ url()->current() }}?r={{ $primarymember->id }}" title="{{ $primarymember->referral_id }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($primarymember->photo !== NULL) {{ $primarymember->photo }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $primarymember->name }}" /><br>{{ $primarymember->name }}</a>
+
+
+<ul>
+
+@foreach($members['u'.$primarymember->id] as $m)
+
+    <li>
+<!--       <a href="{{ url()->current() }}?r={{ $m['id'] }}">{{ $m['id'] }}</a>
+ -->
+
+      <a href="{{ url()->current() }}?r={{ $m['id'] }}" title="{{ $m['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($m['photo'] !== NULL) {{ $m['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $m['name'] }}" /><br>{{ $m['name'] }}</a>
+
+      <ul>
+
+{{-- @foreach($members['u'.$m['id']] as $s)
         <li>
-          <a><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" /><br><br>{{ Auth::user()->name }}</a>
-         <ul>
-          @foreach($child as $c)
-          <li>
-           <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>{{ $c->name }}</a>
-         </li>
-         @endforeach
-       </ul>
-     </li>
-   </ul>
+                <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['photo'] !== NULL) {{ $s['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /></a>
+          <ul>
+
+            @foreach($members['u'.$s['id']] as $v)
+            <li>
+                <a href="{{ url()->current() }}?r={{ $v['id'] }}" title="{{ $v['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($v['photo'] !== NULL) {{ $v['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $v['name'] }}" /></a>
+            </li>
+            @endforeach
+
+          </ul>
+        </li>
+
+@endforeach --}}
+
+
+          </ul>
+    </li>
+
+@endforeach
+</ul>
+    </li>
+
+          </ul>
    @endif
  </div>
 </div>

@@ -101,7 +101,7 @@
                                                         <span style="color:red"></span>UPI QR</label>
                                                     <div class="col-sm-8">
                                                         <input type="file" name="payment_qr_oode"><br/><br />
-                                                        <img style="width:200px" src="{{ URL::to('/') }}/upload/qrcodeimg/{{ $pro->payment_qr_oode }}" />
+                                                        <img style="width:200px" src="{{ URL::to('/') }}/uploads/qrcodeimg/{{ $pro->payment_qr_oode }}" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">

@@ -8,6 +8,12 @@ use App\Models\User;
 
 class JoinController extends Controller
 {
+
+  public function __construct()
+  {
+         $this->middleware( 'auth' );
+     }
+ 
   public function join($referral_id){
     $name = "";
     $email = "";
@@ -172,7 +178,7 @@ class JoinController extends Controller
     }
   }
 
-  public function activate($referral_id){
+  public function ownactivation($referral_id){
     $log_id = Auth::user()->id;
     $paydate = date('Y-m-d');
     $time = date("H:i:s");
@@ -202,7 +208,7 @@ class JoinController extends Controller
         $parent_id = $result[0]->parent_id;
       }
       if($parent_id != 1) $amount = $amount/2;
-      $ad_info = "Commission";
+      $ad_info = "Activation";
       $service_status = "In Payment";
       $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
       DB::insert(DB::raw($sql));
@@ -229,7 +235,7 @@ class JoinController extends Controller
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }
-  
+
 public function changepassword()
 {
   $userid = Auth::user()->id; 
