@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -15,18 +16,18 @@ class DashboardController extends Controller
         $id = Auth::user()->id;
         $today = date("Y-m-d");
         $usertype_id = Auth::user()->usertype_id;
-        $members = 0;
+        $members_count = 0;
         $todays_income = 0;
         $total_income = 0;
         $wallet = 0;
         if($usertype_id == 1){
             $sql = "select count(*) as members from users where usertype_id=2";
             $result = DB::select(DB::raw($sql));
-            $members = $result[0]->members;
+            $members_count = $result[0]->members;
         }else{
             $sql = "select count(*) as members from users where parent_id=$id";
             $result = DB::select(DB::raw($sql));
-            $members = $result[0]->members;
+            $members_count = $result[0]->members;
         }
         $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
         $result = DB::select(DB::raw($sql));
@@ -81,7 +82,7 @@ class DashboardController extends Controller
     $primarymember = $data['primarymember'];
     $members = $data['members'];
 	
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment','members','primarymember'));
+        return view("dashboard",compact('members_count','todays_income','total_income','wallet','child','requestpayment','members','primarymember'));
     }
     
 

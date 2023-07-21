@@ -13,7 +13,7 @@
       <div class="col-lg-3 col-6">
         <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{ $members }}&nbsp;</h3>
+            <h3>{{ $members_count }}&nbsp;</h3>
             <p>Members</p>
           </div>
           <div class="icon">
