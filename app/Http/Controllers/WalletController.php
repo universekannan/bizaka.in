@@ -140,13 +140,59 @@ class WalletController extends Controller
         return redirect( "/newrequest" );
     }
 
+    public function confirmwithdrawal(Request $request){
+        $login_id = Auth::user()->id;
+        $amount = $request->amount;
+        $from_id = $request->user_id;
+        $row_id = $request->approve_id;
+        $date = date( 'Y-m-d' );
+        $time = date( 'H:i:s' );
+        $confirm = DB::table('withdrawal')->where('id', $row_id)->update([
+          'status' => 'Completed',
+          'paid_time' => date("Y-m-d H:i:s"),
+        ]);
+        $service_status = 'IN Payment';
+		$ad_info = 'Withdrawal';
+        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$from_id','$login_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
+        DB::insert( DB::raw( $sql ) );
+        $sql = "update users set wallet = wallet + $amount where id = $login_id";
+        DB::update( DB::raw( $sql ) );
+        $service_status = 'Out Payment';
+		$ad_info = 'Withdrawal';
+        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$from_id','$login_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
+        DB::insert( DB::raw( $sql ) );
+        $payimage = "";
+        if ($request->pay_image != null) {
+          $payimage = $request->approve_id.'.'.$request->file('pay_image')->extension();
+          $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'paidimg' . DIRECTORY_SEPARATOR);
+          move_uploaded_file($_FILES['pay_image']['tmp_name'], $filepath . $payimage);
+      }
+      $image = DB::table('withdrawal')->where('id', $request->approve_id)->update([
+          'pay_image' => $payimage,
+        ]);
+  
+          return redirect( "/newrequest" );
+      }
+
     public function requestpayment(){
+		
         $userid = Auth::user()->id;
 		$sql = "select * from request_payment where from_id=$userid or to_id = $userid";
          //echo $sql;die;
         $paymentrequest =  DB::select( DB::raw( $sql ));
 
-        return view('wallet.requestpayment',compact('paymentrequest'));
+        $sql = '';
+        if ( Auth::user()->id == 1 ) {
+            $sql = "Select * from `users` where `id` = '1' order by `id` desc limit 1 ";
+
+        } else {
+            $parent_id = Auth::user()->parent_id;
+            $sql = "Select * from `users` where `id` = $parent_id order by `id` desc limit 1 ";
+
+        }
+        $referencedata = DB::select( DB::raw( $sql ) );
+
+        return view('wallet.requestpayment',compact('paymentrequest','referencedata'));
     }
 
     public function paymentrequest(Request $request){
@@ -164,7 +210,7 @@ class WalletController extends Controller
         $req_image = "";
         if ($request->req_image != null) {
           $req_image = $insertid.'.'.$request->file('req_image')->extension();
-          $filepath = public_path('upload' . DIRECTORY_SEPARATOR . 'requestimg' . DIRECTORY_SEPARATOR);
+          $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'requestimg' . DIRECTORY_SEPARATOR);
           move_uploaded_file($_FILES['req_image']['tmp_name'], $filepath . $req_image);
       }
       $image = DB::table('request_payment')->where('id', $insertid)->update([
@@ -174,23 +220,33 @@ class WalletController extends Controller
           return redirect( "/requestpayment" );
       }
 
-    public function confirmwithdrawal(Request $request){
+      public function approverequest_payment(Request $request) {
+		
+        $amount = $request->amount;
+	    $from_id = $request->from_id;
+	    $row_id = $request->row_id;
+        $login_id = Auth::user()->id;
+        $date = date( 'Y-m-d' );
+        $time = date( 'H:i:s' );
+        $status = 'Approved';
+        $sql = "update request_payment set status = '$status' where id = $row_id";
+        DB::update( DB::raw( $sql ) );
+		$service_status = 'Out Payment';
+		$ad_info = 'Fund Transfer';
+        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$login_id','$from_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
+        DB::insert( DB::raw( $sql ) );
+        $sql = "update users set wallet = wallet + $amount where id = $from_id";
+        DB::update( DB::raw( $sql ) );
+        $service_status = 'IN Payment';
+		$ad_info = 'Fund Transfer';
+        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$from_id','$login_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
+        DB::insert( DB::raw( $sql ) );
+        $sql = "update users set wallet = wallet - $amount where id = $login_id";
+        DB::update( DB::raw( $sql ) );
+       
+        return redirect( "requestpayment" )->with( 'success', 'Request Amount  Successfully' );
+      }
 
-      $confirm = DB::table('withdrawal')->where('id', $request->approve_id)->update([
-        'status' => 'Completed',
-        'paid_time' => date("Y-m-d H:i:s"),
-      ]);
-      $payimage = "";
-      if ($request->pay_image != null) {
-        $payimage = $request->approve_id.'.'.$request->file('pay_image')->extension();
-        $filepath = public_path('uploads' . DIRECTORY_SEPARATOR . 'paidimg' . DIRECTORY_SEPARATOR);
-        move_uploaded_file($_FILES['pay_image']['tmp_name'], $filepath . $payimage);
-    }
-    $image = DB::table('withdrawal')->where('id', $request->approve_id)->update([
-        'pay_image' => $payimage,
-      ]);
-
-        return redirect( "/newrequest" );
-    }
+   
 
 }

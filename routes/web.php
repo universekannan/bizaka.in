@@ -37,6 +37,7 @@ Route::get('/totalincome', [App\Http\Controllers\JoinController::class, 'totalin
 Route::post('/saverequest', [App\Http\Controllers\WalletController::class, 'saverequest'])->name('saverequest');
 Route::get('/requestpayment', [App\Http\Controllers\WalletController::class, 'requestpayment'])->name('requestpayment');
 Route::post('/paymentrequest', [App\Http\Controllers\WalletController::class, 'paymentrequest'])->name('paymentrequest');
+Route::post('/approverequest_payment', [App\Http\Controllers\WalletController::class, 'approverequest_payment'])->name('approverequest_payment');
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile');
 Route::post('/updateprofile', [App\Http\Controllers\ProfileController::class, 'updateprofile'])->name('updateprofile');
