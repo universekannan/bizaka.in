@@ -34,6 +34,7 @@
                             <strong> {{ session('error') }} </strong>
                         </div>
                         @endif
+                        <div class="table-responsive">
                         <table id="example2" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -56,6 +57,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>

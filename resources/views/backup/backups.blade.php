@@ -34,6 +34,7 @@
                          </div>
                      @endif
                      @if (count($backups))
+                     <div class="table-responsive">
                      <table id="example2" class="table table-bordered table-striped">
                                           <thead>
                                             <tr>
@@ -67,6 +68,7 @@
                                              @endforeach
                                           </tbody>
                                        </table>
+                                    </div>
                                         @else
                                      <div class="well">
                                          <h4 class="text-center">No backups</h4>
