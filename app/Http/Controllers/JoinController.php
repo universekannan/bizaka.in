@@ -228,14 +228,14 @@ class JoinController extends Controller
   public function todayincome(){
     $id = Auth::user()->id;
     $today = date("Y-m-d");
-    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and service_status = 'In Payment' and paydate='$today'";
+    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and a.service_status = 'In Payment' and  a.ad_info = 'Activation' and a. paydate='$today'";
     $income = DB::select(DB::raw($sql));
     return view('todayincome',compact('income'));
   }
 
   public function totalincome(){
     $id = Auth::user()->id;
-    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and to_id=$id and service_status = 'In Payment' order by paydate desc";
+    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and to_id=$id and service_status = 'In Payment' and a.ad_info = 'Activation' order by paydate desc";
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }
