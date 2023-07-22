@@ -38,7 +38,7 @@ CREATE TABLE `payment` (
   `log_id` int(11) DEFAULT NULL,
   `k_status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,'1','1','1000000',NULL,NULL,NULL,'IN Payment','Fund Transfer',NULL,'16:52:37','2023-07-11',1,1),(2,'1','2','1500',NULL,NULL,2,'IN Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(3,'2','1','1500',NULL,NULL,2,'Out Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(4,'1','3','1500',NULL,NULL,4,'IN Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(5,'3','1','1500',NULL,NULL,4,'Out Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(6,'1','3','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:54:24','2023-07-11',3,1),(7,'3','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:54:24','2023-07-11',3,1),(8,'1','2','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:57:20','2023-07-11',2,1),(9,'2','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:57:20','2023-07-11',2,1),(10,'2','4','300',NULL,NULL,10,'IN Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(11,'4','2','300',NULL,NULL,10,'Out Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(12,'2','4','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'17:06:35','2023-07-11',2,1),(13,'4','2','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1),(14,'2','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1);
+INSERT INTO `payment` VALUES (1,'1','1','1000000',NULL,NULL,NULL,'IN Payment','Fund Transfer',NULL,'16:52:37','2023-07-11',1,1),(2,'1','2','1500',NULL,NULL,2,'IN Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(3,'2','1','1500',NULL,NULL,2,'Out Payment','Fund Transfer',NULL,'16:53:02','2023-07-11',1,1),(4,'1','3','1500',NULL,NULL,4,'IN Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(5,'3','1','1500',NULL,NULL,4,'Out Payment','Fund Transfer',NULL,'16:54:03','2023-07-11',1,1),(6,'1','3','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:54:24','2023-07-11',3,1),(7,'3','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:54:24','2023-07-11',3,1),(8,'1','2','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'16:57:20','2023-07-11',2,1),(9,'2','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'16:57:20','2023-07-11',2,1),(10,'2','4','300',NULL,NULL,10,'IN Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(11,'4','2','300',NULL,NULL,10,'Out Payment','Fund Transfer',NULL,'17:05:59','2023-07-11',2,1),(12,'2','4','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'17:06:35','2023-07-11',2,1),(13,'4','2','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1),(14,'2','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'17:06:35','2023-07-11',2,1),(15,'1','6','300',NULL,NULL,15,'IN Payment','Fund Transfer',NULL,'21:43:39','2023-07-19',1,1),(16,'6','1','300',NULL,NULL,15,'Out Payment','Fund Transfer',NULL,'21:43:39','2023-07-19',1,1),(17,'1','6','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'21:43:55','2023-07-19',6,1),(18,'6','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'21:43:55','2023-07-19',6,1),(19,'1','7','300',NULL,NULL,19,'IN Payment','Fund Transfer',NULL,'09:41:29','2023-07-20',1,1),(20,'7','1','300',NULL,NULL,19,'Out Payment','Fund Transfer',NULL,'09:41:29','2023-07-20',1,1),(21,'1','7','5000',NULL,NULL,21,'IN Payment','Fund Transfer',NULL,'09:59:07','2023-07-20',1,1),(22,'7','1','5000',NULL,NULL,21,'Out Payment','Fund Transfer',NULL,'09:59:07','2023-07-20',1,1),(23,'1','7','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'10:31:00','2023-07-20',7,1),(24,'7','1','300',NULL,NULL,NULL,'In Payment','Commission',NULL,'10:31:00','2023-07-20',7,1),(25,'2','4','300',NULL,NULL,25,'IN Payment','Fund Transfer',NULL,'14:24:01','2023-07-20',2,1),(26,'4','2','300',NULL,NULL,25,'Out Payment','Fund Transfer',NULL,'14:24:01','2023-07-20',2,1),(27,'1','5','300',NULL,NULL,27,'IN Payment','Fund Transfer',NULL,'14:34:16','2023-07-20',1,1),(28,'5','1','300',NULL,NULL,27,'Out Payment','Fund Transfer',NULL,'14:34:16','2023-07-20',1,1),(29,'2','5','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'14:36:47','2023-07-20',5,1),(30,'5','2','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:36:47','2023-07-20',5,1),(31,'2','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:36:47','2023-07-20',5,1),(32,'2','5','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'14:44:27','2023-07-20',5,1),(33,'5','2','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:44:27','2023-07-20',5,1),(34,'2','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:44:27','2023-07-20',5,1),(35,'7','8','300',NULL,NULL,35,'IN Payment','Fund Transfer',NULL,'14:44:46','2023-07-20',7,1),(36,'8','7','300',NULL,NULL,35,'Out Payment','Fund Transfer',NULL,'14:44:46','2023-07-20',7,1),(37,'7','8','300',NULL,NULL,NULL,'Out Payment','Activation',NULL,'14:45:34','2023-07-20',8,1),(38,'8','7','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:45:34','2023-07-20',8,1),(39,'7','1','150',NULL,NULL,NULL,'In Payment','Commission',NULL,'14:45:34','2023-07-20',8,1);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +109,7 @@ CREATE TABLE `users` (
   `referral_id` varchar(255) DEFAULT NULL,
   `photo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'12345678','$2y$10$gMKkB0s2IF/iUDcIhThk9esA0QKrU/g3/yQqv4lOtqN/trTrhjOwq',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'997750',NULL,NULL,'2023-06-25 18:30:20','2023-06-25 18:30:20',1,1,'6499395e27c48',NULL),(2,1,'SUHAIL SYED','ziyagroups06@gmail.com',NULL,'Suhail@06','$2y$10$QPTWZXtpUVWDdR8sqqKDD.sVvaljdZWF49koSL48xbSxUEGDxNxn.',NULL,2,NULL,NULL,'8270826067',NULL,NULL,NULL,'1050',NULL,NULL,'2023-07-11 16:47:41','2023-07-11 16:56:23',2,NULL,'64ad3a55916ab',NULL),(3,1,'Galaxy Kannan','universekannan@gmail.com',NULL,'12345678','$2y$10$8LaADHeafG0Ueh4Ggwde2.II.qK21FuTw7NUmF1nojLjRiJzXtjDe',NULL,2,NULL,NULL,'9443587282',NULL,NULL,NULL,'1200',NULL,NULL,'2023-07-11 16:47:50',NULL,2,NULL,'64ad3a5e6f505',NULL),(4,2,'nisha','nisha@gmail.com',NULL,'6053','$2y$10$6yc9uDQlsgOIBiMyIG8.leTdnH9F47W9e8P3tMOWAT2uMcVIZZYNe',NULL,2,NULL,NULL,'1234567890',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-11 17:03:59',NULL,2,NULL,'64ad3e2776092',NULL),(5,2,'hyder','hyder@gmail.com',NULL,'1701','$2y$10$V30ER5v9L5.QYX/taMtXXekIOI6wIpmulFkLPr4VwqY.Evm5WtLvW',NULL,1,NULL,NULL,'9876543210',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-11 17:04:44',NULL,2,NULL,'64ad3e5407ee7',NULL);
+INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'12345678','$2y$10$gMKkB0s2IF/iUDcIhThk9esA0QKrU/g3/yQqv4lOtqN/trTrhjOwq',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'992900',NULL,NULL,'2023-06-25 18:30:20','2023-06-25 18:30:20',1,1,'6499395e27c48',NULL),(2,1,'SUHAIL SYED','ziyagroups06@gmail.com',NULL,'Suhail@06','$2y$10$QPTWZXtpUVWDdR8sqqKDD.sVvaljdZWF49koSL48xbSxUEGDxNxn.',NULL,2,NULL,NULL,'8270826067',NULL,NULL,NULL,'1050',NULL,NULL,'2023-07-11 16:47:41','2023-07-11 16:56:23',2,NULL,'64ad3a55916ab',NULL),(3,1,'Galaxy Kannan','universekannan@gmail.com',NULL,'12345678','$2y$10$8LaADHeafG0Ueh4Ggwde2.II.qK21FuTw7NUmF1nojLjRiJzXtjDe',NULL,2,NULL,NULL,'9443587282',NULL,NULL,NULL,'1200',NULL,NULL,'2023-07-11 16:47:50',NULL,2,NULL,'64ad3a5e6f505',NULL),(4,2,'nisha','nisha@gmail.com',NULL,'6053','$2y$10$6yc9uDQlsgOIBiMyIG8.leTdnH9F47W9e8P3tMOWAT2uMcVIZZYNe',NULL,2,NULL,NULL,'1234567890',NULL,NULL,NULL,'300',NULL,NULL,'2023-07-11 17:03:59',NULL,2,NULL,'64ad3e2776092',NULL),(5,2,'hyder','hyder@gmail.com',NULL,'1701','$2y$10$V30ER5v9L5.QYX/taMtXXekIOI6wIpmulFkLPr4VwqY.Evm5WtLvW',NULL,2,NULL,NULL,'9876543210',NULL,NULL,NULL,'-300',NULL,NULL,'2023-07-11 17:04:44',NULL,2,NULL,'64ad3e5407ee7',NULL),(6,1,'thameem','tameem@gmail.com',NULL,'123456','$2y$10$N8Rsq6/7p7lbaL3FgE0BQ.Mx5ITlAQ25caiDOzPmTAq1LUjERqQey',NULL,2,NULL,NULL,'1234567899',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-19 21:41:01',NULL,2,NULL,'64b80b15a42b8',NULL),(7,1,'ROBIN','robinsales.durai@gmail.com',NULL,'Kodai@123','$2y$10$v5r86FeBWsuHxn1ibYDorOynhleah6HJznCA0YPpWZvpdMOKaRC5m',NULL,2,NULL,NULL,'7200933653',NULL,NULL,NULL,'4850',NULL,NULL,'2023-07-20 07:36:53',NULL,2,NULL,'64b896bd80d9e',NULL),(8,7,'Durai','robinsunma@gmail.com',NULL,'Kodai@123','$2y$10$8mF1hjaqicAsComY0/bovukiG60Ikec0YG28uOuqDR18LIKlHRnYC',NULL,2,NULL,NULL,'9884836742',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-20 14:10:29',NULL,2,NULL,'64b8f2fdc8ed0',NULL),(9,3,'Galaxy 1','Galaxy@gmail.com',NULL,'1313','$2y$10$eDDU2PN3dNGzHcBNMQwKgeDF0KD8UPiy2aEGjHwHp0KMlhprDH5ge',NULL,1,NULL,NULL,'1111111111',NULL,NULL,NULL,'0',NULL,NULL,'2023-07-20 14:56:52',NULL,2,NULL,'64b8fddc71e11',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `withdrawal` (
   `pay_image` varchar(20) DEFAULT NULL,
   `paid_time` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `withdrawal` (
 
 LOCK TABLES `withdrawal` WRITE;
 /*!40000 ALTER TABLE `withdrawal` DISABLE KEYS */;
-INSERT INTO `withdrawal` VALUES (1,1,100.00,'2023-07-12 20:56:08','Pending',NULL,NULL);
+INSERT INTO `withdrawal` VALUES (1,1,100.00,'2023-07-12 20:56:08','Pending',NULL,NULL),(2,2,1000.00,'2023-07-20 14:14:41','Completed','','2023-07-20 14:16:11');
 /*!40000 ALTER TABLE `withdrawal` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -160,4 +160,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-14  4:45:54
+-- Dump completed on 2023-07-20  9:45:00

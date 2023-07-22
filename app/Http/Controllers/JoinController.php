@@ -9,12 +9,13 @@ use App\Models\User;
 class JoinController extends Controller
 {
 
-  public function __construct()
-  {
-         $this->middleware( 'auth' );
-     }
- 
-  public function join($referral_id){
+//public function __construct()
+//{
+//$this->middleware( 'auth' );
+//}
+  
+  
+   public function join($referral_id){
     $name = "";
     $email = "";
     $phone = "";
@@ -243,6 +244,7 @@ public function changepassword()
   $userid = Auth::user()->id; 
   return view('users/changepassword');
 }
+
 public function updatepassword(Request $request){
   $userid = Auth::user()->id;
   $old_password = trim($request->get("oldpassword"));
