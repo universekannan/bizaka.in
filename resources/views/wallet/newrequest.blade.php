@@ -213,8 +213,7 @@
                                     <label for="pay_image" class="col-sm-4 col-form-label">Payment Proof</label>
                                     <div class="col-sm-8">
                                         <div class="custom-file">
-                                            <input accept=" image/jpeg, image/png" type="file"
-                                                class="custom-file-input" id="pay_image" name="pay_image">
+                                            <input required='requiered' accept=" image/jpeg, image/png" type="file" class="custom-file-input" id="pay_image" name="pay_image">
                                             <label class="custom-file-label" for="exampleInputFile">Choose File</label>
                                         </div>
                                     </div>

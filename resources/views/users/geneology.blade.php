@@ -1,46 +1,29 @@
 @extends('layouts.app')
 @section('content')
-
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
+<section class="content-header">
+    <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Geneology</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Geneology</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- SELECT2 EXAMPLE -->
-      
-    
-    
-    
-     <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Geneology</h3>
+            <div class="col-sm-6">
+                <h1>Geneology</h1>
             </div>
-            <!-- /.card-header -->
-             <div class="card-body" style="text-align: center">
-              @if ($message = Session::get('success'))
-                  <div class="alert alert-success">
-                      <p>{{ $message }}</p>
-                  </div>
-              @endif
+            <div class="col-sm-6">
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+			 <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Geneology</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
 
-
-<style>
+        <style>
 /*Now the CSS*/
 * {margin: 0; padding: 0;}
 
@@ -142,6 +125,8 @@ right connector from last child*/
   border-color:  #94a0b4;
 }
 </style>
+
+<div class="tree">
 
 <div class="tree" style="text-align: center;">
   <ul>

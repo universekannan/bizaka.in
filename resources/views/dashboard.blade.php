@@ -211,9 +211,7 @@ right connector from last child*/
 
 <div class="tree">
  <div class="tree">
-   <div class="row">
-     <div class="col-sm-3"> </div>
-     <div class="col-sm-6">  <center>
+ <center>
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
@@ -261,18 +259,13 @@ right connector from last child*/
 @endforeach
 </ul>
     </li>
-
-          </ul>
+      </ul>
    @endif
  </div>
 </div>
-<div class="col-sm-3"> </div>
 
 </div>
 </div>
-
-</div>
-<!-- /.card-body -->
 </div>
 </div>
 </section>

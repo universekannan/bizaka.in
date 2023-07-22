@@ -97,7 +97,7 @@ class JoinController extends Controller
   }
 
   public function geneology(Request $request){
-    $data = [];
+   $data = [];
     if(Auth::user()->id == 1)
     {
       $r = $request->input('r', Auth::user()->id);
@@ -132,6 +132,7 @@ class JoinController extends Controller
     $data['members'] = json_decode($data['members'], true);
     $primarymember = $data['primarymember'];
     $members = $data['members'];
+	
     return view('users/geneology',compact('members','primarymember'));
   }
 
