@@ -1,25 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <section class="content-header">
-<<<<<<< HEAD
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Withdrawal Request</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class=" float-sm-right">
-                                        
-                                        @if (Auth::user()->id == 1)
-                                           
-                                        @else
-                                            <a href="" data-toggle="modal" data-target="#Withdrawal "
-                                                class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i
-                                                    class="fas fa-plus"> Withdrawal </i> </a>
-                                        @endif
-                                    </ol>
-          </div>
-=======
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
@@ -48,7 +29,6 @@
                     </ol>
                 </div>
             </div>
->>>>>>> 6c9efac1734f2d694d047c047d3fe5525482e02e
         </div>
     </section>
 
