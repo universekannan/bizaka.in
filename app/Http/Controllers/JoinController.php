@@ -53,7 +53,8 @@ class JoinController extends Controller
       $referral_id = uniqid();
       $passwordhash = Hash::make($password);
       $created_at = date("Y-m-d H:i:s");
-      $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
+      $joined_date = date("Y-m-d");
+      $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at,joined_date) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at','$joined_date')";
       DB::insert(DB::raw($sql));
       $id = DB::getPdo()->lastInsertId();
       Auth::loginUsingId($id);
@@ -151,7 +152,8 @@ class JoinController extends Controller
       $password = rand(1001,9999);
       $passwordhash = Hash::make($password);
       $created_at = date("Y-m-d H:i:s");
-      $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at')";
+      $joined_date = date("Y-m-d");
+      $sql = "insert into users (parent_id,name,phone,email,plain_password,password,referral_id,usertype_id,created_at,joined_date) values ($parent_id,'$name','$phone','$email','$password','$passwordhash','$referral_id','2','$created_at','$joined_date')";
       DB::insert(DB::raw($sql));
       return redirect("/members")->with('success', 'Member added successfully');
     }

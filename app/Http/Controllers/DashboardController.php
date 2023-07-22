@@ -16,9 +16,9 @@ class DashboardController extends Controller
         $today = date("Y-m-d");
         $usertype_id = Auth::user()->usertype_id;
         $members = 0;
-        $todays_income = 0;
-        $total_income = 0;
         $wallet = 0;
+        $requestpayment = 0;
+        $withdrawalpayment = 0;
         if($usertype_id == 1){
             $sql = "select count(*) as members from users where usertype_id=2";
             $result = DB::select(DB::raw($sql));
@@ -31,21 +31,49 @@ class DashboardController extends Controller
         $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
         $result = DB::select(DB::raw($sql));
         $todays_income = $result[0]->todays_income;
+        if($todays_income == ""){
+            $todays_income = 0;
+        }
 		
         $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
         $result = DB::select(DB::raw($sql));
         $total_income = $result[0]->total_income;
+        if($total_income == ""){
+            $total_income = 0;
+        }
         $sql = "select wallet from users where id=$id";
         $result = DB::select(DB::raw($sql));
         $wallet = $result[0]->wallet;
         $sql = "select * from users where parent_id=$id";
         $child = DB::select(DB::raw($sql));
-
-            $sql = "select count(*) as requestpayment from request_payment where id=$id";
+           
+        if($usertype_id == 1){
+            $sql = "select count(*) as requestpayment from request_payment where status='Pending'";
             $result = DB::select(DB::raw($sql));
             $requestpayment = $result[0]->requestpayment;
+        }else{
+            $sql = "select count(*) as requestpayment from request_payment where status='Pending' and from_id=$id";
+            $result = DB::select(DB::raw($sql));
+            $requestpayment = $result[0]->requestpayment;
+
+        }
+
+        if($usertype_id == 1){
+            $sql = "select count(*) as withdrawalpayment from withdrawal where status='Pending'";
+            $result = DB::select(DB::raw($sql));
+            $withdrawalpayment = $result[0]->withdrawalpayment;
+        }else{
+            $sql = "select count(*) as withdrawalpayment from withdrawal where status='Pending' and user_id=$id";
+            $result = DB::select(DB::raw($sql));
+            $withdrawalpayment = $result[0]->withdrawalpayment;
+
+        }
+
+        $sql = "select count(*) as newusers from users where joined_date ='$today'";
+        $result = DB::select(DB::raw($sql));
+        $newusers = $result[0]->newusers;
 			
-        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment'));
+        return view("dashboard",compact('members','todays_income','total_income','wallet','child','requestpayment','withdrawalpayment','newusers'));
     }
     
 }

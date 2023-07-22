@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Withdrawal Request</h1>
+                    <h1>Amount Request</h1>
                 </div>
                 <div class="col-sm-6">
                     
@@ -48,7 +48,7 @@
                             @foreach ($paymentrequest as $key => $payreq)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $payreq->to_id }}</td>
+                                    <td>{{ $payreq->to_id }} , {{ $payreq->full_name }}</td>
                                     <td>{{ $payreq->amount }}</td>
                                     <td>{{ $payreq->req_time }}</td>
 									@if(Auth::user()->id == $payreq->from_id || $payreq->status == "Approved" )

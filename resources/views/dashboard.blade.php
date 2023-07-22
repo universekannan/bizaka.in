@@ -71,6 +71,33 @@
           <a href="{{url('/requestpayment') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ $withdrawalpayment }}&nbsp;</h3>
+            <p>Withdrawal Payment </p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
+          </div>
+          <a href="{{url('/newrequest') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
+        </div>
+      </div> 
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{ $newusers }}&nbsp;</h3>
+            <p>Today Joined Users</p>
+          </div>
+          <div class="icon">
+            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
+          </div>
+          <a href="{{url('/members') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('/members') ? 'active' : '' }}"></i></a>
+        </div>
+      </div> 
+
     </div>
     <div class="card">
       <div class="card-header">
@@ -203,7 +230,7 @@ right connector from last child*/
          <ul>
           @foreach($child as $c)
           <li>
-           <a href="A" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>{{ $c->name }}</a>
+           <a href="{{ url()->current() }}?r={{ $c->id }}" title="A"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="{{ asset('dist/img/member.jpg') }}" width="70" height="70" alt="A" /><br><br>{{ $c->name }}</a>
          </li>
          @endforeach
        </ul>

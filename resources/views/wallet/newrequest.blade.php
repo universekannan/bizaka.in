@@ -12,8 +12,13 @@
                         @if (Auth::user()->id == 1)
     
                         @else
-                        @if ($status == 'Completed' || $status == "")
-                            <a href="" data-toggle="modal" data-target="#Withdrawal "
+                        @if(Auth::user()->upi == "" || Auth::user()->payment_qr_oode  == "") 
+                        <a href="#" id="alertbtn"
+                        class="btn btn-primary float-sm-right" ><i
+                            class="fas fa-plus"> Withdrawal </i> </a>
+                           
+                          @elseif($status == 'Completed' || $status == "")
+                          <a href="" data-toggle="modal" data-target="#Withdrawal "
                                 class="btn btn-primary float-sm-right" title="Withdrawal Amound Request  "><i class="fas fa-plus"> Withdrawal </i> </a>
                          @else   
                          <a href="#" 
@@ -230,6 +235,13 @@
 @endsection
 @push('page_scripts')
     <script>
+
+$(document).ready(function () {
+            $("#alertbtn").click(function () {
+                alert("Please Update your Upi and Upi Qr code in profile...");
+                window.location.href = "{{ route('profile') }}";
+            });
+        });
         $('#amount').on('input', function() {
             var wallet = parseInt($('#wallet').val());
             var amt = parseInt($('#amount').val());

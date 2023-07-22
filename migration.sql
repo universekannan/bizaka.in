@@ -123,3 +123,6 @@ CREATE TABLE `request_payment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+ALTER TABLE `users` ADD `joined_date` VARCHAR(20) NULL DEFAULT NULL AFTER `updated_at`;
