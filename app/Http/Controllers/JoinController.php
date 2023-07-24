@@ -9,12 +9,6 @@ use App\Models\User;
 class JoinController extends Controller
 {
 
-//public function __construct()
-//{
-//$this->middleware( 'auth' );
-//}
-  
-  
    public function join($referral_id){
     $name = "";
     $email = "";
@@ -186,6 +180,7 @@ class JoinController extends Controller
     $log_id = Auth::user()->id;
     $paydate = date('Y-m-d');
     $time = date("H:i:s");
+    $total_amount = 300;
     $amount = 300;
     $member_id = 0;
     $child_id = 0;
@@ -200,10 +195,12 @@ class JoinController extends Controller
     }
     $ad_info = "Activation";
     $service_status = "Out Payment";
-    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$parent_id','$child_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
+    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$child_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
     DB::insert(DB::raw($sql));
     $sql = "update users set wallet = wallet - $amount where id = $child_id";
     DB::update(DB::raw($sql));
+    $first_parent = true;
+    $balance = 0;
     do{
       $sql = "select * from users where id = $child_id";
       $result = DB::select(DB::raw($sql));
@@ -211,7 +208,17 @@ class JoinController extends Controller
         $child_id = $result[0]->id;
         $parent_id = $result[0]->parent_id;
       }
-      if($parent_id != 1) $amount = $amount/2;
+      if($parent_id != 1 && $first_parent == true) {
+        $amount = $amount/2;
+      }
+      if($parent_id != 1 && $first_parent == false) {
+        $amount = 10;
+      }
+      $balance = $total_amount - $amount;
+      if($parent_id == 1){
+        $amount = $balance;
+      }
+      $first_parent = false;
       $ad_info = "Activation";
       $service_status = "In Payment";
       $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
