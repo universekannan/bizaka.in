@@ -200,22 +200,32 @@ class JoinController extends Controller
     $sql = "update users set wallet = wallet - $amount where id = $child_id";
     DB::update(DB::raw($sql));
     $first_parent = true;
-    $balance = 0;
+    $balance = 150;
     do{
       $sql = "select * from users where id = $child_id";
       $result = DB::select(DB::raw($sql));
       if(count($result) > 0){
         $child_id = $result[0]->id;
         $parent_id = $result[0]->parent_id;
+        $sql2 = "select * from users where id = $parent_id";
+        $result2 = DB::select(DB::raw($sql2));
+        $status = $result2[0]->status;
+        if($status != 2){
+          $child_id = $parent_id;
+          continue;
+        }
       }
       if($parent_id != 1 && $first_parent == true) {
-        $amount = $amount/2;
+        $amount = 150;
       }
       if($parent_id != 1 && $first_parent == false) {
         $amount = 10;
+        $balance = $balance - $amount;
       }
-      $balance = $total_amount - $amount;
-      if($parent_id == 1){
+      if($parent_id == 1 && $first_parent == true){
+        $amount = 300;
+      }
+      if($parent_id == 1 && $first_parent == false){
         $amount = $balance;
       }
       $first_parent = false;

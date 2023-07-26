@@ -58,11 +58,13 @@
     </ul>
 	
     <ul class="navbar-nav ml-auto">
+     @if(Auth::user()->status == 2) 
 	   <li class="nav-item">
         <form action="whatsapp://send?text=http://aaranetwork.in/join/{{ Auth::user()->referral_id }}"  class="nav-link" method="post">
           <button type="submit" class="btn btn-block btn-default btn-sm"><i class="fas fa-share-alt"></i>  Share</button>
         </form> 
       </li>
+      @endif
       <li class="nav-item dropdown user-menu">
         
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
