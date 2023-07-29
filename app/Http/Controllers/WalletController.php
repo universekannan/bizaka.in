@@ -177,7 +177,12 @@ class WalletController extends Controller
     public function requestpayment(){
 		
         $userid = Auth::user()->id;
-		$sql = "select * from request_payment where from_id=$userid or to_id = $userid";
+        if($userid == '1'){
+            $sql = "select a.*,b.name from request_payment a,users b where a.from_id=b.id order by id desc";
+         //echo $sql;die;
+        $paymentrequest =  DB::select( DB::raw( $sql ));
+        }else{
+		$sql = "select * from request_payment where from_id=$userid or to_id = $userid order by id desc";
          //echo $sql;die;
         $paymentrequest =  DB::select( DB::raw( $sql ));
         $paymentrequest = json_decode( json_encode( $paymentrequest ), true );
@@ -187,11 +192,11 @@ class WalletController extends Controller
             $details =  DB::select( DB::raw( $sql ));
             $fullname = $details[0]->name;
 
-            $paymentrequest[$key1]['full_name'] = $fullname;
+            $paymentrequest[$key1]['name'] = $fullname;
 
         }
         $paymentrequest = json_decode(json_encode($paymentrequest));
-
+    }
         //echo"<pre>";print_r($paymentrequest);echo"</pre>";die;
 
         $sql = '';

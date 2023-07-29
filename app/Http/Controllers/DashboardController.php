@@ -6,15 +6,15 @@ use Auth;
 use App\Models\User;
 
 class DashboardController extends Controller
-{
+ {
     public function __construct()
-    {
-        $this->middleware('auth');
+ {
+        $this->middleware( 'auth' );
     }
 
-    public function dashboard(Request $request){
+    public function dashboard( Request $request ) {
         $id = Auth::user()->id;
-        $today = date("Y-m-d");
+        $today = date( 'Y-m-d' );
         $usertype_id = Auth::user()->usertype_id;
         $members_count = 0;
         $todays_income = 0;
@@ -22,98 +22,106 @@ class DashboardController extends Controller
         $wallet = 0;
         $requestpayment = 0;
         $withdrawalpayment = 0;
-        if($usertype_id == 1){
-            $sql = "select count(*) as members from users where usertype_id=2";
-            $result = DB::select(DB::raw($sql));
-            $members_count = $result[0]->members;
-        }else{
+        if ( $usertype_id == 1 ) {
+            $sql = 'select count(*) as members from users where usertype_id=2';
+            $result = DB::select( DB::raw( $sql ) );
+            $members_count = $result[ 0 ]->members;
+        } else {
             $sql = "select count(*) as members from users where parent_id=$id";
-            $result = DB::select(DB::raw($sql));
-            $members_count = $result[0]->members;
+            $result = DB::select( DB::raw( $sql ) );
+            $members_count = $result[ 0 ]->members;
         }
         $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today' and ad_info='Activation' ";
-        $result = DB::select(DB::raw($sql));
-        $todays_income = $result[0]->todays_income;
-        if($todays_income == ""){
+        $result = DB::select( DB::raw( $sql ) );
+        $todays_income = $result[ 0 ]->todays_income;
+        if ( $todays_income == '' ) {
             $todays_income = 0;
         }
-		
+
         $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
-        $result = DB::select(DB::raw($sql));
-        $total_income = $result[0]->total_income;
-        if($total_income == ""){
+        $result = DB::select( DB::raw( $sql ) );
+        $total_income = $result[ 0 ]->total_income;
+        if ( $total_income == '' ) {
             $total_income = 0;
         }
         $sql = "select wallet from users where id=$id";
-        $result = DB::select(DB::raw($sql));
-        $wallet = $result[0]->wallet;
+        $result = DB::select( DB::raw( $sql ) );
+        $wallet = $result[ 0 ]->wallet;
         $sql = "select * from users where parent_id=$id";
-        $child = DB::select(DB::raw($sql));
-           
-        if($usertype_id == 1){
+        $child = DB::select( DB::raw( $sql ) );
+
+        if ( $usertype_id == 1 ) {
             $sql = "select count(*) as requestpayment from request_payment where status='Pending'";
-            $result = DB::select(DB::raw($sql));
-            $requestpayment = $result[0]->requestpayment;
-        }else{
-            $sql = "select count(*) as requestpayment from request_payment where status='Pending' and from_id=$id";
-            $result = DB::select(DB::raw($sql));
-            $requestpayment = $result[0]->requestpayment;
+            $result = DB::select( DB::raw( $sql ) );
+            $requestpayment = $result[ 0 ]->requestpayment;
+        } else {
+            $sql = "select count(*) as requestpayment from request_payment where status='Pending' and to_id=$id";
+            $result = DB::select( DB::raw( $sql ) );
+            $requestpayment = $result[ 0 ]->requestpayment;
 
         }
 
-        if($usertype_id == 1){
+        if ( $usertype_id == 1 ) {
             $sql = "select count(*) as withdrawalpayment from withdrawal where status='Pending'";
-            $result = DB::select(DB::raw($sql));
-            $withdrawalpayment = $result[0]->withdrawalpayment;
-        }else{
+            $result = DB::select( DB::raw( $sql ) );
+            $withdrawalpayment = $result[ 0 ]->withdrawalpayment;
+        } else {
             $sql = "select count(*) as withdrawalpayment from withdrawal where status='Pending' and user_id=$id";
-            $result = DB::select(DB::raw($sql));
-            $withdrawalpayment = $result[0]->withdrawalpayment;
+            $result = DB::select( DB::raw( $sql ) );
+            $withdrawalpayment = $result[ 0 ]->withdrawalpayment;
 
         }
-
+        if ( $usertype_id == 1 ) {
         $sql = "select count(*) as newusers from users where joined_date ='$today'";
-        $result = DB::select(DB::raw($sql));
-        $newusers = $result[0]->newusers;
-			
-			$data = [];
-    if(Auth::user()->id == 1)
-    {
-      $r = $request->input('r', Auth::user()->id);
-      $data['primarymember'] = User::find($r);
-      $members = [];
-      $users = User::where('parent_id', $r)->where('id', '!=', Auth::user()->id)->get();
-      $members['u'.$r] = $users;
-      foreach($users as $user) {
-        $u = User::where('parent_id', $user->id)->get();
-        $members['u'.$user->id] = $u;
-        foreach($u as $i) {
-          $v = User::where('parent_id', $i->id)->get();
-          $members['u'.$i->id] = $v;
+        $result = DB::select( DB::raw( $sql ) );
+        $newusers = $result[ 0 ]->newusers;
+        } else {
+
+          $sql = "select count(*) as newusers from users where parent_id=$id and joined_date ='$today'";
+          $result = DB::select( DB::raw( $sql ) );
+          $newusers = $result[ 0 ]->newusers;
+
         }
-      }   
-    } else {        
-      $r = $request->input('r', Auth::user()->id);
-      $data['primarymember'] = User::find($r);
-      $members = [];
-      $users = User::where('parent_id', $r)->get();
-      $members['u'.$r] = $users;
-      foreach($users as $user) {
-        $u = User::where('parent_id', $user->id)->get();
-        $members['u'.$user->id] = $u;
-        foreach($u as $i) {
-          $v = User::where('parent_id', $i->id)->get();
-          $members['u'.$i->id] = $v;
+
+        $data = [];
+        if ( Auth::user()->id == 1 )
+ {
+            $r = $request->input( 'r', Auth::user()->id );
+            $data[ 'primarymember' ] = User::find( $r );
+            $members = [];
+            $users = User::where( 'parent_id', $r )->where( 'id', '!=', Auth::user()->id )->get();
+            $members[ 'u'.$r ] = $users;
+            foreach ( $users as $user ) {
+                $u = User::where( 'parent_id', $user->id )->get();
+                $members[ 'u'.$user->id ] = $u;
+                foreach ( $u as $i ) {
+                    $v = User::where( 'parent_id', $i->id )->get();
+                    $members[ 'u'.$i->id ] = $v;
+                }
+            }
+
+        } else {
+
+            $r = $request->input( 'r', Auth::user()->id );
+            $data[ 'primarymember' ] = User::find( $r );
+            $members = [];
+            $users = User::where( 'parent_id', $r )->get();
+            $members[ 'u'.$r ] = $users;
+            foreach ( $users as $user ) {
+                $u = User::where( 'parent_id', $user->id )->get();
+                $members[ 'u'.$user->id ] = $u;
+                foreach ( $u as $i ) {
+                    $v = User::where( 'parent_id', $i->id )->get();
+                    $members[ 'u'.$i->id ] = $v;
+                }
+            }
         }
-      }
+        $data[ 'members' ] = json_encode( $members, true );
+        $data[ 'members' ] = json_decode( $data[ 'members' ], true );
+        $primarymember = $data[ 'primarymember' ];
+        $members = $data[ 'members' ];
+
+        return view( 'dashboard', compact( 'members_count', 'todays_income', 'total_income', 'wallet', 'child', 'requestpayment', 'withdrawalpayment', 'newusers', 'members', 'primarymember' ) );
     }
-    $data['members'] = json_encode($members, true);
-    $data['members'] = json_decode($data['members'], true);
-    $primarymember = $data['primarymember'];
-    $members = $data['members'];
-	
-        return view("dashboard",compact('members_count','todays_income','total_income','wallet','child','requestpayment','withdrawalpayment','newusers','members','primarymember'));
-    }
-    
 
 }

@@ -33,7 +33,7 @@
                         </div>
                     @endif
                     <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table id="example2" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th style="width:15%">S No</th>
@@ -48,7 +48,7 @@
                             @foreach ($paymentrequest as $key => $payreq)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $payreq->to_id }} , {{ $payreq->full_name }}</td>
+                                    <td>{{ $payreq->to_id }} , {{ $payreq->name }}</td>
                                     <td>{{ $payreq->amount }}</td>
                                     <td>{{ $payreq->req_time }}</td>
 									@if(Auth::user()->id == $payreq->from_id || $payreq->status == "Approved" )
@@ -59,7 +59,8 @@
                                     @else
 									<td><a class="btn btn-success" onclick="appove_requestamount('{{ $payreq->id }}','{{ $payreq->from_id }}','{{ $payreq->amount }}','{{ $payreq->req_image }}')" href="#">Activate</a></td>
                                     @endif
-
+                                     @else
+                                     <td>{{ $payreq->status }}</td>
 									@endif
 									       
                                 </tr>
