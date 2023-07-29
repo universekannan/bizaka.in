@@ -9,12 +9,6 @@ use App\Models\User;
 class JoinController extends Controller
 {
 
-//public function __construct()
-//{
-//$this->middleware( 'auth' );
-//}
-  
-  
    public function join($referral_id){
     $name = "";
     $email = "";
@@ -97,7 +91,7 @@ class JoinController extends Controller
   }
 
   public function geneology(Request $request){
-    $data = [];
+   $data = [];
     if(Auth::user()->id == 1)
     {
       $r = $request->input('r', Auth::user()->id);
@@ -132,6 +126,7 @@ class JoinController extends Controller
     $data['members'] = json_decode($data['members'], true);
     $primarymember = $data['primarymember'];
     $members = $data['members'];
+	
     return view('users/geneology',compact('members','primarymember'));
   }
 
@@ -185,6 +180,7 @@ class JoinController extends Controller
     $log_id = Auth::user()->id;
     $paydate = date('Y-m-d');
     $time = date("H:i:s");
+    $total_amount = 300;
     $amount = 300;
     $member_id = 0;
     $child_id = 0;
@@ -199,18 +195,40 @@ class JoinController extends Controller
     }
     $ad_info = "Activation";
     $service_status = "Out Payment";
-    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$parent_id','$child_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
+    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$child_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
     DB::insert(DB::raw($sql));
     $sql = "update users set wallet = wallet - $amount where id = $child_id";
     DB::update(DB::raw($sql));
+    $first_parent = true;
+    $balance = 150;
     do{
       $sql = "select * from users where id = $child_id";
       $result = DB::select(DB::raw($sql));
       if(count($result) > 0){
         $child_id = $result[0]->id;
         $parent_id = $result[0]->parent_id;
+        $sql2 = "select * from users where id = $parent_id";
+        $result2 = DB::select(DB::raw($sql2));
+        $status = $result2[0]->status;
+        if($status != 2){
+          $child_id = $parent_id;
+          continue;
+        }
       }
-      if($parent_id != 1) $amount = $amount/2;
+      if($parent_id != 1 && $first_parent == true) {
+        $amount = 150;
+      }
+      if($parent_id != 1 && $first_parent == false) {
+        $amount = 10;
+        $balance = $balance - $amount;
+      }
+      if($parent_id == 1 && $first_parent == true){
+        $amount = 300;
+      }
+      if($parent_id == 1 && $first_parent == false){
+        $amount = $balance;
+      }
+      $first_parent = false;
       $ad_info = "Activation";
       $service_status = "In Payment";
       $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
@@ -227,14 +245,14 @@ class JoinController extends Controller
   public function todayincome(){
     $id = Auth::user()->id;
     $today = date("Y-m-d");
-    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and service_status = 'In Payment' and paydate='$today'";
+    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and a.service_status = 'In Payment' and  a.ad_info = 'Activation' and a. paydate='$today'";
     $income = DB::select(DB::raw($sql));
     return view('todayincome',compact('income'));
   }
 
   public function totalincome(){
     $id = Auth::user()->id;
-    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and to_id=$id and service_status = 'In Payment' order by paydate desc";
+    $sql = "select a.*,b.name from payment a,users b where a.from_id=b.id and to_id=$id and service_status = 'In Payment' and a.ad_info = 'Activation' order by paydate desc";
     $income = DB::select(DB::raw($sql));
     return view('totalincome',compact('income'));
   }

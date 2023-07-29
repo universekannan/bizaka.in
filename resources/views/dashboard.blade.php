@@ -211,9 +211,7 @@ right connector from last child*/
 
 <div class="tree">
  <div class="tree">
-   <div class="row">
-     <div class="col-sm-3"> </div>
-     <div class="col-sm-6">  <center>
+ <center>
 					@if(Auth::user()->status == 1)
 
 					  @if (Auth::user()->wallet > 299)
@@ -240,12 +238,12 @@ right connector from last child*/
       <ul>
  @foreach($members['u'.$m['id']] as $s)
         <li>
-                <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['photo'] !== NULL) {{ $s['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /></a>
+                <a href="{{ url()->current() }}?r={{ $s['id'] }}" title="{{ $s['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($s['photo'] !== NULL) {{ $s['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $s['name'] }}" /><br>{{ $s['name'] }}</a>
           <ul>
 
             @foreach($members['u'.$s['id']] as $v)
             <li>
-                <a href="{{ url()->current() }}?r={{ $v['id'] }}" title="{{ $v['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($v['photo'] !== NULL) {{ $v['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $v['name'] }}" /></a>
+                <a href="{{ url()->current() }}?r={{ $v['id'] }}" title="{{ $v['referral_id'] }}"><img style="border-radius: 50%; padding: 4px; margin: 0; box-sizing: border-box; " src="@if($v['photo'] !== NULL) {{ $v['photo'] }} @else {{ asset('dist/img/member.jpg') }} @endif" width="70" height="70" alt="{{ $v['name'] }}" /><br>{{ $v['name'] }}</a>
             </li>
             @endforeach
 
@@ -261,18 +259,13 @@ right connector from last child*/
 @endforeach
 </ul>
     </li>
-
-          </ul>
+      </ul>
    @endif
  </div>
 </div>
-<div class="col-sm-3"> </div>
 
 </div>
 </div>
-
-</div>
-<!-- /.card-body -->
 </div>
 </div>
 </section>

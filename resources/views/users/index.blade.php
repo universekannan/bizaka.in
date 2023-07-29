@@ -7,8 +7,8 @@
                 <h1>Members</h1>
             </div>
             <div class="col-sm-6">
-                @if($childcount < 5)
-                <ol class="breadcrumb float-right">
+                @if($childcount < 5 && Auth::user()->status == 2)
+                <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><button type="button" class="btn btn-block btn-primary btn-sm"
                         data-toggle="modal" data-target="#addmember" ><i class="fa fa-plus"> Add </i></button>
                     </li>

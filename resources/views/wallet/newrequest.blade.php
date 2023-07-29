@@ -38,7 +38,6 @@
                 <div class="card-header">
                     <h3 class="card-title">Request</h3>
                 </div>
-                <!-- /.card-header -->
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success">
@@ -89,11 +88,8 @@
                     </div>
                     <br>
                 </div>
-                <!-- /.card-body -->
             </div>
-            <!-- /.card -->
         </div>
-        <!-- /.col -->
         </div>
         <div class="modal fade" id="complete" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-md">
@@ -122,11 +118,8 @@
         </form>
     </div>
     </div>
-        <!-- /.row -->
     </section>
-    <!-- /.content -->
     </div>
-    <!-- /.content-wrapper -->
     <div class="modal fade" id="Withdrawal">
         <div class="modal-dialog">
             <form method="post" action="{{ url('saverequest') }}">
@@ -193,34 +186,28 @@
                                         <input readonly class="form-control no-border" id="apprname" style="border: 0">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label for="class_name" class="col-sm-4 col-form-label">Amount</label>
                                     <div class="col-sm-8">
                                         <input readonly name="amount" class="form-control no-border" id="appramt" style="border: 0">
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <label for="class_name" class="col-sm-4 col-form-label">Upi</label>
                                     <div class="col-sm-8">
                                         <input readonly class="form-control no-border" id="apprupi" style="border: 0">
                                     </div>
                                 </div>
-                                
                                <center> <img style="width:200px;height:100%;padding-bottom:10px;" src="" id="apprqrcode" /></center>
-
                                 <div class="form-group row">
                                     <label for="pay_image" class="col-sm-4 col-form-label">Payment Proof</label>
                                     <div class="col-sm-8">
                                         <div class="custom-file">
-                                            <input accept=" image/jpeg, image/png" type="file"
-                                                class="custom-file-input" id="pay_image" name="pay_image">
+                                            <input required='requiered' accept=" image/jpeg, image/png" type="file" class="custom-file-input" id="pay_image" name="pay_image">
                                             <label class="custom-file-label" for="exampleInputFile">Choose File</label>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="modal-footer justify-content-between">
@@ -231,8 +218,6 @@
                 </div>
         </form>
     </div>
-
-   
 @endsection
 @push('page_scripts')
     <script>
