@@ -13,6 +13,7 @@ Route::post('/updatemember', [App\Http\Controllers\JoinController::class, 'updat
 Route::post('/joinus', [App\Http\Controllers\JoinController::class, 'joinus'])->name('joinus');
 Route::get('/members', [App\Http\Controllers\JoinController::class, 'members'])->name('members');
 Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology'])->name('geneology');
+Route::get('/todayjoined', [App\Http\Controllers\JoinController::class, 'todayjoinedmember'])->name('todayjoined');
 
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
 

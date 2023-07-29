@@ -94,7 +94,7 @@
           <div class="icon">
             <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
           </div>
-          <a href="{{url('/members') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('/members') ? 'active' : '' }}"></i></a>
+          <a href="{{url('/todayjoined') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('/members') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
 

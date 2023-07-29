@@ -286,6 +286,19 @@ public function updatepassword(Request $request){
   }
 }
 
+public function todayjoinedmember(){
+  $id = Auth::user()->id;
+  $usertype_id = Auth::user()->usertype_id;
+  $today = date( 'Y-m-d' );
+  if ($usertype_id == 1) {
+    $todayjoined = DB::table( 'users' )->where( 'joined_date', $today )->orderBy( 'id', 'Asc' )->get();
+    } else {
+      $todayjoined = DB::table( 'users' )->where( 'parent_id', $id )->where( 'joined_date', $today )->orderBy( 'id', 'Asc' )->get();
+
+    }
+  return view('users/todayjoined', compact('todayjoined'));
+}
+
         public function logout(){
             Auth::guard()->logout();
             return redirect()->intended('/');
