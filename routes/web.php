@@ -16,6 +16,7 @@ Route::get('/geneology', [App\Http\Controllers\JoinController::class, 'geneology
 Route::get('/todayjoined', [App\Http\Controllers\JoinController::class, 'todayjoinedmember'])->name('todayjoined');
 
 Route::get('/changepassword', [App\Http\Controllers\JoinController::class, 'changepassword'])->name('changepassword');
+Route::post('/updatepassword', [App\Http\Controllers\JoinController::class, 'updatepassword'])->name('updatepassword');
 
 Route::get('/ownactivation/{referral_id}', [App\Http\Controllers\JoinController::class, 'ownactivation'])->name('ownactivation');
 

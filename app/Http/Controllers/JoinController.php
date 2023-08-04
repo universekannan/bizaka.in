@@ -272,12 +272,10 @@ public function updatepassword(Request $request){
     $confirm_password = trim($request->get("confirm_password"));
     if($new_password != $confirm_password){
       return redirect('changepassword')->with('error', 'Passwords does not match');
-    }elseif($new_password == '12345678'){
-      return redirect('changepassword')->with('error', 'You cannot use the passord 12345678');
     }else{
       $updatepass = DB::table('users')->where('id', '=', $userid)->update([
         'password' => Hash::make($new_password),
-        'pas'      => $request->new_password,
+        'plain_password'      => $request->new_password,
       ]);
       return redirect('dashboard')->with('success', 'Passwords Change Succesfully');
     }
