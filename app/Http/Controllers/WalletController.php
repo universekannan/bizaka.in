@@ -17,9 +17,25 @@ class WalletController extends Controller
         $login = Auth::user()->id;
         $referral_id = Auth::user()->id;
 
-            $wallet = DB::table( 'payment' )->select('payment.*','users.name')
-     ->Join('users', 'users.id', '=', 'payment.from_id')->where( 'to_id', $login )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->orderBy( 'id', 'Asc' )->get();
-		
+            $wallet = DB::table( 'payment' )->where( 'to_id', $login )->where( 'paydate', '>=', $from )->where( 'paydate', '<=', $to )->orderBy( 'id', 'Asc' )->get();
+     $wallet = json_decode( json_encode( $wallet ), true );
+     foreach($wallet as $key1 => $payment){
+         $paymentto_id = $payment['to_id'];
+         $sql = "select name from users where id=$paymentto_id";
+         $details =  DB::select( DB::raw( $sql ));
+         $fullname = $details[0]->name;
+
+         $paymentfrom_id = $payment['from_id'];
+         $sql = "select name from users where id=$paymentfrom_id ";
+         $detail =  DB::select( DB::raw( $sql ));
+         $fullnamefrom = $detail[0]->name;
+
+         $wallet[$key1]['name_to'] = $fullname;
+         $wallet[$key1]['name_from'] = $fullnamefrom;
+
+     }
+     $wallet = json_decode(json_encode($wallet));
+     //echo"<pre>";print_r($wallet);echo "</pre>";die;
         $sql = '';
         if ( Auth::user()->id == 1 ) {
             $sql = "Select * from `users` where `id` = '1' order by `id` desc limit 1 ";
@@ -249,13 +265,13 @@ class WalletController extends Controller
         $status = 'Approved';
         $sql = "update request_payment set status = '$status' where id = $row_id";
         DB::update( DB::raw( $sql ) );
-		$service_status = 'Out Payment';
+		$service_status = 'IN Payment';
 		$ad_info = 'Fund Transfer';
         $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$login_id','$from_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
         DB::insert( DB::raw( $sql ) );
         $sql = "update users set wallet = wallet + $amount where id = $from_id";
         DB::update( DB::raw( $sql ) );
-        $service_status = 'IN Payment';
+        $service_status = 'Out Payment';
 		$ad_info = 'Fund Transfer';
         $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate,pay_id) values ('$login_id','$from_id','$login_id','$amount','$ad_info', '$service_status','$time','$date','$row_id')";
         DB::insert( DB::raw( $sql ) );

@@ -64,7 +64,8 @@
                                     <thead>
                                         <tr>
                                             <th>S No</th>
-                                            <th>UserId</th>
+                                            <th>From</th>
+                                            <th>TO</th>
                                             <th>Title</th>
                                             <th>DateTime</th>
                                             <th> Debit</th>
@@ -78,7 +79,9 @@
                                         @foreach ($wallet as $key => $walletlist)
                                             <tr>
                                                 <td>{{ $walletlist->id }}</td>
-                                                <td>{{ $walletlist->from_id }} , {{ $walletlist->name }}</td>
+                                                <td>{{ $walletlist->from_id }} , {{ $walletlist->name_from }}</td>
+                                                <td>{{ $walletlist->to_id }} , {{ $walletlist->name_to }}</td>
+                                                
                                                 <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} ,
                                                     {{ $walletlist->ad_info2 }} , RS {{ $walletlist->amount }} , </td>
                                                 <td>{{ $walletlist->paydate }} , {{ $walletlist->time }}</td>
@@ -110,6 +113,7 @@
 
                                     <tr>
 
+                                        <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
