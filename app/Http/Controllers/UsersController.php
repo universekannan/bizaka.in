@@ -50,7 +50,7 @@ class UsersController extends Controller
     }
 
     public function purchase($id){
-
+        $purchases = DB::table( 'purchase' )->where( 'id', $id )->orderBy( 'id', 'Desc' )->get();
         return view( 'users/purchase', compact( 'purchases' ) );
     }
 

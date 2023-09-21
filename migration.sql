@@ -6,4 +6,4 @@ CREATE TABLE `purchase` (
   added_datetime datetime not null,
   `log_id` int NOT NULL,
   PRIMARY KEY (`id`)
-)  =InnoDB;
+) ENGINE=InnoDB;

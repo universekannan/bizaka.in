@@ -71,8 +71,8 @@
                                         <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->address }}')"
                                             href="#" class="btn btn-sm btn-primary"><i
                                             class="fa fa-edit"></i>Edit</a>
-                                            <a href="{{ route('purchase',$memberslist->id) }}" class="btn-sm btn-primary"><i
-                                                class="fa fa-edit"></i> Purchase</a>
+                                            <a href="{{ route('purchase',$memberslist->id) }}" class="btn btn-sm btn-success"><i
+                                                class="fa fa-arrow-right"></i> Purchase</a>
                                         </td>
                                     </tr>
                                     @endforeach
