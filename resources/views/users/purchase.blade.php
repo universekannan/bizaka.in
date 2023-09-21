@@ -53,7 +53,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $purchase->purchase_date }}</td>
-                                    <td>{{ $purchase->price }}</td>
+                                    <td>{{ $purchase->amount }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -66,70 +66,32 @@
         </div>
     </section>
     <div class="modal fade" id="addproducts">
-        <form action="{{ url('/addmember') }}" method="post">
+        <form action="{{ url('/addproduct') }}" method="post">
             {{ csrf_field() }}
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Member</h4>
+                        <h4 class="modal-title">Add Products</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group row">
-                                    <label for="name" class="col-sm-4 col-form-label"><span
-                                        style="color:red">*</span>Name</label>
-                                        <div class="col-sm-8">
-                                            <input required="required" type="text" class="form-control"
-                                            name="name" id="name" maxlength="30"
-                                            placeholder="Full Name">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                      
+                         <input type="hidden" value="{{ $id }}" name="member_id"> 
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row">
-                                        <label for="phone" class="col-sm-4 col-form-label"><span
-                                            style="color:red">*</span>Phone</label>
+                                        <label for="amount" class="col-sm-4 col-form-label"><span
+                                            style="color:red">*</span>Amount</label>
                                             <div class="col-sm-8">
                                                 <input required="required" type="text" class="form-control number"
-                                                name="phone" id="phone" maxlength="10"
-                                                placeholder="Phone Number">
+                                                name="amount" id="amount" maxlength="10"
+                                                placeholder="Amount">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group row">
-                                            <label for="referral" class="col-sm-4 col-form-label"><span
-                                                style="color:red">*</span>Referral Id</label>
-                                                <div class="col-sm-8">
-                                                    <input required="required" type="text" class="form-control"
-                                                    name="referral" id="referral" maxlength="20"
-                                                    placeholder="Referral ..">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group row">
-                                                <label for="address" class="col-sm-4 col-form-label"><span
-                                                    style="color:red">*</span>Address</label>
-                                                    <div class="col-sm-8">
-                                                        <textarea required="required" class="form-control"
-                                                        name="address" id="address" maxlength="200" rows="2"
-                                                        placeholder="Address .."></textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default"
                                         data-dismiss="modal">Close</button>
