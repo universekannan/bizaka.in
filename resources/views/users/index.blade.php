@@ -71,7 +71,7 @@
                                         <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->address }}')"
                                             href="#" class="btn btn-sm btn-primary"><i
                                             class="fa fa-edit"></i>Edit</a>
-                                            <a href="{{ route('purchase',$memberslist->id) }}" class="btn-sm btn-primary"><i
+                                            <a href="{{ route('purchase',$memberslist->id) }}" class="btn btn-sm btn-primary"><i
                                                 class="fa fa-edit"></i> Purchase</a>
                                         </td>
                                     </tr>
@@ -139,12 +139,12 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group row">
-                                            <label for="referral" class="col-sm-4 col-form-label"><span
-                                                style="color:red">*</span>Referral Id</label>
+                                            <label for="email" class="col-sm-4 col-form-label"><span
+                                                style="color:red">*</span>Email Id</label>
                                                 <div class="col-sm-8">
                                                     <input required="required" type="text" class="form-control"
-                                                    name="referral" id="referral" maxlength="20"
-                                                    placeholder="Referral ..">
+                                                    name="email" id="email" maxlength="20"
+                                                    placeholder="Email ..">
                                                 </div>
                                             </div>
                                         </div>

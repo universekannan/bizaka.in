@@ -15,6 +15,7 @@ Route::post('/updatemember', [App\Http\Controllers\UsersController::class, 'upda
 //Purchase
 Route::get('/purchase/{id}', [App\Http\Controllers\UsersController::class, 'purchase'])->name('purchase');
 
+Route::post('/addproduct', [App\Http\Controllers\UsersController::class, 'addproduct'])->name('addproduct');
 
 
 

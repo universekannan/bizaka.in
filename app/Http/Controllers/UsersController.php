@@ -21,19 +21,17 @@ class UsersController extends Controller
     public function addmember( Request $request ) {
         $password = rand( 1001, 9999 );
         $passwordhash = Hash::make( $password );
-        $parent_id = Auth::user()->id;
 
         DB::table( 'users' )->insert( [
             'name' => $request->name,
-            'phone' => $request->phone,
-            'address' => $request->address,
             'referral_id' => $request->referral,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
             'plain_password' => $password,
             'password' => $passwordhash,
-            'parent_id' => $parent_id,
             'usertype_id' => 3,
             'created_at' =>  date( 'Y-m-d H:i:s' ),
-
         ] );
         return redirect( '/members' )->with( 'success', 'Member added successfully' );
     }
@@ -50,8 +48,18 @@ class UsersController extends Controller
     }
 
     public function purchase($id){
-
+        $purchases = DB::table( 'purchase' )->where( 'member_id', $id )->orderBy( 'id', 'Asc' )->get();
         return view( 'users/purchase', compact( 'purchases' ) );
     }
 
+    public function addproduct( Request $request ) {
+        $log_id = Auth::user()->id;
+        DB::table( 'purchase' )->insert( [
+            'member_id' => $request->member_id,
+            'amount' => $request->amount,
+            'purchase_date' =>  date( 'Y-m-d H:i:s' ),
+            'log_id' => $request->log_id,
+        ] );
+        return redirect( '/purchase/6' )->with( 'success', 'Member added successfully' );
+    }
 }
