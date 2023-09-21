@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1>Members</h1>
+                <h1>Purchase List</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><button type="button" class="btn btn-block btn-primary btn-sm"
-                        data-toggle="modal" data-target="#addmember" ><i class="fa fa-plus"> Add </i></button>
+                        data-toggle="modal" data-target="#addproducts" ><i class="fa fa-plus"> Add </i></button>
                     </li>
                 </ol>
             </div>
@@ -44,36 +44,16 @@
                             <thead>
                                 <tr>
                                     <th>S No</th>
-                                    <th>Full Name</th>
-                                    <th>Phone</th>
-									@if(Auth::user()->id == 1)
-                                    <th>Password</th>
-									@endif
-                                    <th>Status</th>
-                                    <th>Action</th>
+                                    <th>Purchase Date</th>
+                                    <th>Price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($members as $key => $memberslist)
+                                @foreach ($purchases as $key => $purchase)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $memberslist->name }}</td>
-                                    <td>{{ $memberslist->phone }}</td>
-	                                @if(Auth::user()->id == 1)
-                                    <td>{{ $memberslist->plain_password }}</td>
-									@endif
-                                    @if($memberslist->status == 2)
-                                      <td class="text-success">Active</td>
-                                      @else
-                                      <td class="text-danger">Inactive</td>
-                                      @endif
-                                    <td>
-                                        <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->address }}')"
-                                            href="#" class="btn btn-sm btn-primary"><i
-                                            class="fa fa-edit"></i>Edit</a>
-                                            <a href="{{ route('purchase',$memberslist->id) }}" class="btn-sm btn-primary"><i
-                                                class="fa fa-edit"></i> Purchase</a>
-                                        </td>
+                                    <td>{{ $purchase->purchase_date }}</td>
+                                    <td>{{ $purchase->price }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -85,7 +65,7 @@
             </div>
         </div>
     </section>
-    <div class="modal fade" id="addmember">
+    <div class="modal fade" id="addproducts">
         <form action="{{ url('/addmember') }}" method="post">
             {{ csrf_field() }}
             <div class="modal-dialog">
