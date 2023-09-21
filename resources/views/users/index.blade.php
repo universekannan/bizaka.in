@@ -116,6 +116,19 @@
                                     </div>
                                 </div>
                             </div>
+							<div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="parent_id" class="col-sm-4 col-form-label"><span
+                                        style="color:red">*</span>Referral ID</label>
+                                        <div class="col-sm-8">
+                                            <input required="required" type="text" class="form-control"
+                                            name="parent_id" id="parent_id" maxlength="30"
+                                            placeholder="Referral ID">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group row">

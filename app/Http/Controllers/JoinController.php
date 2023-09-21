@@ -143,7 +143,7 @@ class JoinController extends Controller
     }elseif(count($phoneres) > 0){
       return redirect("/members")->with('error', 'Phone number already used by another member');
     }else{
-      $parent_id = Auth::user()->id;
+      $parent_id =  trim($request->parent_id);
       $referral_id = uniqid();
       $password = rand(1001,9999);
       $passwordhash = Hash::make($password);
