@@ -27,7 +27,7 @@ class DashboardController extends Controller
             $result = DB::select( DB::raw( $sql ) );
             $members_count = $result[ 0 ]->members;
         } else {
-            $sql = "select count(*) as members from users where parent_id=$id";
+            $sql = "select count(*) as members from users where referral_id=$id";
             $result = DB::select( DB::raw( $sql ) );
             $members_count = $result[ 0 ]->members;
         }
@@ -47,7 +47,7 @@ class DashboardController extends Controller
         $sql = "select wallet from users where id=$id";
         $result = DB::select( DB::raw( $sql ) );
         $wallet = $result[ 0 ]->wallet;
-        $sql = "select * from users where parent_id=$id";
+        $sql = "select * from users where referral_id=$id";
         $child = DB::select( DB::raw( $sql ) );
 
         if ( $usertype_id == 1 ) {
@@ -71,31 +71,20 @@ class DashboardController extends Controller
             $withdrawalpayment = $result[ 0 ]->withdrawalpayment;
 
         }
-        if ( $usertype_id == 1 ) {
-        $sql = "select count(*) as newusers from users where joined_date ='$today'";
-        $result = DB::select( DB::raw( $sql ) );
-        $newusers = $result[ 0 ]->newusers;
-        } else {
-
-          $sql = "select count(*) as newusers from users where parent_id=$id and joined_date ='$today'";
-          $result = DB::select( DB::raw( $sql ) );
-          $newusers = $result[ 0 ]->newusers;
-
-        }
-
+		
         $data = [];
         if ( Auth::user()->id == 1 )
  {
             $r = $request->input( 'r', Auth::user()->id );
             $data[ 'primarymember' ] = User::find( $r );
             $members = [];
-            $users = User::where( 'parent_id', $r )->where( 'id', '!=', Auth::user()->id )->get();
+            $users = User::where( 'referral_id', $r )->where( 'id', '!=', Auth::user()->id )->get();
             $members[ 'u'.$r ] = $users;
             foreach ( $users as $user ) {
-                $u = User::where( 'parent_id', $user->id )->get();
+                $u = User::where( 'referral_id', $user->id )->get();
                 $members[ 'u'.$user->id ] = $u;
                 foreach ( $u as $i ) {
-                    $v = User::where( 'parent_id', $i->id )->get();
+                    $v = User::where( 'referral_id', $i->id )->get();
                     $members[ 'u'.$i->id ] = $v;
                 }
             }
@@ -105,13 +94,13 @@ class DashboardController extends Controller
             $r = $request->input( 'r', Auth::user()->id );
             $data[ 'primarymember' ] = User::find( $r );
             $members = [];
-            $users = User::where( 'parent_id', $r )->get();
+            $users = User::where( 'referral_id', $r )->get();
             $members[ 'u'.$r ] = $users;
             foreach ( $users as $user ) {
-                $u = User::where( 'parent_id', $user->id )->get();
+                $u = User::where( 'referral_id', $user->id )->get();
                 $members[ 'u'.$user->id ] = $u;
                 foreach ( $u as $i ) {
-                    $v = User::where( 'parent_id', $i->id )->get();
+                    $v = User::where( 'referral_id', $i->id )->get();
                     $members[ 'u'.$i->id ] = $v;
                 }
             }
@@ -121,7 +110,7 @@ class DashboardController extends Controller
         $primarymember = $data[ 'primarymember' ];
         $members = $data[ 'members' ];
 
-        return view( 'dashboard', compact( 'members_count', 'todays_income', 'total_income', 'wallet', 'child', 'requestpayment', 'withdrawalpayment', 'newusers', 'members', 'primarymember' ) );
+        return view( 'dashboard', compact( 'members_count', 'todays_income', 'total_income', 'wallet', 'child', 'requestpayment', 'withdrawalpayment', 'members', 'primarymember' ) );
     }
 
 }

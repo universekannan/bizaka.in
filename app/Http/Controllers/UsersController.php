@@ -58,8 +58,45 @@ class UsersController extends Controller
             'member_id' => $request->member_id,
             'amount' => $request->amount,
             'purchase_date' =>  date( 'Y-m-d H:i:s' ),
-            'log_id' => $request->log_id,
+            'log_id' => $log_id,
         ] );
+		$member_id = $request->member_id;
+		  $sql = "select id from users where id = $member_id";
+		  $result = DB::select(DB::raw($sql));
+	    $referral_id = $result[0]->referral_id;
+
+  $sql = "with recursive cte (id,full_name, user_type_id, referral_id) as (
+  select id,
+  full_name,
+  user_type_id,
+  referral_id
+  from       users
+  where      id = $referral_id
+  union all
+  select     p.id,
+  p.full_name,
+  p.user_type_id,
+  p.referral_id
+  from       users p
+  inner join cte
+  on p.id = cte.referral_id
+  )
+  select * from cte;";
+  $result = DB::select( DB::raw( $sql ) );
+        foreach ( $result as $row ) {
+            $to_id = $row->id;
+            $ad_info = 'Income';
+            $service_status = 'Out Payment';
+            $sql = "insert into payment (log_id,from_id,to_id,customer_id,service_id,pay_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$log_id','$to_id', '$customer_id','$service_id','$pay_id','$amount','$ad_info', '$service_status','$time','$paydate')";
+            DB::insert( DB::raw( $sql ) );
+            $sql = "update users set wallet = wallet + $amount where id = $to_id";
+            DB::update( DB::raw( $sql ) );
+            $ad_info = 'Application';
+            $service_status = 'IN Payment';
+            $sql = "insert into payment (log_id,from_id,to_id,customer_id,service_id,pay_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$to_id','$log_id', '$customer_id','$service_id','$pay_id','$amount','$ad_info', '$service_status','$time','$paydate')";
+            DB::insert( DB::raw( $sql ) );
+		}
+
         return redirect( '/purchase/6' )->with( 'success', 'Member added successfully' );
     }
 }
