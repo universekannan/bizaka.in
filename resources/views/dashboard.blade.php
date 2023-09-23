@@ -17,7 +17,7 @@
             <p>Members</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fa fa-users fa-spin fa-3x"></i>
+            <i class="nav-icon nav-icon fa fa-users"></i>
           </div>
        <a href="{{url('members')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
@@ -29,7 +29,7 @@
             <p>Today Income</p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-arrow-down fa-spin fa-3x"></i>
+            <i class="nav-icon nav-icon fas fa-arrow-down"></i>
           </div>
           <a href="{{url('todayincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
@@ -42,7 +42,7 @@
             <p>Total Income </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-money-check fa-spin fa-3x"></i>
+            <i class="nav-icon nav-icon fas fa-money-check"></i>
           </div>
           <a href="{{url('totalincome')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('admin/donates') ? 'active' : '' }}"></i></a>
         </div>
@@ -54,51 +54,12 @@
             <p>Wallet </p>
           </div>
           <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
+            <i class="nav-icon nav-icon fas fa-wallet"></i>
           </div>
           <a href="{{url('/wallet/{from}/{to}')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
         </div>
       </div> 
-	  <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $requestpayment }}&nbsp;</h3>
-            <p>Request Payment </p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
-          </div>
-          <a href="{{url('/requestpayment') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
-        </div>
-      </div> 
-
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>{{ $withdrawalpayment }}&nbsp;</h3>
-            <p>Withdrawal Payment </p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
-          </div>
-          <a href="{{url('/newrequest') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('wallet/index') ? 'active' : '' }}"></i></a>
-        </div>
-      </div> 
-
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-info">
-          <div class="inner">
-            <h3>ffff&nbsp;</h3>
-            <p>Today Joined Users</p>
-          </div>
-          <div class="icon">
-            <i class="nav-icon nav-icon fas fa-wallet fa-spin fa-3x"></i>
-          </div>
-          <a href="{{url('/todayjoined') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right {{ Request::is('/members') ? 'active' : '' }}"></i></a>
-        </div>
-      </div> 
-
-    </div>
+  </div>
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Geneology</h3>
