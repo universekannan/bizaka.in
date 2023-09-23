@@ -23,7 +23,7 @@ class DashboardController extends Controller
         $requestpayment = 0;
         $withdrawalpayment = 0;
         if ( $usertype_id == 1 ) {
-            $sql = 'select count(*) as members from users where parent_id=2';
+            $sql = 'select count(*) as members from users where usertype_id=3';
             $result = DB::select( DB::raw( $sql ) );
             $members_count = $result[ 0 ]->members;
         } else {
@@ -37,7 +37,6 @@ class DashboardController extends Controller
         if ( $todays_income == '' ) {
             $todays_income = 0;
         }
-
         $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
         $result = DB::select( DB::raw( $sql ) );
         $total_income = $result[ 0 ]->total_income;
