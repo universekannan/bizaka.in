@@ -23,11 +23,11 @@ class DashboardController extends Controller
         $requestpayment = 0;
         $withdrawalpayment = 0;
         if ( $usertype_id == 1 ) {
-            $sql = 'select count(*) as members from users where usertype_id=2';
+            $sql = 'select count(*) as members from users where usertype_id=3';
             $result = DB::select( DB::raw( $sql ) );
             $members_count = $result[ 0 ]->members;
         } else {
-            $sql = "select count(*) as members from users where referral_id=$id";
+            $sql = "select count(*) as members from users where id=$id";
             $result = DB::select( DB::raw( $sql ) );
             $members_count = $result[ 0 ]->members;
         }
@@ -37,7 +37,6 @@ class DashboardController extends Controller
         if ( $todays_income == '' ) {
             $todays_income = 0;
         }
-
         $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment' and ad_info='Activation'";
         $result = DB::select( DB::raw( $sql ) );
         $total_income = $result[ 0 ]->total_income;
@@ -51,17 +50,6 @@ class DashboardController extends Controller
         $child = DB::select( DB::raw( $sql ) );
 
         if ( $usertype_id == 1 ) {
-            $sql = "select count(*) as requestpayment from request_payment where status='Pending'";
-            $result = DB::select( DB::raw( $sql ) );
-            $requestpayment = $result[ 0 ]->requestpayment;
-        } else {
-            $sql = "select count(*) as requestpayment from request_payment where status='Pending' and to_id=$id";
-            $result = DB::select( DB::raw( $sql ) );
-            $requestpayment = $result[ 0 ]->requestpayment;
-
-        }
-
-        if ( $usertype_id == 1 ) {
             $sql = "select count(*) as withdrawalpayment from withdrawal where status='Pending'";
             $result = DB::select( DB::raw( $sql ) );
             $withdrawalpayment = $result[ 0 ]->withdrawalpayment;
@@ -71,7 +59,7 @@ class DashboardController extends Controller
             $withdrawalpayment = $result[ 0 ]->withdrawalpayment;
 
         }
-		
+
         $data = [];
         if ( Auth::user()->id == 1 )
  {
