@@ -116,7 +116,7 @@ class UsersController extends Controller
       }
       if($parent_id == 1 && $first_parent == false){
         $amount = ceil($amount * 1 / 100);
-        $amount = $amount + $bal;
+        $amount = $amount;
       } 
 
 
