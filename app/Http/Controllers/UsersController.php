@@ -52,7 +52,7 @@ class UsersController extends Controller
         return view( 'users/purchase', compact( 'purchases','id' ) );
     }
 
-    public function addproduct( Request $request ) {
+    public function addproductd( Request $request ) {
         $log_id = Auth::user()->id;
         $amount = $request->amount;
         DB::table( 'purchase' )->insert( [

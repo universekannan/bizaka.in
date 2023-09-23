@@ -27,12 +27,6 @@
                   <p>View Members</p>
                 </a>
               </li> 
-			  <li class="nav-item">
-                <a href="{{ route('geneology') }}" class="nav-link {{ (request()->is('geneology')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Geneology</p>
-                </a>
-              </li>
             </ul>
           </li>
 		  
@@ -78,18 +72,8 @@
                   <p>Wallet</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{ route('newrequest') }}" class="nav-link {{ (request()->is('newrequest')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Withdrawal Request</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a href="{{ route('requestpayment') }}" class="nav-link {{ (request()->is('requestpayment')) ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Amount Request</p>
-                </a>
-              </li>            
+             
+			 
             </ul>
           </li>
 		  
