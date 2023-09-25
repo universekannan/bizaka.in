@@ -28,6 +28,8 @@
 
         <div class="page-content my-0 py-0">
             <div class="card bg-5 card-fixed">
+              <form method="post" action="{{ url('/signin') }}">
+                @csrf
                 <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
                     <h1 class="font-30 font-800 mb-0">PayApp</h1>
                     <p>Login to your Account.</p>
@@ -49,7 +51,7 @@
                         <i class="is-checked color-highlight font-13 bi bi-check-circle-fill"></i>
                         <i class="is-unchecked color-highlight font-13 bi bi-circle"></i>
                     </div>
-                    <a href="" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">SIGN IN</a>
+                    <a href="mobile/dashboard" class="btn btn-full gradient-highlight shadow-bg shadow-bg-s mt-4">SIGN IN</a>
                     <div class="row">
                         <div class="col-6 text-start">
                             <a href="page-forgot-1.html" class="font-11 color-theme opacity-40 pt-4 d-block">Forgot
@@ -63,6 +65,7 @@
                 </div>
                 <div class="card-overlay rounded-0 m-0 bg-black opacity-70"></div>
             </div>
+          </form>
         </div>
     </div>
     <script src="{!! asset('mobile/scripts/bootstrap.min.js') !!}"></script>

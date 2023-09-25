@@ -19,7 +19,7 @@ Route::post('/addproduct', [App\Http\Controllers\UsersController::class, 'addpro
 Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstudent'])->name('loginstudent');
 
 //Mobile
-Route::get('mobile/dashboard', [App\Http\Controllers\Mobile\MobileController::class, 'dashboard'])->name('dashboard');
+Route::get('mobile/dashboard', [App\Http\Controllers\Mobile\MobileController::class, 'walletdashboard'])->name('walletdashboard');
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
 
 
