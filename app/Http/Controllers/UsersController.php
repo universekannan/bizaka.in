@@ -65,41 +65,35 @@ class UsersController extends Controller
             'added_datetime' =>  date( 'Y-m-d H:i:s' ),
             'log_id' => $log_id,
         ]);
-        $paycount = 0;
-        $points = round($amount * 10 / 100);
+        $percentage = 10;
+        $points = round($amount * $percentage / 100);
         $ad_info = "In Payment";
         $service_status = "In Payment";
         $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$member_id', '$points','$ad_info', '$service_status','$time','$paydate')";
         DB::insert(DB::raw($sql));
         $sql = "update users set wallet = wallet + $points where id = $member_id";
         DB::update(DB::raw($sql));
-        $paycount++;
         $user_id = $member_id;
-        $percentage = 2;
-        while(true){
+        $paycount = 1;
+        while($paycount < 7){
+            if($user_id == 1) break;
+            $paycount++;
             $sql = "select referral_id from users where id = $user_id";
             $result = DB::select(DB::raw($sql));
-            if(count($result)>0){
+            if(count($result) > 0){
                 $user_id = $result[0]->referral_id;
-                if($user_id != 1 && $paycount <= 7){
-                    if($paycount == 1){
-                        $percentage = 2;
-                    }else if($paycount == 2){
-                        $percentage = 1;
-                    }else{
-                        $percentage = 0.5;
-                    }
-                    $points = round($amount * $percentage / 100);
-                    $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$user_id', '$points','$ad_info', '$service_status','$time','$paydate')";
-                    DB::insert(DB::raw($sql));
-                    $sql = "update users set wallet = wallet + $points where id = $user_id";
-                    DB::update(DB::raw($sql));
+                if($paycount == 2){
+                    $percentage = 2;
+                }else if($paycount == 3){
+                    $percentage = 1;
                 }else{
-                    break;
+                    $percentage = 0.5;
                 }
-                $paycount++;
-            }else{
-                break;
+                $points = round($amount * $percentage / 100);
+                $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$user_id', '$points','$ad_info', '$service_status','$time','$paydate')";
+                DB::insert(DB::raw($sql));
+                $sql = "update users set wallet = wallet + $points where id = $user_id";
+                DB::update(DB::raw($sql));
             }
         }    
         return redirect( "/purchase/$member_id" )->with( 'success', 'Purchase added successfully');

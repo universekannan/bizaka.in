@@ -44,7 +44,9 @@
                             <thead>
                                 <tr>
                                     <th>S No</th>
+                                    <th>ID</th>
                                     <th>Full Name</th>
+                                    <th>Referral ID</th>
                                     <th>Phone</th>
 									@if(Auth::user()->id == 1)
                                     <th>Password</th>
@@ -57,7 +59,9 @@
                                 @foreach ($members as $key => $memberslist)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
+                                    <td>{{ $memberslist->id }}</td>
                                     <td>{{ $memberslist->name }}</td>
+                                    <td>{{ $memberslist->referral_id }}</td>
                                     <td>{{ $memberslist->phone }}</td>
 	                                @if(Auth::user()->id == 1)
                                     <td>{{ $memberslist->plain_password }}</td>
