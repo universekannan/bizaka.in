@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Models\User;
 
+
 class DashboardController extends Controller
  {
     public function __construct()
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     }
 
     public function dashboard( Request $request ) {
+     
         $id = Auth::user()->id;
         $today = date( 'Y-m-d' );
         $usertype_id = Auth::user()->usertype_id;
@@ -97,8 +99,9 @@ class DashboardController extends Controller
         $data[ 'members' ] = json_decode( $data[ 'members' ], true );
         $primarymember = $data[ 'primarymember' ];
         $members = $data[ 'members' ];
-
+      
         return view( 'dashboard', compact( 'members_count', 'todays_income', 'total_income', 'wallet', 'child', 'requestpayment', 'withdrawalpayment', 'members', 'primarymember' ) );
+
     }
 
 }
