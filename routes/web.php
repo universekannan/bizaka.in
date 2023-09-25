@@ -15,8 +15,10 @@ Route::post('/updatemember', [App\Http\Controllers\UsersController::class, 'upda
 //Purchase
 Route::get('/purchase/{id}', [App\Http\Controllers\UsersController::class, 'purchase'])->name('purchase');
 
+Route::get('mobile/dashboard', [App\Http\Controllers\UsersController::class, 'dashboard'])->name('dashboard');
 Route::post('/addproduct', [App\Http\Controllers\UsersController::class, 'addproduct'])->name('addproduct');
-
+ROUTE::get('/walletlogin', [App\Http\Controllers\UsersController::class, 'walletlogin'])->name('walletlogin');
+Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstudent'])->name('loginstudent');
 
 
 

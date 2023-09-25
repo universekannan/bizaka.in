@@ -133,4 +133,11 @@ class UsersController extends Controller
 
         return redirect( "/purchase/$member_id" )->with( 'success', 'Member added successfully' );
     }
+
+    public function walletlogin(){
+        return view('mobile/signin');
+      }
+      public function dashboard(){
+        return view('mobile/dashboard');
+      }
 }
