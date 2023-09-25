@@ -4,6 +4,7 @@ use Auth;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Jenssegers\Agent\Agent;
 
 class WalletController extends Controller
  {
@@ -14,6 +15,7 @@ class WalletController extends Controller
 
     public function index( $from, $to)
     {
+        $agent = new Agent();
         $login = Auth::user()->id;
         $referral_id = Auth::user()->id;
 
@@ -63,8 +65,11 @@ class WalletController extends Controller
         $status = $paymentrequest[0]->status;
         }
 
-		
+        if($agent->isMobile()){
+            return "This is Mobile";
+        }else{
         return view( 'wallet/index', compact( 'wallet', 'referencedata', 'userpayment', 'from', 'to','status' ) );
+        }
     }
 
     public function superadminaddwallet( Request $request )
