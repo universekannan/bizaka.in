@@ -81,7 +81,7 @@ class UsersController extends Controller
             $result = DB::select(DB::raw($sql));
             if(count($result)>0){
                 $user_id = $result[0]->referral_id;
-                if($user_id != 0 && $paycount <= 7){
+                if($user_id != 1 && $paycount <= 7){
                     if($paycount == 1){
                         $percentage = 2;
                     }else if($paycount == 2){
