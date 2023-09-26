@@ -18,6 +18,7 @@
 <div class="splide single-slider slider-no-dots slider-no-arrows slider-visible" id="single-slider-1">
 <div class="splide__track">
 <div class="splide__list">
+
 <div class="splide__slide">
 <div class="card card-style m-0 bg-5 shadow-card shadow-card-m" style="height:200px">
 <div class="card-top p-3">
@@ -28,7 +29,7 @@
 <h1 class="font-13 my-n1">
 <a class="color-theme" data-bs-toggle="collapse" href="#balance3" aria-controls="balance2">Click for Balance</a>
 </h1>
-<div class="collapse" id="balance3"><h2 class="color-theme font-26">$26,315</h2></div>
+<div class="collapse" id="balance3"><h2 class="color-theme font-26">{{ Auth::user()->wallet }}</h2></div>
 </div>
 </div>
 <strong class="card-top no-click font-12 p-3 color-white font-monospace">Main Account</strong>
@@ -37,6 +38,7 @@
 <div class="card-overlay bg-black opacity-50"></div>
 </div>
 </div>
+
 <div class="splide__slide">
 <div class="card card-style m-0 bg-9 shadow-card shadow-card-m" style="height:200px">
 <div class="card-top p-3">
@@ -56,6 +58,7 @@
 <div class="card-overlay bg-black opacity-50"></div>
 </div>
 </div>
+
 <div class="splide__slide">
 <div class="card card-style m-0 bg-7 shadow-card shadow-card-m" style="height:200px">
 <div class="card-top p-3">
@@ -75,6 +78,7 @@
 <div class="card-overlay bg-black opacity-50"></div>
 </div>
 </div>
+
 </div>
 </div>
 </div>

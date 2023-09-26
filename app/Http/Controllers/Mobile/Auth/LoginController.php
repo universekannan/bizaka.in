@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Mobile\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -42,17 +42,5 @@ class LoginController extends Controller
     }
     
 	
-    public function login(Request $request){
-    $message = "";
-    $username = array("email" => $request->username, "password" => $request->password);
-    if(Auth::attempt($username)) {
-        Auth::loginUsingId(Auth::user()->id);
-        $user_id = Auth::user()->id;
-        return redirect('/dashboard');
-      }else{
-        $message = 'Login Failed';
-        return redirect('/')->with('message',$message);
-      }
-      
-    }
+   
 }
