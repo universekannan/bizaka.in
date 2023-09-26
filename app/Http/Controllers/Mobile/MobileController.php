@@ -20,6 +20,7 @@ class MobileController extends Controller
     }
 
     public function walletdashboard() {
+
         return view( 'mobile/dashboard' );
     }
 }
