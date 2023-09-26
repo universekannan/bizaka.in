@@ -66,7 +66,7 @@
 	                                @if(Auth::user()->id == 1)
                                     <td>{{ $memberslist->plain_password }}</td>
 									@endif
-                                    @if($memberslist->status == 2)
+                                    @if($memberslist->status == 1)
                                       <td class="text-success">Active</td>
                                       @else
                                       <td class="text-danger">Inactive</td>

@@ -13,7 +13,7 @@ class UsersController extends Controller
         if ( $parent_id == 1 )
         $members = DB::table( 'users' )->where( 'usertype_id', 3 )->orderBy( 'id', 'Asc' )->get();
         else
-        $members = DB::table( 'users' )->where( 'parent_id', $parent_id )->orderBy( 'id', 'Asc' )->get();
+        $members = DB::table( 'users' )->where( 'referral_id', $parent_id )->orderBy( 'id', 'Asc' )->get();
 
         return view( 'users/index', compact( 'members' ) );
     }
@@ -52,9 +52,12 @@ class UsersController extends Controller
         return view( 'users/purchase', compact( 'purchases', 'id' ) );
     }
 
-    public function addproductd( Request $request ) {
+    public function addproduct( Request $request ) {
         $log_id = Auth::user()->id;
         $amount = $request->amount;
+        $paydate = date('Y-m-d');
+        $time = date("H:i:s");
+        $member_id = $request->member_id;
         DB::table( 'purchase' )->insert( [
             'member_id' => $request->member_id,
             'amount' => $amount,
@@ -62,73 +65,37 @@ class UsersController extends Controller
             'added_datetime' =>  date( 'Y-m-d H:i:s' ),
             'log_id' => $log_id,
         ] );
-        $member_id = $request->member_id;
-        $sql = "select referral_id from users where id = $member_id";
-        $result = DB::select( DB::raw( $sql ) );
-        $referral_id = $result[ 0 ]->referral_id;
-
-        $paydate = date( 'Y-m-d' );
-        $time = date( 'H:i:s' );
-        $member_id = 0;
-        $child_id = 0;
-        $parent_id = 0;
-        $wallet = 0;
-        $sql = "select * from users where referral_id = '$referral_id'";
-        $result = DB::select( DB::raw( $sql ) );
-        if ( count( $result ) > 0 ) {
-            $member_id = $result[ 0 ]->id;
-            $child_id = $result[ 0 ]->id;
-            $parent_id = $result[ 0 ]->referral_id;
-
-        }
-        $ownamount = ceil( $amount * 10 / 100 );
-        $ad_info = 'Own Amount';
-        $service_status = 'In Payment';
-        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$member_id', '$ownamount','$ad_info', '$service_status','$time','$paydate')";
-        DB::insert( DB::raw( $sql ) );
-        $sql = "update users set wallet = wallet + $amount where id = $member_id";
-        DB::update( DB::raw( $sql ) );
-        $first_parent = true;
-        do {
-            $sql = "select * from users where id = $child_id";
-            $result = DB::select( DB::raw( $sql ) );
-            if ( count( $result ) > 0 ) {
-                $child_id = $result[ 0 ]->id;
-                $parent_id = $result[ 0 ]->referral_id;
-
+        $percentage = 10;
+        $points = round($amount * $percentage / 100);
+        $ad_info = "In Payment";
+        $service_status = "In Payment";
+        $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$member_id', '$points','$ad_info', '$service_status','$time','$paydate')";
+        DB::insert(DB::raw($sql));
+        $sql = "update users set wallet = wallet + $points where id = $member_id";
+        DB::update(DB::raw($sql));
+        $user_id = $member_id;
+        $paycount = 1;
+        while($paycount < 7){
+            $paycount++;
+            $sql = "select referral_id from users where id = $user_id";
+            $result = DB::select(DB::raw($sql));
+            if(count($result) > 0){
+                $user_id = $result[0]->referral_id;
+                if($user_id == 1) break;
+                if($paycount == 2){
+                    $percentage = 2;
+                }else if($paycount == 3){
+                    $percentage = 1;
+                }else{
+                    $percentage = 0.5;
+                }
+                $points = round($amount * $percentage / 100);
+                $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$user_id', '$points','$ad_info', '$service_status','$time','$paydate')";
+                DB::insert(DB::raw($sql));
+                $sql = "update users set wallet = wallet + $points where id = $user_id";
+                DB::update(DB::raw($sql));
             }
-
-            if ( $parent_id != 1 && $first_parent == true ) {
-                $amount = ceil( $amount * 2 / 100 );
-
-            }
-            if ( $parent_id != 1 && $first_parent == false ) {
-                $amount = ceil( $amount * 1 / 100 );
-                $bal = $amount;
-
-            }
-
-            if ( $parent_id == 1 && $first_parent == true ) {
-                $amount = ceil( $amount * 1 / 100 );
-                $bal = $amount;
-
-            }
-            if ( $parent_id == 1 && $first_parent == false ) {
-                $amount = ceil( $amount * 1 / 100 );
-                $amount = $amount + $bal;
-            }
-
-            $first_parent = false;
-            $ad_info = 'Activation';
-            $service_status = 'In Payment';
-            $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$child_id','$parent_id', '$amount','$ad_info', '$service_status','$time','$paydate')";
-            DB::insert( DB::raw( $sql ) );
-            $sql = "update users set wallet = wallet + $amount where id = $parent_id";
-            DB::update( DB::raw( $sql ) );
-            $child_id = $parent_id;
-        }
-        while( $parent_id != 1 );
-
-        return redirect( "/purchase/$member_id" )->with( 'success', 'Member added successfully' );
+        }    
+        return redirect( "/purchase/$member_id" )->with( 'success', 'Purchase added successfully');
     }
 }

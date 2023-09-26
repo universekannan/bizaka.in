@@ -38,7 +38,7 @@ CREATE TABLE `payment` (
   `log_id` int(11) DEFAULT NULL,
   `k_status` int(11) DEFAULT 1,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,'10','10','10',NULL,NULL,NULL,'In Payment','Own Amount',NULL,'12:15:55','2023-09-23',1,1),(2,'10','9','2',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(3,'9','8','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(4,'8','7','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(5,'7','6','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(6,'6','5','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(7,'5','1','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1);
+INSERT INTO `payment` VALUES (1,'10','10','10',NULL,NULL,NULL,'In Payment','Own Amount',NULL,'12:15:55','2023-09-23',1,1),(2,'10','9','2',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(3,'9','8','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(4,'8','7','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(5,'7','6','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(6,'6','5','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(7,'5','1','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(8,'10','10','100',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(9,'10','9','20',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(10,'10','8','10',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(11,'10','7','5',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(12,'10','6','5',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(13,'10','5','5',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1),(14,'10','1','5',NULL,NULL,NULL,'In Payment','In Payment',NULL,'17:12:22','2023-09-25',1,1);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `purchase` (
   `added_datetime` datetime NOT NULL,
   `log_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `purchase` (
 
 LOCK TABLES `purchase` WRITE;
 /*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
-INSERT INTO `purchase` VALUES (1,10,100.00,'2023-09-23','2023-09-23 12:15:55',1);
+INSERT INTO `purchase` VALUES (1,10,100.00,'2023-09-23','2023-09-23 12:15:55',1),(2,10,1000.00,'2023-09-25','2023-09-25 17:12:22',1);
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +177,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'123','$2y$10$cIrs0d3SNe/KnrQyFHx5P./uLaV3wCjCQnR3dHupI3ayHzXffVp6C',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'1082',NULL,'1.png','2023-06-25 13:00:20','2023-06-25 13:00:20',NULL,1,1,'',NULL),(5,0,'Jino','jino@gmail.com',NULL,'7968','$2y$10$oD6Z7JGc7h1E8Imsm3/7mOGO4B7iuq861UpQ.ml1PPSl8vMcuuru6',NULL,1,NULL,NULL,'9047736314',NULL,'Test',NULL,'2354',NULL,NULL,'2023-09-21 09:40:15',NULL,NULL,3,NULL,'1',NULL),(6,0,'Dexter','joe@gmail.com',NULL,'1370','$2y$10$jy2B82nRHWuTm28zvqnQb.GAEsYuHkOGToQH83iHJs7TVPdBAq2fu',NULL,1,NULL,NULL,'9047736314',NULL,'Testr',NULL,'683',NULL,NULL,'2023-09-21 09:41:08',NULL,NULL,3,NULL,'5',NULL),(7,0,'Emmy Rodriguez MD','joe@gmail.com',NULL,'7312','$2y$10$tfxguTayggYT2yW5lYwjV.VqHLZPZBKiKIqCeP3O8iSMnuwf2NoTa',NULL,2,NULL,NULL,'123435',NULL,'Test',NULL,'5198',NULL,NULL,'2023-09-21 10:07:31',NULL,NULL,3,NULL,'6',NULL),(8,0,'Mr. Terrill Weimann DDS','jino@gmail.com',NULL,'5035','$2y$10$xl5hvx31uADB4OaXKpmYbuYfZjffziFIa58tnMRciZFVO4ivi2j9.',NULL,2,NULL,NULL,'123435',NULL,'set',NULL,'3207',NULL,NULL,'2023-09-23 05:37:55',NULL,NULL,3,NULL,'7',NULL),(9,0,'Test','123@gmail.com',NULL,'5866','$2y$10$DW5fnYCK9Bd1asYs3vthjOmON9t00q6tMwiP5F.nx3OVZk3q18b2S',NULL,1,NULL,NULL,'9047736314',NULL,'123',NULL,'302',NULL,NULL,'2023-09-23 05:56:43',NULL,NULL,3,NULL,'8',NULL),(10,0,'Dexter','joe@gmail.com',NULL,'3814','$2y$10$j8OjFieFDlY4sPWsFcbnEu.mA/eyhrERjgOk46NHNwLlFJiMqnpk.',NULL,1,NULL,NULL,'9047736314',NULL,'dwsd',NULL,'100',NULL,NULL,'2023-09-23 06:45:43',NULL,NULL,3,NULL,'9',NULL);
+INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'123','$2y$10$cIrs0d3SNe/KnrQyFHx5P./uLaV3wCjCQnR3dHupI3ayHzXffVp6C',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'1087',NULL,'1.png','2023-06-25 13:00:20','2023-06-25 13:00:20',NULL,1,1,'',NULL),(5,0,'Jino','jino@gmail.com',NULL,'7968','$2y$10$oD6Z7JGc7h1E8Imsm3/7mOGO4B7iuq861UpQ.ml1PPSl8vMcuuru6',NULL,1,NULL,NULL,'9047736314',NULL,'Test',NULL,'2359',NULL,NULL,'2023-09-21 09:40:15',NULL,NULL,3,NULL,'1',NULL),(6,0,'Dexter','joe@gmail.com',NULL,'1370','$2y$10$jy2B82nRHWuTm28zvqnQb.GAEsYuHkOGToQH83iHJs7TVPdBAq2fu',NULL,1,NULL,NULL,'9047736314',NULL,'Testr',NULL,'688',NULL,NULL,'2023-09-21 09:41:08',NULL,NULL,3,NULL,'5',NULL),(7,0,'Emmy Rodriguez MD','joe@gmail.com',NULL,'7312','$2y$10$tfxguTayggYT2yW5lYwjV.VqHLZPZBKiKIqCeP3O8iSMnuwf2NoTa',NULL,2,NULL,NULL,'123435',NULL,'Test',NULL,'5203',NULL,NULL,'2023-09-21 10:07:31',NULL,NULL,3,NULL,'6',NULL),(8,0,'Mr. Terrill Weimann DDS','jino@gmail.com',NULL,'5035','$2y$10$xl5hvx31uADB4OaXKpmYbuYfZjffziFIa58tnMRciZFVO4ivi2j9.',NULL,2,NULL,NULL,'123435',NULL,'set',NULL,'3217',NULL,NULL,'2023-09-23 05:37:55',NULL,NULL,3,NULL,'7',NULL),(9,0,'Test','123@gmail.com',NULL,'5866','$2y$10$DW5fnYCK9Bd1asYs3vthjOmON9t00q6tMwiP5F.nx3OVZk3q18b2S',NULL,1,NULL,NULL,'9047736314',NULL,'123',NULL,'322',NULL,NULL,'2023-09-23 05:56:43',NULL,NULL,3,NULL,'8',NULL),(10,0,'Dexter','joe@gmail.com',NULL,'3814','$2y$10$j8OjFieFDlY4sPWsFcbnEu.mA/eyhrERjgOk46NHNwLlFJiMqnpk.',NULL,1,NULL,NULL,'9047736314',NULL,'dwsd',NULL,'200',NULL,NULL,'2023-09-23 06:45:43',NULL,NULL,3,NULL,'9',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 11:35:25
+-- Dump completed on 2023-09-25 18:42:33
