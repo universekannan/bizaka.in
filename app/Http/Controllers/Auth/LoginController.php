@@ -41,20 +41,31 @@ class LoginController extends Controller
         $this->middleware( 'guest' )->except( 'logout' );
     }
 
+    public function welcome(){
+        return view('welcome');
+    }
+
     public function login( Request $request ) {
         $message = '';
         $email = array( 'email' => $request->email, 'password' => $request->password );
         if ( Auth::attempt( $email ) ) {
             Auth::loginUsingId( Auth::user()->id );
-            if ( Auth::user()->usertype_id == 3 ) {
-                return redirect( 'walletdashboard' );
-            } else {
-                return redirect( '/' )->with( 'message', $message );
-            }
+          if(Auth::user()->usertype_id == 3){
+                return redirect( 'walletdashboard' )->with( 'message', $message );
+          }else{
+            return redirect( 'dashboard' )->with( 'message', $message );
+          }
         } else {
             $message = 'Login Failed';
             return redirect( '/' )->with( 'message', $message );
         }
 
     }
-}
+
+    public function walletlogout(Request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect( '/walletlogin' );
+    }
+} 

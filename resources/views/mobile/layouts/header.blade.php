@@ -32,7 +32,11 @@
     <i class="has-bg gradient-yellow shadow-bg shadow-bg-xs color-white rounded-xs bi bi-person-circle"></i>
     <strong class="font-13">Account</strong>
     </a>
-    <a href="signin" class="list-group-item">
+    <a href="#" class="list-group-item"
+    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+  </form>
     <i class="has-bg gradient-red shadow-bg shadow-bg-xs color-white rounded-xs bi bi-power"></i>
     <strong class="font-13">Log Out</strong>
     </a>

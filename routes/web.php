@@ -1,12 +1,14 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/* Route::get('/', function () {
   return view('welcome');
-});
+}); */
 Auth::routes();
 
 //members
+
+Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'welcome'])->name('welcome');
 
 Route::get('/members', [App\Http\Controllers\UsersController::class, 'members'])->name('members');
 Route::post('/addmember', [App\Http\Controllers\UsersController::class, 'addmember'])->name('addmember');
@@ -21,6 +23,7 @@ Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstu
 //Mobile
 Route::get('walletdashboard', [App\Http\Controllers\Mobile\MobileController::class, 'walletdashboard'])->name('walletdashboard');
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
+ROUTE::post('/walletlogout', [App\Http\Controllers\Auth\LoginController::class, 'walletlogout'])->name('walletlogout');
 
 
 
