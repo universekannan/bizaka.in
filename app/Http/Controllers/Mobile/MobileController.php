@@ -20,7 +20,15 @@ class MobileController extends Controller
     }
 
     public function walletdashboard() {
-
+        $agent = new Agent();
+        if ( $agent->isMobile() ) {
         return view( 'mobile/dashboard' );
+        }
+    }
+
+    public function walletlogout(){
+
+        Auth::logout();
+        return redirect('walletlogin');
     }
 }

@@ -23,7 +23,7 @@ Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstu
 //Mobile
 Route::get('walletdashboard', [App\Http\Controllers\Mobile\MobileController::class, 'walletdashboard'])->name('walletdashboard');
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
-ROUTE::post('/walletlogout', [App\Http\Controllers\Auth\LoginController::class, 'walletlogout'])->name('walletlogout');
+ROUTE::get('/walletlogout', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogout'])->name('walletlogout');
 
 
 
