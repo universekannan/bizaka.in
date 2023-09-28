@@ -132,7 +132,7 @@
                         <h6 class="pt-2">Request</h6>
                     </div>
                     <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
-                        <a href="exchange" data-card-height="60" data-bs-toggle="offcanvas"
+                        <a href="exchangeamount" data-card-height="60" data-bs-toggle="offcanvas"
                             data-bs-target="#menu-friends-transfer"
                             class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
                         <h6 class="pt-2">Exchange</h6>

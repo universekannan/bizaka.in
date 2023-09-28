@@ -24,7 +24,7 @@ Route::get('walletdashboard', [App\Http\Controllers\Mobile\MobileController::cla
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
 ROUTE::get('/walletlogout', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogout'])->name('walletlogout');
 ROUTE::get('/requestamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'requestamount'])->name('requestamount');
-
+ROUTE::get('/exchangeamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'exchangeamount'])->name('exchangeamount');
 
 
 
