@@ -86,20 +86,20 @@
 <div class="content py-2">
 <div class="d-flex text-center">
 <div class="me-auto">
-<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
-<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Transfer</h6>
+    <a href="#" data-card-height="60" data-bs-toggle="offcanvas" data-bs-target="#menu-friends-transfer" class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
+    <h6 class="pt-2">Johnatan</h6>
 </div>
 <div class="m-auto">
-<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-request" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-red-dark bi bi-arrow-down-circle"></i></a>
-<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Request</h6>
+    <a href="#" data-card-height="60" data-bs-toggle="offcanvas" data-bs-target="#menu-friends-transfer" class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
+    <h6 class="pt-2">Johnatan</h6>
 </div>
 <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
-<a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
-<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Exchange</h6>
+    <a href="#" data-card-height="60" data-bs-toggle="offcanvas" data-bs-target="#menu-friends-transfer" class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
+    <h6 class="pt-2">Johnatan</h6>
 </div>
 <div class="ms-auto">
-<a href="page-payment-bill.html" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
-<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Bills</h6>
+    <a href="#" data-card-height="60" data-bs-toggle="offcanvas" data-bs-target="#menu-friends-transfer" class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
+    <h6 class="pt-2">Johnatan</h6>
 </div>
 </div>
 </div>
