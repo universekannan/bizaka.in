@@ -13,7 +13,6 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'welcome'])->
 Route::get('/members', [App\Http\Controllers\UsersController::class, 'members'])->name('members');
 Route::post('/addmember', [App\Http\Controllers\UsersController::class, 'addmember'])->name('addmember');
 Route::post('/updatemember', [App\Http\Controllers\UsersController::class, 'updatemember'])->name('updatemember');
-
 //Purchase
 Route::get('/purchase/{id}', [App\Http\Controllers\UsersController::class, 'purchase'])->name('purchase');
 
@@ -24,7 +23,7 @@ Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstu
 Route::get('walletdashboard', [App\Http\Controllers\Mobile\MobileController::class, 'walletdashboard'])->name('walletdashboard');
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
 ROUTE::get('/walletlogout', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogout'])->name('walletlogout');
-
+ROUTE::get('/requestamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'requestamount'])->name('requestamount');
 
 
 

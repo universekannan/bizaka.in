@@ -22,10 +22,10 @@ class MobileController extends Controller
     public function walletdashboard() {
         $agent = new Agent();
         if ( $agent->isMobile() ) {
-        return view( 'mobile/dashboard' );
+        return view( 'mobile/dashboard');
         }
     }
-
+   
     public function walletlogout(){
 
         Auth::logout();
