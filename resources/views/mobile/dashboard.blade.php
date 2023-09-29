@@ -127,7 +127,6 @@
                     </div>
                     <div class="m-auto">
                         <a href="requestamount" data-card-height="60" data-bs-toggle="offcanvas"
-                            data-bs-target="#menu-friends-transfer"
                             class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
                         <h6 class="pt-2">Request</h6>
                     </div>
