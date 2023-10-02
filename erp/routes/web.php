@@ -17,14 +17,21 @@ Route::post('/updatemember', [App\Http\Controllers\UsersController::class, 'upda
 Route::get('/purchase/{id}', [App\Http\Controllers\UsersController::class, 'purchase'])->name('purchase');
 
 Route::post('/addproduct', [App\Http\Controllers\UsersController::class, 'addproduct'])->name('addproduct');
-Route::post('loginstudent', [App\Http\Controllers\StudentLogin::class, 'loginstudent'])->name('loginstudent');
+
+//withdraw
+
+Route::get('/approvewithdraw', [App\Http\Controllers\WithdrawalController::class, 'approvewithdraw'])->name('approvewithdraw');
+Route::post('/confirmwithdrawal', [App\Http\Controllers\WithdrawalController::class, 'confirmwithdrawal'])->name('confirmwithdrawal');
+
 
 //Mobile
 Route::get('walletdashboard', [App\Http\Controllers\Mobile\MobileController::class, 'walletdashboard'])->name('walletdashboard');
 ROUTE::get('/walletlogin', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogin'])->name('walletlogin');
 ROUTE::get('/walletlogout', [App\Http\Controllers\Mobile\MobileController::class, 'walletlogout'])->name('walletlogout');
 ROUTE::get('/requestamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'requestamount'])->name('requestamount');
-ROUTE::get('/exchangeamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'exchangeamount'])->name('exchangeamount');
+ROUTE::get('/withdrawal', [App\Http\Controllers\Mobile\MobileWalletController::class, 'withdrawal'])->name('withdrawal');
+ROUTE::post('/applywithdrawal', [App\Http\Controllers\Mobile\MobileWalletController::class, 'applywithdrawal'])->name('applywithdrawal');
+
 
 
 
@@ -52,8 +59,7 @@ Route::post('/superadminaddwallet', [App\Http\Controllers\WalletController::clas
 Route::get('/servicepaymentdelete/{id}', [App\Http\Controllers\WalletController::class, 'servicepaymentdelete'])->name('servicepaymentdelete');
 Route::get('/newrequest', [App\Http\Controllers\WalletController::class, 'newrequest'])->name('newrequest');
 Route::get('/transactions', [App\Http\Controllers\WalletController::class, 'transactions'])->name('transactions');
-Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
-Route::post('/confirmwithdrawal', [App\Http\Controllers\WalletController::class, 'confirmwithdrawal'])->name('confirmwithdrawal');
+//Route::get('/withdrawal', [App\Http\Controllers\WalletController::class, 'withdrawal'])->name('withdrawal');
 
 Route::get('/transfer', [App\Http\Controllers\WalletController::class, 'transfer'])->name('transfer');
 Route::get('/todayincome', [App\Http\Controllers\JoinController::class, 'todayincome'])->name('todayincome');
