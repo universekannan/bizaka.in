@@ -1,12 +1,5 @@
 @extends('mobile/layouts.app')
 @section('mobile/content')
-    <div id="preloader">
-        <div class="spinner-border color-highlight" role="status"></div>
-    </div>
-
-    <div id="page">
-
-        <div class="page-content footer-clear">
 
 
             <svg id="header-deco" viewBox="0 0 1440 600" xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +113,23 @@
             <div class="content py-2">
                 <div class="d-flex text-center">
                     <div class="me-auto">
-                        <a href="" data-card-height="60" data-bs-toggle="offcanvas"
+                        
+<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
+<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Summary</h6>
+</div>
+<div class="m-auto">
+<a href="{{ route('withdrawal') }}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-red-dark bi bi-arrow-down-circle"></i></a>
+<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Withdrawal</h6>
+</div>
+<div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
+<a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
+<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Exchange</h6>
+</div>
+<div class="ms-auto">
+<a href="page-payment-bill.html" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
+<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Bills</h6>
+
+                       {{--  <a href="" data-card-height="60" data-bs-toggle="offcanvas"
                             data-bs-target="#menu-friends-transfer"
                             class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
                         <h6 class="pt-2">Transfer</h6>
@@ -140,7 +149,7 @@
                         <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
                             data-bs-target="#menu-friends-transfer"
                             class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                        <h6 class="pt-2">Bills</h6>
+                        <h6 class="pt-2">Bills</h6> --}}
                     </div>
                 </div>
             </div>
@@ -203,140 +212,28 @@
                         </div>
                     </a>
                 </div>
-            </div>
-
-            <div class="content my-0 mt-n2 px-1">
-                <div class="d-flex">
-                    <div class="align-self-center">
-                        <h3 class="font-16 mb-2">Account Activity</h3>
-                    </div>
-                    <div class="align-self-center ms-auto">
-                        <a href="page-activity.html" class="font-12 pt-1">View All</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card card-style gradient-green shadow-bg shadow-bg-s">
-                <div class="content">
+                <div class="card card-style gradient-green shadow-bg shadow-bg-s">
+                    <div class="content">
                     <a href="page-activity.html" class="d-flex">
-                        <div class="align-self-center">
-                            <h1 class="mb-0 font-40"><i class="bi bi-check-circle color-white pe-3"></i></h1>
-                        </div>
-                        <div class="align-self-center">
-                            <h5 class="color-white font-700 mb-0 mt-0 pt-1">
-                                Withdrawal of funds to your <br> Account has been successful.
-                            </h5>
-                        </div>
-                        <div class="align-self-center ms-auto">
-                            <i class="bi bi-arrow-right-short color-white d-block pt-1 font-20 opacity-50"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="content mb-0">
-                <div class="d-flex">
                     <div class="align-self-center">
-                        <h3 class="font-16 mb-2">Send Money</h3>
+                    <h1 class="mb-0 font-40"><i class="bi bi-check-circle color-white pe-3"></i></h1>
+                    </div>
+                    <div class="align-self-center">
+                    <h5 class="color-white font-700 mb-0 mt-0 pt-1">
+                    Withdrawal of funds to your <br> Account has been successful.
+                    </h5>
                     </div>
                     <div class="align-self-center ms-auto">
-                        <a href="page-payment-transfer.html" class="font-12 pt-1">View All</a>
+                    <i class="bi bi-arrow-right-short color-white d-block pt-1 font-20 opacity-50"></i>
                     </div>
-                </div>
-            </div>
-
-            <div class="splide quad-slider slider-no-dots slider-no-arrows slider-visible text-center"
-                id="double-slider-2">
-                <div class="splide__track">
-                    <div class="splide__list">
-                        <div class="splide__slide">
-                            <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
-                                data-bs-target="#menu-friends-transfer"
-                                class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                            <h6 class="pt-2">Johnatan</h6>
-                        </div>
-                        <div class="splide__slide">
-                            <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
-                                data-bs-target="#menu-friends-transfer"
-                                class="card border-0  bg-6 shadow-card shadow-card-m rounded-m"></a>
-                            <h6 class="pt-2">Alexandra</h6>
-                        </div>
-                        <div class="splide__slide">
-                            <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
-                                data-bs-target="#menu-friends-transfer"
-                                class="card border-0 bg-3 shadow-card shadow-card-m rounded-m"></a>
-                            <h6 class="pt-2">Juanita</h6>
-                        </div>
-                        <div class="splide__slide">
-                            <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
-                                data-bs-target="#menu-friends-transfer"
-                                class="card border-0 bg-9 shadow-card shadow-card-m rounded-m"></a>
-                            <h6 class="pt-2">Danielle</h6>
-                        </div>
+                    </a>
                     </div>
-                </div>
+                    </div>
             </div>
-        </div>
+
+            
 
 
-        <div id="menu-sidebar" data-menu-active="nav-welcome" data-menu-load="menu-sidebar.html"
-            class="offcanvas offcanvas-start offcanvas-detached rounded-m">
-        </div>
 
-        <div id="menu-card-more" data-menu-load="menu-card-settings.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-transfer" data-menu-load="menu-transfer.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-friends-transfer" data-menu-load="menu-friends-transfer.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-request" data-menu-load="menu-request.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-exchange" data-menu-load="menu-exchange.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-notifications" data-menu-load="menu-notifications.html"
-            class="offcanvas offcanvas-top offcanvas-detached rounded-m">
-        </div>
-
-        <div id="menu-highlights" data-menu-load="menu-highlights.html"
-            class="offcanvas offcanvas-bottom offcanvas-detached rounded-m">
-        </div>
-        <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-ios">
-            <div class="content">
-                <img src="app/icons/icon-128x128.html" alt="img" width="80" class="rounded-m mx-auto my-4">
-                <h1 class="text-center">Install PayApp</h1>
-                <p class="boxed-text-xl">
-                    Install PayApp on your home screen, and access it just like a regular app. Open your Safari menu and tap
-                    "Add to Home Screen".
-                </p>
-                <a href="#"
-                    class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-50 font-11 text-center d-block mt-n2"
-                    data-bs-dismiss="offcanvas">Maybe Later</a>
-            </div>
-        </div>
-        <div class="offcanvas offcanvas-bottom rounded-m offcanvas-detached" id="menu-install-pwa-android">
-            <div class="content">
-                <img src="app/icons/icon-128x128.html" alt="img" width="80" class="rounded-m mx-auto my-4">
-                <h1 class="text-center">Install PayApp</h1>
-                <p class="boxed-text-l">
-                    Install PayApp to your Home Screen to enjoy a unique and native experience.
-                </p>
-                <a href="#"
-                    class="pwa-install btn btn-m rounded-s text-uppercase font-900 gradient-highlight shadow-bg shadow-bg-s btn-full">Add
-                    to Home Screen</a><br>
-                <a href="#" data-bs-dismiss="offcanvas"
-                    class="pwa-dismiss close-menu color-theme text-uppercase font-900 opacity-60 font-11 text-center d-block mt-n1">Maybe
-                    later</a>
-            </div>
-        </div>
-    </div>
+      
 @endsection
