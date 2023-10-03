@@ -30,4 +30,14 @@ class MobileWalletController extends Controller {
         ] );
         return redirect( 'withdrawal' );
     }
+
+    public function summary(){
+        $id = Auth::user()->id;
+        $withdrawal = DB::table( 'withdrawal' )->where( 'user_id', $id )->orderBy( 'id', 'Desc' )->get();
+        $status ="";
+        if(count($withdrawal) > 0){
+        $status = $withdrawal[0]->status;
+        }
+        return view( 'mobile.summary',compact('withdrawal','status') );
+    }
 }

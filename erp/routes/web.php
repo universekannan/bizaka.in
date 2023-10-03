@@ -31,6 +31,8 @@ ROUTE::get('/walletlogout', [App\Http\Controllers\Mobile\MobileController::class
 ROUTE::get('/requestamount', [App\Http\Controllers\Mobile\MobileWalletController::class, 'requestamount'])->name('requestamount');
 ROUTE::get('/withdrawal', [App\Http\Controllers\Mobile\MobileWalletController::class, 'withdrawal'])->name('withdrawal');
 ROUTE::post('/applywithdrawal', [App\Http\Controllers\Mobile\MobileWalletController::class, 'applywithdrawal'])->name('applywithdrawal');
+ROUTE::get('/summary', [App\Http\Controllers\Mobile\MobileWalletController::class, 'summary'])->name('summary');
+
 
 
 

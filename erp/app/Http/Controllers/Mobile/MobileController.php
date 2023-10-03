@@ -9,7 +9,7 @@ use Jenssegers\Agent\Agent;
 
 class MobileController extends Controller
  {
-
+   
     public function walletlogin() {
 
         $agent = new Agent();
@@ -20,15 +20,43 @@ class MobileController extends Controller
     }
 
     public function walletdashboard() {
+        if(Auth::user()->usertype_id != 3){
+            Auth::logout();
+            return redirect ('/login');
+        }
+
+        $id = Auth::user()->id;
+        $today = date( 'Y-m-d' );
+        $sql = "select sum(amount) as todays_income from payment where to_id=$id and service_status = 'In Payment' and paydate='$today'";
+        $result = DB::select( DB::raw( $sql ) );
+        $todays_income = $result[ 0 ]->todays_income;
+        if ( $todays_income == '' ) {
+            $todays_income = 0;
+        }
+
+        $sql = "select sum(amount) as total_income from payment where to_id=$id and service_status = 'In Payment'";
+        $result = DB::select( DB::raw( $sql ) );
+        $total_income = $result[ 0 ]->total_income;
+        if ( $total_income == '' ) {
+            $total_income = 0;
+        }
+
+        $sql = "select sum(amount) as withdrawal_income from withdrawal where user_id=$id and status = 'Completed'";
+        $result = DB::select( DB::raw( $sql ) );
+        $withdrawal_income = $result[ 0 ]->withdrawal_income;
+        if ( $withdrawal_income == '' ) {
+            $withdrawal_income = 0;
+        }
+
         $agent = new Agent();
         if ( $agent->isMobile() ) {
-        return view( 'mobile/dashboard');
+        return view( 'mobile/dashboard',compact('todays_income','today','total_income','withdrawal_income'));
         }
     }
    
     public function walletlogout(){
 
         Auth::logout();
-        return redirect('walletlogin');
+        return view( 'mobile/signin' );
     }
 }

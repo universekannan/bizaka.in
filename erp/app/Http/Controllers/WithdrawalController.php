@@ -8,6 +8,12 @@ use Auth;
 class WithdrawalController extends Controller
  {
 
+    public function __construct()
+    {
+           $this->middleware( 'auth' );
+       }
+   
+
     public function approvewithdraw() {
     $sql = "select a.*,b.name from withdrawal a,users b where a.user_id = b.id and a.status='Pending'";
     $withdrawal =  DB::select( DB::raw( $sql ));

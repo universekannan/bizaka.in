@@ -8,6 +8,12 @@ use Auth;
 class UsersController extends Controller
  {
 
+    public function __construct()
+    {
+           $this->middleware( 'auth' );
+       }
+   
+
     public function members() {
         $parent_id = Auth::user()->id;
         if ( $parent_id == 1 )

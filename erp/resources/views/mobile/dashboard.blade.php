@@ -174,11 +174,11 @@
                         </div>
                         <div class="align-self-center ps-1">
                             <h5 class="pt-1 mb-n1">Today Income</h5>
-                            <p class="mb-0 font-11 opacity-50">14th March <span class="copyright-year"></span></p>
+                            <p class="mb-0 font-11 opacity-80">{{ $today }}</p>
                         </div>
                         <div class="align-self-center ms-auto text-end">
-                            <h4 class="pt-1 mb-n1 color-red-dark">$150.55</h4>
-                            <p class="mb-0 font-11">Bill Payment</p>
+                            <h4 class="pt-1 mb-n1 color-red-dark">{{ $todays_income }}</h4>
+                            <p class="mb-0 font-11">Amount</p>
                         </div>
                     </a>
                     <div class="divider my-2 opacity-50"></div>
@@ -188,12 +188,12 @@
                                     class="bi bi-caret-up-fill color-white"></i></span>
                         </div>
                         <div class="align-self-center ps-1">
-                            <h5 class="pt-1 mb-n1">Bitcoin</h5>
-                            <p class="mb-0 font-11 opacity-50">14th March <span class="copyright-year"></span></p>
+                            <h5 class="pt-1 mb-n1">Total Income</h5>
+                            <p class="mb-0 font-11 opacity-80"><span class="copyright-year"></span></p>
                         </div>
                         <div class="align-self-center ms-auto text-end">
-                            <h4 class="pt-1 mb-n1 color-blue-dark">+0.315%</h4>
-                            <p class="mb-0 font-11">Stock Update</p>
+                            <h4 class="pt-1 mb-n1 color-blue-dark">{{ $total_income }}</h4>
+                            <p class="mb-0 font-11">Amount</p>
                         </div>
                     </a>
                     <div class="divider my-2 opacity-50"></div>
@@ -203,32 +203,15 @@
                                     class="bi bi-pie-chart-fill color-white"></i></span>
                         </div>
                         <div class="align-self-center ps-1">
-                            <h5 class="pt-1 mb-n1">Dividends</h5>
-                            <p class="mb-0 font-11 opacity-50">13th March <span class="copyright-year"></span></p>
+                            <h5 class="pt-1 mb-n1">Total Withdrawal</h5>
+                            <p class="mb-0 font-11 opacity-80"><span class="copyright-year"></span></p>
                         </div>
                         <div class="align-self-center ms-auto text-end">
-                            <h4 class="pt-1 mb-n1 color-green-dark">$950.00</h4>
-                            <p class="mb-0 font-11">Wire Transfer</p>
+                            <h4 class="pt-1 mb-n1 color-green-dark">{{ $withdrawal_income }}</h4>
+                            <p class="mb-0 font-11">Amount</p>
                         </div>
                     </a>
                 </div>
-                <div class="card card-style gradient-green shadow-bg shadow-bg-s">
-                    <div class="content">
-                    <a href="page-activity.html" class="d-flex">
-                    <div class="align-self-center">
-                    <h1 class="mb-0 font-40"><i class="bi bi-check-circle color-white pe-3"></i></h1>
-                    </div>
-                    <div class="align-self-center">
-                    <h5 class="color-white font-700 mb-0 mt-0 pt-1">
-                    Withdrawal of funds to your <br> Account has been successful.
-                    </h5>
-                    </div>
-                    <div class="align-self-center ms-auto">
-                    <i class="bi bi-arrow-right-short color-white d-block pt-1 font-20 opacity-50"></i>
-                    </div>
-                    </a>
-                    </div>
-                    </div>
             </div>
 
             
