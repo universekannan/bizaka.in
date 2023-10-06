@@ -72,7 +72,7 @@
                                                     <td class="text-danger">Inactive</td>
                                                 @endif
                                                 <td style="white-space: nowrap">
-                                                    <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->address }}')"
+                                                    <a onclick="edit_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->email }}','{{ $memberslist->address }}')"
                                                         href="#" class="btn btn-sm btn-primary"><i
                                                             class="fa fa-edit"></i>Edit</a>
                                                     <a onclick="view_member('{{ $memberslist->id }}','{{ $memberslist->name }}','{{ $memberslist->phone }}','{{ $memberslist->email }}','{{ $memberslist->plain_password }}','{{ $memberslist->address }}')"
@@ -213,7 +213,17 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label for="address" class="col-sm-4 col-form-label"><span
+                                            style="color:red">*</span>Email</label>
+                                    <div class="col-sm-8">
+                                        <input required="required" class="form-control" name="email" id="editemail" placeholder="Email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group row">
@@ -298,10 +308,11 @@
 @endsection
 @push('page_scripts')
     <script>
-        function edit_member(id, name, phone, address) {
+        function edit_member(id, name, phone, email, address) {
             $("#member_id").val(id);
             $("#editname").val(name);
             $("#editphone").val(phone);
+            $("#editemail").val(email);
             $("#editaddress").val(address);
             $("#editmember").modal("show");
         }

@@ -41,6 +41,7 @@ class UsersController extends Controller
         DB::table( 'users' )->where( 'id', $request->id )->update( [
             'name' => $request->name,
             'phone' => $request->phone,
+            'email' => $request->email,
             'address' => $request->address,
             'updated_at' =>  date( 'Y-m-d H:i:s' ),
         ] );
