@@ -83,7 +83,7 @@
                                                 <td>{{ $walletlist->to_id }} , {{ $walletlist->name_to }}</td>
                                                 
                                                 <td>{{ $walletlist->service_status }} , {{ $walletlist->ad_info }} ,
-                                                    {{ $walletlist->ad_info2 }} , RS {{ $walletlist->amount }} , </td>
+                                                    {{ $walletlist->ad_info2 }} , Z {{ $walletlist->amount }} , </td>
                                                 <td>{{ $walletlist->paydate }} , {{ $walletlist->time }}</td>
 
                                                 @if ($walletlist->service_status == 'Out Payment')

@@ -20,6 +20,7 @@ class MobileController extends Controller
     }
 
     public function walletdashboard() {
+      if (Auth::user()) {
         if(Auth::user()->usertype_id != 3){
             Auth::logout();
             return redirect ('/login');
@@ -52,7 +53,41 @@ class MobileController extends Controller
         if ( $agent->isMobile() ) {
         return view( 'mobile/dashboard',compact('todays_income','today','total_income','withdrawal_income'));
         }
+        }else{
+          $agent = new Agent();
+          if ( $agent->isMobile() ) {
+            return redirect( 'walletlogin');
+            }
+        }
     }
+
+    public function change(){
+        $agent = new Agent();
+        if ( $agent->isMobile() ) {
+        return view( 'mobile/changepassword' );
+        }
+    }
+
+    public function passwordupdate(Request $request){
+        $userid = Auth::user()->id;
+        $old_password = trim($request->get("oldpassword"));
+        $currentPassword = auth()->user()->password;
+        if(Hash::check($old_password, $currentPassword)){
+          $new_password = trim($request->get("new_password"));
+          $confirm_password = trim($request->get("confirm_password"));
+          if($new_password != $confirm_password){
+            return redirect('passwordchange')->with('error', 'Passwords does not match');
+          }else{
+            $updatepass = DB::table('users')->where('id', '=', $userid)->update([
+              'password'            => Hash::make($new_password),
+              'plain_password'      => $request->new_password,
+            ]);
+            return redirect('walletdashboard')->with('success', 'Passwords Change Succesfully');
+          }
+        }else{
+          return redirect('passwordchange')->with('error', 'Sorry, your current password was not recognised');
+        }
+      }
    
     public function walletlogout(){
 

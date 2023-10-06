@@ -11,39 +11,41 @@
     <div class="mt-3"></div>
     
     <div class="collapse show" id="tab-4" data-bs-parent="#tab-group-2">
+        @foreach($inpayment as $in)
     <a href="#" class="d-flex py-1" data-bs-toggle="offcanvas" data-bs-target="#menu-activity-1">
     <div class="align-self-center">
     <span class="icon gradient-red me-2 shadow-bg shadow-bg-s rounded-s">
-    <img src="images/pictures/6s.jpg" width="45" class="rounded-s" alt="img">
     </span>
     </div>
     <div class="align-self-center ps-1">
-    <h5 class="pt-1 mb-n1">Karla Black</h5>
-    <p class="mb-0 font-11 opacity-70">12th March <span class="copyright-year"></span></p>
+    <h5 class="pt-1 mb-n1">{{ $in->name_from }}</h5>
+    <p class="mb-0 font-11 opacity-70">{{ $in->paydate }}</p>
     </div>
     <div class="align-self-center ms-auto text-end">
-    <h4 class="pt-1 mb-n1 color-green-dark">$150.55</h4>
+    <h4 class="pt-1 mb-n1 color-green-dark">{{ $in->amount }} Z</h4>
     <p class="mb-0 font-11"> Received</p>
     </div>
     </a>
+    @endforeach
     <div class="divider my-2 opacity-50"></div>
     </div>
     
     <div class="collapse" id="tab-5" data-bs-parent="#tab-group-2">
+        @foreach($outpayment as $out)
     <a href="#" class="d-flex py-1" data-bs-toggle="offcanvas" data-bs-target="#menu-activity-1">
     <div class="align-self-center">
     <span class="icon gradient-yellow me-2 shadow-bg shadow-bg-xs rounded-s">
-    <img src="images/pictures/21s.jpg" width="45" class="rounded-s" alt="img"></span>
     </div>
     <div class="align-self-center ps-1">
-    <h5 class="pt-1 mb-n1">Jane Doe</h5>
-    <p class="mb-0 font-11 opacity-70">12th March <span class="copyright-year"></span></p>
+    <h5 class="pt-1 mb-n1">{{ $out->name_to }}</h5>
+    <p class="mb-0 font-11 opacity-70">{{ $out->paydate }}</p>
     </div>
     <div class="align-self-center ms-auto text-end">
-    <h4 class="pt-1 mb-n1 color-red-dark">$250.00</h4>
-    <p class="mb-0 font-11">Transfered</p>
+    <h4 class="pt-1 mb-n1 color-red-dark">{{ $out->amount }} Z</h4>
+    <p class="mb-0 font-11">Out Payment</p>
     </div>
     </a>
+    @endforeach
     <div class="divider my-2 opacity-50"></div>
     </div>
     

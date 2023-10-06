@@ -36,7 +36,7 @@ class WalletController extends Controller
 
      }
      $wallet = json_decode(json_encode($wallet));
-     //echo"<pre>";print_r($wallet);echo "</pre>";die;
+     // echo"<pre>";print_r($wallet);echo "</pre>";die;
         $sql = '';
         if ( Auth::user()->id == 1 ) {
             $sql = "Select * from `users` where `id` = '1' order by `id` desc limit 1 ";

@@ -27,9 +27,10 @@
                 <div class="card-center mx-3 px-4 py-4 bg-white rounded-m">
                     <h1 class="font-30 font-800 mb-0">PayApp</h1>
                     <p>Login to your Account.</p>
+                    <p class="text-center text-danger">{{ session('message') }}</p>
                     <div class="form-custom form-label form-border form-icon mb-3 bg-transparent">
                         <i class="bi bi-person-circle font-13"></i>
-                        <input type="text" class="form-control rounded-xs" name="email" placeholder="Username" />
+                        <input type="text" class="form-control rounded-xs" name="email"  value="{{ old('email') }}" placeholder="Username" />
                         <label for="c1" class="color-theme">Username</label>
                         <span>(required)</span>
                     </div>

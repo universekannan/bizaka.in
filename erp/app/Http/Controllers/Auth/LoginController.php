@@ -56,8 +56,15 @@ class LoginController extends Controller
             return redirect( 'dashboard' )->with( 'message', $message );
           }
         } else {
-            $message = 'Login Failed';
+            $message = 'Email or Password is incorrect';
+            $usertype = DB::table('users')->select('usertype_id')->where( 'email', '=', $request->email )->get();
+            $usertypeid = $usertype[0]->usertype_id;
+            if($usertypeid == 3){
+                return redirect( '/walletlogin' )->with( 'message', $message )->withInput();
+            }else{
             return redirect( '/' )->with( 'message', $message );
+            }
+            
         }
 
     }

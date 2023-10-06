@@ -109,47 +109,31 @@
                     </div>
                 </div>
             </div>
-
+            @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissable" style="margin: 15px;">
+                <a href="#" style="color:white !important" class="close" data-dismiss="alert"
+                    aria-label="close">&times;</a>
+                <strong> {{ session('success') }} </strong>
+            </div>
+        @endif
             <div class="content py-2">
                 <div class="d-flex text-center">
                     <div class="me-auto">
                         
-<a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-transfer" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
+<a href="{{ route('summary') }}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-green-dark bi bi-arrow-up-circle"></i></a>
 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Summary</h6>
 </div>
 <div class="m-auto">
 <a href="{{ route('withdrawal') }}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-red-dark bi bi-arrow-down-circle"></i></a>
 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Withdrawal</h6>
 </div>
-<div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
-<a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-blue-dark bi bi-arrow-repeat"></i></a>
-<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Exchange</h6>
+<div class="m-auto">
+<a href="{{ route('passwordchange') }}" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-red-dark bi bi-lock"></i></a>
+<h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Change Password</h6>
 </div>
 <div class="ms-auto">
-<a href="page-payment-bill.html" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
+<a href="#" class="icon icon-xxl rounded-m bg-theme shadow-m"><i class="font-28 color-brown-dark bi bi-filter-circle"></i></a>
 <h6 class="font-13 opacity-80 font-500 mb-0 pt-2">Bills</h6>
-
-                       {{--  <a href="" data-card-height="60" data-bs-toggle="offcanvas"
-                            data-bs-target="#menu-friends-transfer"
-                            class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                        <h6 class="pt-2">Transfer</h6>
-                    </div>
-                    <div class="m-auto">
-                        <a href="requestamount" data-card-height="60" data-bs-toggle="offcanvas"
-                            class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                        <h6 class="pt-2">Request</h6>
-                    </div>
-                    <div data-bs-toggle="offcanvas" data-bs-target="#menu-exchange" class="m-auto">
-                        <a href="exchangeamount" data-card-height="60" data-bs-toggle="offcanvas"
-                            data-bs-target="#menu-friends-transfer"
-                            class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                        <h6 class="pt-2">Exchange</h6>
-                    </div>
-                    <div class="ms-auto">
-                        <a href="#" data-card-height="60" data-bs-toggle="offcanvas"
-                            data-bs-target="#menu-friends-transfer"
-                            class="card border-0  bg-1 shadow-card shadow-card-m rounded-m"></a>
-                        <h6 class="pt-2">Bills</h6> --}}
                     </div>
                 </div>
             </div>
@@ -160,14 +144,14 @@
                         <h3 class="font-16 mb-2">Recent Activity</h3>
                     </div>
                     <div class="align-self-center ms-auto">
-                        <a href="page-activity.html" class="font-12 pt-1">View All</a>
+                        <a href="{{ route('summary') }}" class="font-12 pt-1">View All</a>
                     </div>
                 </div>
             </div>
 
             <div class="card card-style">
                 <div class="content">
-                    <a href="page-activity.html" class="d-flex py-1">
+                    <a href="#" class="d-flex py-1">
                         <div class="align-self-center">
                             <span class="icon rounded-s me-2 gradient-orange shadow-bg shadow-bg-s"><i
                                     class="bi bi-google color-white"></i></span>
@@ -182,7 +166,7 @@
                         </div>
                     </a>
                     <div class="divider my-2 opacity-50"></div>
-                    <a href="page-activity.html" class="d-flex py-1">
+                    <a href="#" class="d-flex py-1">
                         <div class="align-self-center">
                             <span class="icon rounded-s me-2 gradient-green shadow-bg shadow-bg-s"><i
                                     class="bi bi-caret-up-fill color-white"></i></span>
@@ -197,7 +181,7 @@
                         </div>
                     </a>
                     <div class="divider my-2 opacity-50"></div>
-                    <a href="page-activity.html" class="d-flex py-1">
+                    <a href="#" class="d-flex py-1">
                         <div class="align-self-center">
                             <span class="icon rounded-s me-2 gradient-yellow shadow-bg shadow-bg-s"><i
                                     class="bi bi-pie-chart-fill color-white"></i></span>
@@ -213,10 +197,5 @@
                     </a>
                 </div>
             </div>
-
-            
-
-
-
       
 @endsection
