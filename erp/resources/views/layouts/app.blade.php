@@ -213,6 +213,54 @@ $('.number').keypress(function (event) {
   }
 });
 
+function duplicateemail(id){
+		var email = $("#email").val().trim();
+		var _token = $('input[name="_token"]').val();
+		$.ajax({
+			type: "post",
+			url: '{{ url('checkemail') }}',
+			data:{id:id,email:email,_token:_token},
+			
+			success: function(res) {
+				if(res.exists){
+					$("#save").prop('disabled', true);
+					$("#dupemail").html("Duplicate Email");
+				}else{
+					$("#save").prop('disabled', false);
+					$("#dupemail").html("");
+				}
+			},
+			
+			error: function (jqXHR, exception) {
+				console.log(exception);
+			}
+		});
+		}
+
+    function duplicateeditemail(id){
+		var email = $("#editemail").val().trim();
+		var _token = $('input[name="_token"]').val();
+		$.ajax({
+			type: "post",
+			url: '{{ url('checkeditemail') }}',
+			data:{id:id,email:email,_token:_token},
+			
+			success: function(res) {
+				if(res.exists){
+					$("#saveedit").prop('disabled', true);
+					$("#dupeeditmail").html("Duplicate Email");
+				}else{
+					$("#saveedit").prop('disabled', false);
+					$("#dupeeditmail").html("");
+				}
+			},
+			
+			error: function (jqXHR, exception) {
+				console.log(exception);
+			}
+		});
+		}
+
 $('.select2').select2({
   theme: 'bootstrap4'
 });

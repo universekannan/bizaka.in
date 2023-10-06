@@ -149,8 +149,9 @@
                                     <label for="email" class="col-sm-4 col-form-label"><span
                                             style="color:red">*</span>Email Id</label>
                                     <div class="col-sm-8">
-                                        <input required="required" type="text" class="form-control" name="email"
+                                        <input onkeyup="duplicateemail(0)" required="required" type="text" class="form-control" name="email"
                                             id="email" maxlength="20" placeholder="Email ..">
+                                            <span id="dupemail" style="color:red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +171,7 @@
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <input class="btn btn-primary" type="submit" value="Submit" />
+                            <input id="save" class="btn btn-primary" type="submit" value="Submit" />
                         </div>
                     </div>
                 </div>
@@ -221,7 +222,8 @@
                                     <label for="address" class="col-sm-4 col-form-label"><span
                                             style="color:red">*</span>Email</label>
                                     <div class="col-sm-8">
-                                        <input required="required" class="form-control" name="email" id="editemail" placeholder="Email">
+                                        <input onkeyup="duplicateeditemail(0)" required="required" class="form-control" name="email" id="editemail" placeholder="Email">
+                                        <span id="dupeeditmail" style="color:red"></span>
                                     </div>
                                 </div>
                             </div>
@@ -240,7 +242,7 @@
                         </div>
                         <div class="modal-footer justify-content-between">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <input class="btn btn-primary" type="submit" value="Submit" />
+                            <input id="saveedit" class="btn btn-primary" type="submit" value="Submit" />
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'welcome'])->
 Route::get('/members', [App\Http\Controllers\UsersController::class, 'members'])->name('members');
 Route::post('/addmember', [App\Http\Controllers\UsersController::class, 'addmember'])->name('addmember');
 Route::post('/updatemember', [App\Http\Controllers\UsersController::class, 'updatemember'])->name('updatemember');
+Route::post('/checkemail', [App\Http\Controllers\UsersController::class, 'checkemail'])->name('checkemail');
+Route::post('/checkeditemail', [App\Http\Controllers\UsersController::class, 'checkeditemail'])->name('checkeditemail');
 //Purchase
 Route::get('/purchase/{id}', [App\Http\Controllers\UsersController::class, 'purchase'])->name('purchase');
 

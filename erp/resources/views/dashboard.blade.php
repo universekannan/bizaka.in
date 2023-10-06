@@ -61,11 +61,11 @@
       </div> 
   </div>
     <div class="card">
-      <div class="card-header">
+      {{-- <div class="card-header">
         <h3 class="card-title">Geneology</h3>
-      </div>
+      </div> --}}
       <!-- /.card-header -->
-      <div class="card-body">
+     {{--  <div class="card-body">
 
         <style>
 /*Now the CSS*/
@@ -225,7 +225,7 @@ right connector from last child*/
  </div>
 </div>
 
-</div>
+</div> --}}
 </div>
 </div>
 </div>

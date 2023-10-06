@@ -42,6 +42,40 @@ class UsersController extends Controller
         return redirect( '/members' )->with( 'success', 'Member added successfully' );
     }
 
+    public function checkemail( Request $request )
+  {
+    $email = trim( $request->email );
+    $id = trim( $request->id );
+    if ( $id == 0 ) {
+      $sql = "SELECT * FROM users where email='$email'";
+    } else {
+      $sql = "SELECT * FROM users where email='$email' and id <> $id";
+    }
+    $users = DB::select( DB::raw( $sql ) );
+    if ( count( $users ) > 0 ) {
+      return response()->json( array( 'exists' => true ) );
+    } else {
+      return response()->json( array( 'exists' => false ) );
+    }
+  }
+
+  public function checkeditemail( Request $request )
+  {
+    $email = trim( $request->email );
+    $id = trim( $request->id );
+    if ( $id == 0 ) {
+      $sql = "SELECT * FROM users where email='$email'";
+    } else {
+      $sql = "SELECT * FROM users where email='$email' and id <> $id";
+    }
+    $users = DB::select( DB::raw( $sql ) );
+    if ( count( $users ) > 0 ) {
+      return response()->json( array( 'exists' => true ) );
+    } else {
+      return response()->json( array( 'exists' => false ) );
+    }
+  }
+
     public function updatemember( Request $request ) {
 
         DB::table( 'users' )->where( 'id', $request->id )->update( [
@@ -74,6 +108,8 @@ class UsersController extends Controller
         ] );
         $percentage = 10;
         $points = round($amount * $percentage / 100);
+        $sql = "update users set wallet = wallet - $points where id = 1";
+        DB::update(DB::raw($sql));
         $ad_info = "In Payment";
         $service_status = "In Payment";
         $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$member_id', '$points','$ad_info', '$service_status','$time','$paydate')";
@@ -100,6 +136,8 @@ class UsersController extends Controller
                 $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$user_id', '$points','$ad_info', '$service_status','$time','$paydate')";
                 DB::insert(DB::raw($sql));
                 $sql = "update users set wallet = wallet + $points where id = $user_id";
+                DB::update(DB::raw($sql));
+                $sql = "update users set wallet = wallet - $points where id = 1";
                 DB::update(DB::raw($sql));
             }
         }    
