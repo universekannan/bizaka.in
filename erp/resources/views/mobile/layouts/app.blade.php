@@ -31,7 +31,8 @@
         <div id="footer-bar" class="footer-bar-1 footer-bar-detached">
             <a href="{{ route('summary') }}"><i class="bi bi-wallet2"></i><span>Summary</span></a>
             <a href="{{ route('withdrawal') }}"><i class="bi bi-graph-up"></i><span>Withdrawal</span></a>
-            <a href="{{ route('walletdashboard') }}" class="circle-nav-2"><i class="bi bi-house-fill"></i><span>Home</span></a>
+            <a href="{{ route('walletdashboard') }}" class="circle-nav-2"><i
+                    class="bi bi-house-fill"></i><span>Home</span></a>
             <a href="{{ route('passwordchange') }}"><i class="bi bi-receipt"></i><span>Change Password</span></a>
             <a href="#" data-bs-toggle="offcanvas" data-bs-target="#menu-sidebar"><i
                     class="bi bi-three-dots"></i><span>More</span></a>
@@ -107,9 +108,8 @@
 
                     <div class="divider divider-margins opacity-50"></div>
                     <!-- Menu Copyright -->
-                    <p class="px-3 font-9 opacity-30 color-theme mt-n3">Copyright <span
-                            class="copyright-year"></span>. Made with <i
-                            class="bi bi-heart-fill color-red-dark px-1"></i> by Enabled</p>
+                    <p class="px-3 font-9 opacity-30 color-theme mt-n3">Copyright <span class="copyright-year"></span>.
+                        Made with <i class="bi bi-heart-fill color-red-dark px-1"></i> by Enabled</p>
                 </div>
             </div>
 
@@ -167,31 +167,36 @@
         @stack('mobile/page_scripts')
 
         <script>
+            $('#amt').on('input', function() {
+                var wallet = parseInt($('#bal').val());
+                var amt = parseInt($('#amt').val());
+                var balance = wallet - amt;
+                $('#balance').val(balance);
+                if (balance >= 0) {
+                    $('#sub').prop('disabled', false);
+                    $("#warn").html("");
+                } else {
+                    $('#sub').prop('disabled', true);
+                    $("#warn").html('Please enter the amount below ' + wallet);
+                }
+            });
 
-           $('#amt').on('input', function() {
-            var wallet = parseInt($('#bal').val());
-            var amt = parseInt($('#amt').val());
-            var balance = wallet - amt;
-            $('#balance').val(balance);
-            if (balance >= 0) {
-                $('#sub').prop('disabled', false);
-                $("#warn").html("");
-            } else {
-                $('#sub').prop('disabled', true);
-                $("#warn").html('Please enter the amount below ' + wallet);
-            }
-        });
+            $(".alert-success").fadeTo(2000, 500).slideUp(500, function() {
+                $(".alert-success").slideUp(500);
+            });
+            $(".alert-danger").fadeTo(2000, 500).slideUp(500, function() {
+                $(".alert-danger").slideUp(500);
+            });
 
-        $(".alert-success").fadeTo(2000, 500).slideUp(500, function(){
-         $(".alert-success").slideUp(500);
-         });
-         $(".alert-danger").fadeTo(2000, 500).slideUp(500, function(){
-    $(".alert-danger").slideUp(500);
-  });
+            $('.number').keypress(function(event) {
+                var keycode = event.which;
+                if (!(event.shiftKey == false && (keycode == 8 || keycode == 37 || keycode == 39 || (keycode >= 48 &&
+                        keycode <= 57)))) {
+                    event.preventDefault();
+                }
+            });
+        </script>
 
-
-       </script>
-        
 </body>
 
 </html>

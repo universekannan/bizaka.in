@@ -38,7 +38,7 @@
                         <div class="pb-2"></div>
                         <div class="form-custom form-label form-icon">
                             <i> Z </i>
-                            <input type="number" name="withdraw_amount" class="form-control rounded-xs" id="amt"
+                            <input type="text" name="withdraw_amount" class="form-control rounded-xs number" id="amt"
                                 placeholder="Withdrawal Amount" required />
                             <label for="c32" class="color-highlight">Withdrawal Amount</label>
                             <span>(required)</span>
