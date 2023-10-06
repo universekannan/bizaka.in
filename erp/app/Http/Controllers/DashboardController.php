@@ -14,7 +14,10 @@ class DashboardController extends Controller
     }
 
     public function dashboard( Request $request ) {
-     
+        if(Auth::user()->usertype_id == 3){
+            Auth::logout();
+            return redirect ('/walletlogin');
+        }
         $id = Auth::user()->id;
         $today = date( 'Y-m-d' );
         $usertype_id = Auth::user()->usertype_id;

@@ -12,7 +12,7 @@
 						<p>Dashboard</p>
 					</a>
 				</li>
-				 <li class="nav-item has-treeview {{ ((request()->segment(1) =='member') || request()->is('members') || request()->is('geneology')) ? 'menu-open' : '' }}">
+				 <li class="nav-item has-treeview {{ ((request()->segment(1) =='member') || request()->is('members')  || request()->is('approvewithdraw') || request()->is('geneology')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link">
              <i class="far fa-user nav-icon"></i>
               <p>
@@ -31,7 +31,7 @@
 
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('approvewithdraw') }}" class="nav-link {{ (request()->is('withdrawals')) ? 'active' : '' }}">
+                <a href="{{ route('approvewithdraw') }}" class="nav-link {{ (request()->is('approvewithdraw')) ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>withdrawal</p>
                 </a>

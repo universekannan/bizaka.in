@@ -29,7 +29,7 @@
                         {{ csrf_field() }}
                         <div class="pb-2"></div>
                         <div class="form-custom form-label form-icon">
-                            <i class="bi bi-currency-dollar font-14"></i>
+                            <i> Z </i>
                             <input type="number" class="form-control rounded-xs" id="bal"
                                 value="{{ Auth::user()->wallet }}" readonly/>
                             <label for="c32" class="color-highlight">Available Amount</label>
@@ -37,8 +37,8 @@
                         </div>
                         <div class="pb-2"></div>
                         <div class="form-custom form-label form-icon">
-                            <i class="bi bi-currency-dollar font-14"></i>
-                            <input type="number" name="withdraw_amount" class="form-control rounded-xs" id="amt"
+                            <i> Z </i>
+                            <input type="text" name="withdraw_amount" class="form-control rounded-xs number" id="amt"
                                 placeholder="Withdrawal Amount" required />
                             <label for="c32" class="color-highlight">Withdrawal Amount</label>
                             <span>(required)</span>
@@ -46,7 +46,7 @@
 
                         <div class="pb-2"></div>
                         <div class="form-custom form-label form-icon">
-                            <i class="bi bi-currency-dollar font-14"></i>
+                            <i> Z </i>
                             <input type="number" class="form-control rounded-xs" id="balance"
                                 placeholder="Balance" readonly />
                             <label for="c32" class="color-highlight">Withdrawal Amount</label>

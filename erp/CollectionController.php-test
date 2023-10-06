@@ -1,0 +1,272 @@
+<?php
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Group;
+use App\Models\Collection;
+use App\Models\Test;
+use App\Models\Culture;
+use App\Models\GroupTest;
+use App\Models\Package;
+use App\Models\GroupCulture;
+use App\Models\GroupTestResult;
+use App\Models\GroupCultureResult;
+use DataTables;
+class CollectionController extends Controller
+{
+    /**
+     * assign roles
+     */
+    public function __construct()
+    {
+        $this->middleware('can:view_collection_report',     ['only' => ['index', 'show']]);
+        $this->middleware('can:create_collection_report',   ['only' => ['create', 'store']]);
+        $this->middleware('can:edit_collection_report',     ['only' => ['edit', 'update']]);
+        $this->middleware('can:delete_collection_report',   ['only' => ['destroy','bulk_delete']]);
+        $this->middleware('can:sign_collection_report',   ['only' => ['sign']]);
+    }
+
+    
+public function index(Request $request){
+    if($request->ajax())
+    {
+        $model=Group::query()
+                ->with('patient','tests','cultures','contract','signed_by_user','created_by_user')
+                ->where('branch_id',session('branch_id'));
+                $res["msg"] = $model;
+                //echo json_encode($res);
+                //die;
+
+        if($request['filter_status']!='')
+        {
+            $model->where('done',$request['filter_status']);
+        }
+
+        if($request['filter_barcode']!='')
+        {
+            $model->where('barcode',$request['filter_barcode']);
+        }
+
+        if($request['filter_created_by']!='')
+        {
+            $model->whereIn('created_by',$request['filter_created_by']);
+        }
+
+        if($request['filter_signed_by']!='')
+        {
+            $model->whereIn('signed_by',$request['filter_signed_by']);
+        }
+
+        if($request['filter_contract']!='')
+        {
+            $model->whereIn('contract_id',$request['filter_contract']);
+        }
+
+        if($request['filter_date']!='')
+        {
+            //format date
+            $date=explode('-',$request['filter_date']);
+            $from=date('Y-m-d',strtotime($date[0]));
+            $to=date('Y-m-d 23:59:59',strtotime($date[1]));
+
+            //select groups of date between
+            ($date[0]==$date[1])?$model->whereDate('created_at',$from):$model->whereBetween('created_at',[$from,$to]);
+        }
+
+        return DataTables::eloquent($model)
+        // ->editColumn('patient.gender',function($group){
+        //     return __(ucwords($group['patient']['gender']));
+        // })
+        ->editColumn('tests',function($group){
+            return view('admin.collections._tests',compact('group'));
+        })
+        // ->addColumn('signed',function($group){
+        //     return view('admin.medical_reports._signed',compact('group'));
+        // })
+        // ->editColumn('done',function($group){
+        //     return view('admin.medical_reports._status',compact('group'));
+        // })
+        ->addColumn('action',function($group){
+            return view('admin.collections._action',compact('group'));
+        })
+        // ->addColumn('bulk_checkbox',function($item){
+        //     return view('partials._bulk_checkbox',compact('item'));
+        // })
+        // ->editColumn('created_at',function($group){
+        //     return date('Y-m-d H:i',strtotime($group['created_at']));
+        // })
+        ->toJson();
+    }
+
+    return view('admin.collection.index');
+
+}
+
+
+     
+
+    
+    public function collection_fn($id)
+    {
+
+      
+      
+        $group=Group::with(['tests.test.test_price','cultures.culture.culture_price','packages.package.package_price'])
+        ->where('branch_id',session('branch_id'))
+        ->findOrFail($id);
+       
+        $tests=Test::where('parent_id',0)->orWhere('separated',true)->get();
+        $cultures=Culture::all();
+        $packages=Package::all();
+
+        return view('admin.collection.report',compact('group','tests','cultures','packages'));
+    }
+
+    public function collectionUpdate(Request $request){
+
+
+          
+        $id=$request->id;
+    
+        $group=Group::where('branch_id',session('branch_id'))
+        ->findOrFail($id);
+
+               $checkcoll='N';
+        foreach($request['tests'] as $test){
+            $checkcollection=$test['collected_done']??'N';
+            if( $group->sample_collected_by==null && $checkcollection=='Y' ){
+                $checkcoll='Y';
+            }
+}  
+ //!isset($group->sample_collection_date
+// $request->request->add(['sample_collection_date' => ($checkcoll=='Y'?date('Y-m-d H:i'):$group->sample_collection_date)]);
+// $request->request->add(['sample_collection_date' => ($checkcoll=='Y'?auth()->guard('admin')->user()->id:$group->sample_collection_date)]);
+ 
+ 
+ if($checkcoll=='Y'){
+     $request->request->add(['sample_collection_date' =>date('Y-m-d h:i:s')]);
+ $request->request->add(['sample_collected_by' =>auth()->guard('admin')->user()->id]);
+ }else{
+      $request->request->add(['sample_collection_date' =>null]);
+ $request->request->add(['sample_collected_by' =>null]);
+ }
+
+$group->update($request->except('_method',
+                            '_token',
+                            'tests',
+                            'cultures',
+                            'packages',
+                            'payments',
+                            'DataTables_Table_0_length',
+                            'DataTables_Table_1_length',
+                            'DataTables_Table_2_length'
+                        ));
+
+$group->update([
+'contract_id'=>(isset($request['contract_id']))?$request['contract_id']:''
+]);
+
+//store assigned tests
+$selected_tests=[];
+if($request->has('tests'))
+{
+
+ 
+foreach($request['tests'] as $test)
+{
+    $selected_tests[]=$test['id'];
+    $group_test=GroupTest::where([
+        ['group_id',$id],
+        ['test_id',$test['id']],
+    ])->first();
+
+    if(isset($group_test))
+    {          $collected_done=$test['collected_done']??'N';       
+        $group_test->update([
+            'price'=>$test['price'],
+            'discount_type'=>$test['discount_type'],
+            'discount'=>$test['discount'],
+            'final_price'=>$test['final_price'],
+            'discount_amount'=>$test['discount_amount'],
+            'collected_done'=>$collected_done,
+            'sample_collection_date'=>$collected_done=="Y"?(isset($test['sample_collection_date'])?$test['sample_collection_date']: date('Y-m-d h:i:s')):NULL,
+            'sample_collected_by'=>$collected_done=="Y"?(isset($test['sample_collected_by'])?$test['sample_collected_by']: auth()->guard('admin')->user()->id):NUll,
+        ]);
+    }
+    
+}
+}
+ 
+session()->flash('success',__('Collection updated successfully'));
+
+return redirect()->route('admin.collection.report',$id);
+
+    }
+
+    public function collectiondestroy(Request $request)
+    {
+
+        $id= $request->id;
+        //delete group
+        $group=Group::findOrFail($id);
+        $group->payments()->delete();
+
+        //delete group tests
+        $group_tests=GroupTest::where('group_id',$id)->get();
+
+        //delete test results
+        foreach($group_tests as $group_test)
+        {
+           GroupTestResult::where('group_test_id',$group_test['id'])->delete();
+        }
+        GroupTest::where('group_id',$id)->delete();
+
+        //delete group cultures
+        $group_cultures=GroupCulture::where('group_id',$id)->get();
+        foreach($group_cultures as $group_culture)
+        {
+            GroupCultureResult::where('group_culture_id',$group_culture['id'])->delete();
+        }
+        GroupCulture::where('group_id',$id)->delete();
+
+        //delete packages
+        $group->packages()->delete();
+
+        //delete consumption
+        $group->consumptions()->delete();
+
+        //delete group
+        $group->delete();
+
+        //return success
+        session()->flash('success',__('Collection report deleted successfully'));
+        return redirect()->route('admin.collection.reports');
+    }
+
+
+    public function show($id)
+    {   
+        $group=Group::where('branch_id',session('branch_id'))
+                    ->findOrFail($id);
+        $next=Group::where('id','>',$id)->orderBy('id','asc')->first();
+        $previous=Group::where('id','<',$id)->orderBy('id','desc')->first();
+
+        return view('admin.collection.show',compact('group','next','previous'));
+    }
+
+     function print_barcode(Request $request,$id){
+
+        $request->validate([
+            'number'=>'required|numeric|min:1'
+        ]);
+        $number=$request['number'];
+
+ 
+         $groups=Group::where('id',$id)->first();
+         $group_tests=GroupTest::where('group_id',$id)->first();
+         $barcode=collection_print_barcode( $groups,$group_tests,$number);
+
+         return redirect($barcode);
+     }
+
+}

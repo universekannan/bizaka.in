@@ -48,6 +48,7 @@
                                             <th>Full Name</th>
                                             <th>Referral ID</th>
                                             <th>Phone</th>
+                                            <th>Wallet Amount</th>
                                             @if (Auth::user()->id == 1)
                                                 <th>Password</th>
                                             @endif
@@ -63,6 +64,7 @@
                                                 <td>{{ $memberslist->name }}</td>
                                                 <td>{{ $memberslist->referral_id }}</td>
                                                 <td>{{ $memberslist->phone }}</td>
+                                                <td>{{ $memberslist->wallet }}</td>
                                                 @if (Auth::user()->id == 1)
                                                     <td>{{ $memberslist->plain_password }}</td>
                                                 @endif
