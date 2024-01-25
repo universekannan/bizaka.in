@@ -108,8 +108,6 @@ class UsersController extends Controller
         ] );
         $percentage = 10;
         $points = round($amount * $percentage / 100);
-        $sql = "update users set wallet = wallet - $points where id = 1";
-        DB::update(DB::raw($sql));
         $ad_info = "In Payment";
         $service_status = "In Payment";
         $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$member_id', '$points','$ad_info', '$service_status','$time','$paydate')";
@@ -136,8 +134,6 @@ class UsersController extends Controller
                 $sql = "insert into payment (log_id,from_id,to_id,amount,ad_info,service_status,time,paydate) values ('$log_id','$member_id','$user_id', '$points','$ad_info', '$service_status','$time','$paydate')";
                 DB::insert(DB::raw($sql));
                 $sql = "update users set wallet = wallet + $points where id = $user_id";
-                DB::update(DB::raw($sql));
-                $sql = "update users set wallet = wallet - $points where id = 1";
                 DB::update(DB::raw($sql));
             }
         }    
