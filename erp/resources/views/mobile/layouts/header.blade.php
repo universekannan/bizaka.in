@@ -13,9 +13,8 @@
     <i class="bi bi-bell-fill color-black font-17"></i>
     <em class="badge bg-red-light color-white scale-box">3</em>
     </a>
-    <a href="#" data-bs-toggle="dropdown" class="icon rounded-m shadow-xl">
-    <img src="{!! asset('mobile/images/pictures/3.jpg') !!}" width="45" class="rounded-m" alt="img">
-    </a>
+
+
     
     <div class="dropdown-menu">
     <div class="card card-style shadow-m mt-1 me-1">

@@ -123,7 +123,7 @@
                     </div>
                     <div class="align-self-center ms-auto">
                         <a href="#" data-bs-toggle="dropdown" class="icon rounded-m shadow-xl">
-                            <img src="images/pictures/25s.html" width="45" class="rounded-m" alt="img">
+                            <img src="{{ URL::to('/') }}/upload/user_photo/{{ Auth::user()->photo }}" width="45" class="rounded-m" alt="img">
                         </a>
 
                         <div class="dropdown-menu">
