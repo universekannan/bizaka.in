@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.4.28-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
 --
--- Host: localhost    Database: bizaka
+-- Host: localhost    Database: erp_bizaka
 -- ------------------------------------------------------
--- Server version	10.4.28-MariaDB
+-- Server version	8.0.35-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,24 +21,24 @@
 
 DROP TABLE IF EXISTS `payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `from_id` varchar(150) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `to_id` varchar(10) DEFAULT NULL,
+  `to_id` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `amount` varchar(45) CHARACTER SET latin1 COLLATE latin1_general_ci DEFAULT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `service_id` int(11) DEFAULT NULL,
-  `pay_id` int(11) DEFAULT NULL,
-  `service_status` varchar(20) DEFAULT NULL,
-  `ad_info` varchar(100) DEFAULT NULL,
-  `ad_info2` varchar(100) DEFAULT NULL,
-  `time` varchar(100) DEFAULT NULL,
-  `paydate` varchar(50) DEFAULT NULL,
-  `log_id` int(11) DEFAULT NULL,
-  `k_status` int(11) DEFAULT 1,
+  `customer_id` int DEFAULT NULL,
+  `service_id` int DEFAULT NULL,
+  `pay_id` int DEFAULT NULL,
+  `service_status` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ad_info` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ad_info2` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `time` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `paydate` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `log_id` int DEFAULT NULL,
+  `k_status` int DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,6 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,'10','10','10',NULL,NULL,NULL,'In Payment','Own Amount',NULL,'12:15:55','2023-09-23',1,1),(2,'10','9','2',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(3,'9','8','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(4,'8','7','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(5,'7','6','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(6,'6','5','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1),(7,'5','1','1',NULL,NULL,NULL,'In Payment','Activation',NULL,'12:15:55','2023-09-23',1,1);
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -57,16 +56,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `purchase`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `purchase` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `member_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `member_id` int NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `purchase_date` date NOT NULL,
   `added_datetime` datetime NOT NULL,
-  `log_id` int(11) NOT NULL,
+  `log_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +74,7 @@ CREATE TABLE `purchase` (
 
 LOCK TABLES `purchase` WRITE;
 /*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
-INSERT INTO `purchase` VALUES (1,10,100.00,'2023-09-23','2023-09-23 12:15:55',1);
+INSERT INTO `purchase` VALUES (1,10,100.00,'2023-09-23','2023-09-23 12:15:55',1),(2,10,1000.00,'2023-09-25','2023-09-25 17:12:22',1),(3,10,100.00,'2023-10-03','2023-10-03 11:49:53',1),(4,5,200.00,'2023-10-03','2023-10-03 11:52:59',1),(5,7,400.00,'2023-10-03','2023-10-03 11:54:04',1),(6,8,500.00,'2023-10-03','2023-10-03 11:54:39',1),(7,6,1000.00,'2023-10-03','2023-10-03 11:55:31',1);
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,18 +84,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `request_payment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `request_payment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `from_id` int(11) NOT NULL,
-  `to_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `from_id` int NOT NULL,
+  `to_id` int NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `req_time` varchar(20) DEFAULT NULL,
   `req_date` varchar(20) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `req_image` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,13 +114,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_type` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `usertype_name` varchar(20) DEFAULT NULL,
-  `status` int(11) DEFAULT 1,
+  `status` int DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,17 +139,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int(11) DEFAULT 0,
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `parent_id` int DEFAULT '0',
   `name` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `plain_password` varchar(20) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `dob` date DEFAULT NULL,
-  `status` int(11) DEFAULT 1,
+  `status` int DEFAULT '1',
   `maritial_status` varchar(20) DEFAULT NULL,
   `aadhar_no` varchar(20) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
@@ -163,12 +162,12 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `joined_date` varchar(20) DEFAULT NULL,
-  `usertype_id` int(11) DEFAULT 0,
-  `login_id` int(11) DEFAULT NULL,
+  `usertype_id` int DEFAULT '0',
+  `login_id` int DEFAULT NULL,
   `referral_id` varchar(255) DEFAULT NULL,
   `photo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +176,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'123','$2y$10$cIrs0d3SNe/KnrQyFHx5P./uLaV3wCjCQnR3dHupI3ayHzXffVp6C',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'1082',NULL,'1.png','2023-06-25 13:00:20','2023-06-25 13:00:20',NULL,1,1,'',NULL),(5,0,'Jino','jino@gmail.com',NULL,'7968','$2y$10$oD6Z7JGc7h1E8Imsm3/7mOGO4B7iuq861UpQ.ml1PPSl8vMcuuru6',NULL,1,NULL,NULL,'9047736314',NULL,'Test',NULL,'2354',NULL,NULL,'2023-09-21 09:40:15',NULL,NULL,3,NULL,'1',NULL),(6,0,'Dexter','joe@gmail.com',NULL,'1370','$2y$10$jy2B82nRHWuTm28zvqnQb.GAEsYuHkOGToQH83iHJs7TVPdBAq2fu',NULL,1,NULL,NULL,'9047736314',NULL,'Testr',NULL,'683',NULL,NULL,'2023-09-21 09:41:08',NULL,NULL,3,NULL,'5',NULL),(7,0,'Emmy Rodriguez MD','joe@gmail.com',NULL,'7312','$2y$10$tfxguTayggYT2yW5lYwjV.VqHLZPZBKiKIqCeP3O8iSMnuwf2NoTa',NULL,2,NULL,NULL,'123435',NULL,'Test',NULL,'5198',NULL,NULL,'2023-09-21 10:07:31',NULL,NULL,3,NULL,'6',NULL),(8,0,'Mr. Terrill Weimann DDS','jino@gmail.com',NULL,'5035','$2y$10$xl5hvx31uADB4OaXKpmYbuYfZjffziFIa58tnMRciZFVO4ivi2j9.',NULL,2,NULL,NULL,'123435',NULL,'set',NULL,'3207',NULL,NULL,'2023-09-23 05:37:55',NULL,NULL,3,NULL,'7',NULL),(9,0,'Test','123@gmail.com',NULL,'5866','$2y$10$DW5fnYCK9Bd1asYs3vthjOmON9t00q6tMwiP5F.nx3OVZk3q18b2S',NULL,1,NULL,NULL,'9047736314',NULL,'123',NULL,'302',NULL,NULL,'2023-09-23 05:56:43',NULL,NULL,3,NULL,'8',NULL),(10,0,'Dexter','joe@gmail.com',NULL,'3814','$2y$10$j8OjFieFDlY4sPWsFcbnEu.mA/eyhrERjgOk46NHNwLlFJiMqnpk.',NULL,1,NULL,NULL,'9047736314',NULL,'dwsd',NULL,'100',NULL,NULL,'2023-09-23 06:45:43',NULL,NULL,3,NULL,'9',NULL);
+INSERT INTO `users` VALUES (1,0,'Administrator','administrator@gmail.com',NULL,'123','$2y$10$cIrs0d3SNe/KnrQyFHx5P./uLaV3wCjCQnR3dHupI3ayHzXffVp6C',NULL,2,NULL,NULL,'9047736314',NULL,NULL,NULL,'2187',NULL,'1.png','2023-06-25 13:00:20','2023-06-25 13:00:20',NULL,1,1,'',NULL),(5,0,'Anbazhakan N','jino@gmail.com',NULL,'7968','$2y$10$oD6Z7JGc7h1E8Imsm3/7mOGO4B7iuq861UpQ.ml1PPSl8vMcuuru6',NULL,1,NULL,NULL,'9600299799',NULL,'16, Newport street, Nagercoil- 629001',NULL,'0',NULL,NULL,'2023-09-21 09:40:15','2023-10-03 10:38:57',NULL,3,NULL,'1',NULL),(6,0,'Bensigar P','joe@gmail.com',NULL,'1370','$2y$10$jy2B82nRHWuTm28zvqnQb.GAEsYuHkOGToQH83iHJs7TVPdBAq2fu',NULL,1,NULL,NULL,'9489415067',NULL,'Enayam, Kanyakumari',NULL,'0',NULL,NULL,'2023-09-21 09:41:08','2023-10-03 10:40:28',NULL,3,NULL,'5',NULL),(7,0,'Ambli Rajesh','joe@gmail.com',NULL,'7312','$2y$10$tfxguTayggYT2yW5lYwjV.VqHLZPZBKiKIqCeP3O8iSMnuwf2NoTa',NULL,2,NULL,NULL,'7448472587',NULL,'Keezhkulam, Kanyakumari district',NULL,'0',NULL,NULL,'2023-09-21 10:07:31','2023-10-03 11:33:29',NULL,3,NULL,'6',NULL),(8,0,'Sahayaraj','sahayaraj@gmail.com',NULL,'5035','$2y$10$xl5hvx31uADB4OaXKpmYbuYfZjffziFIa58tnMRciZFVO4ivi2j9.',NULL,2,NULL,NULL,'6379009374',NULL,'Colachal, KK dist.',NULL,'0',NULL,NULL,'2023-09-23 05:37:55','2023-10-03 11:35:29',NULL,3,NULL,'7',NULL),(9,0,'Ramya','ramy@gmail.com',NULL,'5866','$2y$10$DW5fnYCK9Bd1asYs3vthjOmON9t00q6tMwiP5F.nx3OVZk3q18b2S',NULL,1,NULL,NULL,'7397112980',NULL,'Konam, KK Dist.',NULL,'0',NULL,NULL,'2023-09-23 05:56:43','2023-10-03 11:37:42',NULL,3,NULL,'8',NULL),(10,0,'Annakili','bensigarp@gmail.com',NULL,'3814','$2y$10$j8OjFieFDlY4sPWsFcbnEu.mA/eyhrERjgOk46NHNwLlFJiMqnpk.',NULL,1,NULL,NULL,'9489514829',NULL,'Enayam, KK Dist.',NULL,'0',NULL,NULL,'2023-09-23 06:45:43','2023-10-03 11:39:44',NULL,3,NULL,'9',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,17 +186,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `withdrawal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `withdrawal` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `req_time` varchar(20) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL,
   `pay_image` varchar(20) DEFAULT NULL,
   `paid_time` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 11:35:25
+-- Dump completed on 2024-02-02  9:04:08
